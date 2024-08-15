@@ -45,7 +45,7 @@ if (!has_rights(ACX_CUSTOMER)) {
 
 getpost_ifset(array('nb_to_create', 'creditlimit', 'cardnum', 'addcredit', 'choose_tariff', 'gen_id', 'cardnum', 'choose_simultaccess',
     'choose_currency', 'choose_typepaid', 'creditlimit', 'enableexpire', 'expirationdate', 'expiredays', 'runservice', 'sip', 'iax',
-    'cardnumberlenght_list', 'tag', 'id_group', 'discount', 'id_seria', 'id_didgroup', 'vat', 'id_country'));
+    'cardnumberlenght_list', 'tag', 'id_group', 'discount', 'id_seria', 'id_didgroup', 'vat', 'id_country', 'status'));
 
 
 // Get the database handle
@@ -133,7 +133,7 @@ if ($nbcard > 0 && $action == "generate" && $nb_error == 0) {
     $instance_realtime = new Realtime();
 
     $FG_ADITION_SECOND_ADD_TABLE = "cc_card";
-    $FG_ADITION_SECOND_ADD_FIELDS = "username, useralias, credit, tariff, activated, lastname, firstname, email, address, city, state, country, zipcode, phone, simultaccess, currency, typepaid, " .
+    $FG_ADITION_SECOND_ADD_FIELDS = "username, useralias, credit, tariff, activated, lastname, firstname, email, address, city, state, country, status, zipcode, phone, simultaccess, currency, typepaid, " .
             "enableexpire, expirationdate, expiredays, uipass, runservice, tag, discount, serial_no, sip_buddy, iax_buddy, vat";
 
     if (DB_TYPE != "postgres") {
@@ -174,7 +174,7 @@ if ($nbcard > 0 && $action == "generate" && $nb_error == 0) {
         $serial_no_value = $serial_no; // Use this in your INSERT statement
 
     
-        $FG_ADITION_SECOND_ADD_VALUE = "'$accountnumber', '$useralias', '$addcredit', '$choose_tariff', 't', '$gen_id', '', '', '', '', '', '$id_country', '', '', $choose_simultaccess, '$choose_currency', " .
+        $FG_ADITION_SECOND_ADD_VALUE = "'$accountnumber', '$useralias', '$addcredit', '$choose_tariff', 't', '$gen_id', '', '', '', '', '', '$id_country', '$status', '', '', $choose_simultaccess, '$choose_currency', " .
             "$choose_typepaid, $enableexpire, '$expirationdate', $expiredays, '$passui_secret', '$runservice', '$tag', '$discount', '$serial_no_value', " .
             "$sip_buddy, $iax_buddy, '$vat'";
     
@@ -436,7 +436,21 @@ $list_country = $instance_table_country->Get_list($HD_Form->DBHandle, $FG_TABLE_
     <?php if ($country_error) { ?>
         <img style="vertical-align:middle;" src="<?php echo Images_Path;?>/exclamation.png" />
     <?php } ?>
-
+    <br/>
+    <strong>17)</strong>
+       <?php echo gettext("Status");?>&nbsp;:
+    <select name="status" class="form_input_select" >
+        <option value="2" selected> <?php echo gettext("NEW");?> </option>
+        <option value="0"> <?php echo gettext("CANCELLED");?> </option>
+        <option value="1"> <?php echo gettext("ACTIVE");?> </option>
+        <option value="3"> <?php echo gettext("WAITING-MAILCONFIRMATION");?> </option>
+        <option value="4"> <?php echo gettext("RESERVED");?> </option>
+        <option value="5"> <?php echo gettext("EXPIRED");?> </option>
+        <option value="6"> <?php echo gettext("SUSPENDED FOR UNDERPAYMENT");?> </option>
+        <option value="7"> <?php echo gettext("SUSPENDED FOR LITIGATION");?> </option>
+        <option value="8"> <?php echo gettext("WAITING SUBSCRIPTION PAYMENT");?> </option>
+    </select>
+    <br/>
     </td>
 </tr>
 <tr>

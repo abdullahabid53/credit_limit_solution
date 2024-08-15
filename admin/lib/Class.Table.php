@@ -351,6 +351,7 @@ class Table
             $this->table = $func_table;
 
         $QUERY = "UPDATE " . $this->table . " SET " . trim($param_update) . " WHERE " . trim($clause);
+        // die($QUERY);
         $res = $this->ExecuteQuery($DBHandle, $QUERY, 0);
 
         return($res);

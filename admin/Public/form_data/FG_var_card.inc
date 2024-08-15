@@ -575,7 +575,7 @@ $selected_value = isset($typepaid) && $typepaid == 2 ? 0 : 1; // Default to 1 if
 
     $update_field_typepaid = 'typepaid ,';
 
-
+    if ($form_action != "ask-edit") {
     $typepaid_list_display = array(
         "1" => array("POSTPAID CARD", "1"),
     );
@@ -605,20 +605,8 @@ $selected_value = isset($typepaid) && $typepaid == 2 ? 0 : 1; // Default to 1 if
             null,
             null,
             gettext("Customer Status"),
-            $selected_value
+            1
         );
-        echo '<input type="hidden" name="typepaid" value="' . $selected_value . '">';
-
-        // Setting the drop-down value
-        echo '<script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", function() {
-                var selectElement = document.querySelector("select[name=\'typepaid_display\']");
-                if (selectElement) {
-                    selectElement.value = "' . $selected_value . '";
-                    selectElement.disabled = true;
-                }
-            });
-        </script>';
 
     }
     else{
@@ -626,7 +614,6 @@ $selected_value = isset($typepaid) && $typepaid == 2 ? 0 : 1; // Default to 1 if
             "2" => array("PREPAID CARD", "2"),
         );
 
-        // echo json_encode($typepaid_list_display);die;
 
         $HD_Form->AddEditElement(
             gettext("PAYMENT TYPE"),
@@ -650,6 +637,24 @@ $selected_value = isset($typepaid) && $typepaid == 2 ? 0 : 1; // Default to 1 if
             2
         );
     }
+}
+else {
+    $tariff_value = $_GET['tariff'];
+    if($tariff_value !=2){
+    $typepaid_value = "value = 1";
+    }
+    else{
+    $typepaid_value = "value = 2";
+    }
+    $HD_Form -> AddEditElement (gettext(""),
+                   "typepaid",
+                   '$value',
+                   "INPUT",
+                   "size=20 maxlength=10 $typepaid_value type=hidden",
+                   "4",
+                   "",
+                   "" , "", "", "", "", "", "NO", gettext(""));
+}
 
     $HD_Form -> AddEditElement (gettext("CALL PLAN"),
                    "tariff",

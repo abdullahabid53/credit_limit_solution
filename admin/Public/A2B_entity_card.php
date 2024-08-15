@@ -556,6 +556,8 @@ if ($form_action=='ask-edit') {
     echo Display_Login_Button ($HD_Form -> DBHandle, $id);
 }
 
+// print_r($list);die;
+
 $HD_Form -> create_form ($form_action, $list, $id=null) ;
 
 // Code for the Export Functionality

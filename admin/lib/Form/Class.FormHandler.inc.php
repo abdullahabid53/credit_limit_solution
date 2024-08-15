@@ -928,6 +928,8 @@ class FormHandler
 			$this->FG_TABLE_EDITION[$cur] = array ( $displayname, $fieldname, $defaultvalue, $fieldtype, $fieldproperty, $regexpr_nb, $error_message,
 							$type_selectfield, $lie_tablename, $lie_tablefield, $lie_clause, $listname, $displayformat_selectfield, $check_emptyvalue,
 							$custom_query, $displayinput_defaultselect, $comment_above);
+
+			// echo '<pre>'; print_r($this->FG_TABLE_EDITION); die;
 			$this->FG_TABLE_COMMENT[$cur] = $comment;
 			$this->FG_TABLE_ADITION[$cur] = $this->FG_TABLE_EDITION[$cur];
 			$this->FG_NB_TABLE_ADITION = $this->FG_NB_TABLE_EDITION = count($this->FG_TABLE_EDITION);

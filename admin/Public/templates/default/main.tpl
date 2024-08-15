@@ -1,5 +1,5 @@
 {include file="header.tpl"}
-
+<link href="templates/default/css/custom.css" rel="stylesheet" type="text/css">
 {if ($popupwindow == 0)}
 	<div id="left-sidebar" style="position: fixed;">
 	<div id="leftmenu-top">
@@ -1014,7 +1014,7 @@
         <path d="M24.268 22.9344L23.7039 22.0625C23.5911 21.8937 23.5347 21.725 23.5347 21.5281V15.6781C23.5347 14.0187 22.8296 12.4719 21.5321 11.3187C20.4885 10.3906 19.1347 9.79999 17.6962 9.68749V9.12499C17.6962 8.78749 17.4141 8.47812 17.0475 8.47812C16.709 8.47812 16.3988 8.75937 16.3988 9.12499V9.65937C16.3423 9.65937 16.2859 9.65937 16.2295 9.68749C12.9577 10.0531 10.5039 12.6687 10.5039 15.7906V21.5281C10.4757 21.8094 10.4192 21.95 10.3628 22.0344L9.82694 22.9344C9.6577 23.2156 9.6577 23.5531 9.82694 23.8344C9.99617 24.0875 10.2782 24.2562 10.5885 24.2562H16.427V24.875C16.427 25.2125 16.709 25.5219 17.0757 25.5219C17.4141 25.5219 17.7244 25.2406 17.7244 24.875V24.2562H23.5347C23.8449 24.2562 24.127 24.0875 24.2962 23.8344C24.4655 23.5531 24.4655 23.2156 24.268 22.9344ZM11.2654 22.9906L11.4628 22.6531C11.6321 22.3719 11.7167 22.0344 11.7731 21.6406V15.7906C11.7731 13.3156 13.7475 11.2344 16.3706 10.9531C17.9782 10.7844 19.5577 11.2625 20.7142 12.275C21.7295 13.175 22.2937 14.3844 22.2937 15.6781V21.5281C22.2937 21.95 22.4065 22.3437 22.6603 22.7375L22.8296 22.9906H11.2654V22.9906Z" fill="#016774"/>
     </svg>
 	</a>
-	<div class="btn-group">
+	{* <div class="btn-group">
   <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  </button>
   <div class="dropdown-menu dropdown-menu-right mt-4">
   <div>
@@ -1024,6 +1024,17 @@
 	<a href="logout.php?logout=true" class="mx-4 my-2 header-dropdown-menu" type="button">Logout</a>
 	</div>
 	</div>
+</div> *}
+<div class="xn-nav-container">
+     <div class="xn-menu">
+            <div class="xn-menu-item">
+			<a class="xn-menu-link btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"></a>
+                <div class="xn-dropdown-menu">
+				<div class="xn-dropdown-item"><a href="A2B_entity_password.php?atmenu=password&form_action=ask-edit" class="mx-4 my-2 header-dropdown-menu" type="button">Change Password</a></div>
+				<div class="xn-dropdown-item"><a href="logout.php?logout=true" class="mx-4 my-2 header-dropdown-menu" type="button">Logout</a></div>
+                </div>
+            </div>
+      </div>
 </div>
 </div>
 
@@ -1036,6 +1047,37 @@
     loadLicenceModal();
 </script>
 {/if}
+
+<script>
+    // Get all menu items
+    const menuItems = document.querySelectorAll('.xn-menu-item');
+
+    menuItems.forEach(item => {
+        const link = item.querySelector('.xn-menu-link');
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior
+
+            // Toggle 'active' class on the parent .xn-menu-item
+            item.classList.toggle('active');
+
+            // Close other open dropdowns
+            menuItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // Close the dropdown if clicked outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.xn-menu-item')) {
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+    });
+</script>
 
 {$MAIN_MSG}
 

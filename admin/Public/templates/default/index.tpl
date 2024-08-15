@@ -1,10 +1,11 @@
-<HTML>
-<HEAD>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 	<link rel="shortcut icon" href="images/ico/a2billing-icon-32x32.ico">
 	<title>..:: {$CCMAINTITLE} ::..</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="templates/default/css/custom.css" rel="stylesheet" type="text/css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	{* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> *}
 		{if ($CSS_NAME!="" && $CSS_NAME!="default")}
 			   <link href="templates/default/css/{$CSS_NAME}.css" rel="stylesheet" type="text/css">
 		{else}
@@ -13,10 +14,10 @@
 			   <link href="templates/default/css/style-def.css" rel="stylesheet" type="text/css">
 		{/if}
         <script type="text/javascript" src="./javascript/jquery/jquery-1.2.6.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</HEAD>
+		{* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> *}
+</head>
 
-<BODY class="main-body" style="
+<body class="main-body" style="
 ;" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
 

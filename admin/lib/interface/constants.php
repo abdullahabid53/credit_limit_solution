@@ -412,9 +412,9 @@ class constants
     public static function getCardStatus_List()
     {
         $cardstatus_list = array();
+        $cardstatus_list["2"]  = array( gettext("NEW"), "2");
         $cardstatus_list["1"]  = array( gettext("ACTIVE"), "1");
         $cardstatus_list["0"]  = array( gettext("CANCELLED"), "0");
-        $cardstatus_list["2"]  = array( gettext("NEW"), "2");
         $cardstatus_list["3"]  = array( gettext("WAITING-MAILCONFIRMATION"), "3");
         $cardstatus_list["4"]  = array( gettext("RESERVED"), "4");
         $cardstatus_list["5"]  = array( gettext("EXPIRED"), "5");
