@@ -221,7 +221,7 @@ echo $CC_help_import_ratecard;
 <center>
 		<b><?php echo gettext("New rate cards have to be imported from a CSV file.");?>.</b></br></br>
 		<table width="95%" border="0" cellspacing="2" align="center" class="records">
-			  <form name="prefs" enctype="multipart/form-data" action="CC_ratecard_import_analyse.php" method="post">
+			  <form name="prefs" enctype="multipart/form-data" action="CC_ratecard_import_analyse.php?savecsv=false" method="post">
 				<tr> 
                   <td colspan="2" align=center> 
 				  <?php echo gettext("Choose the ratecard to import");?> :

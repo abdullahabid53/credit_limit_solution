@@ -47,16 +47,18 @@ check_demo_mode();
 
 getpost_ifset(array ('tariffplan', 'trunk', 'search_sources', 'task', 'status', 'currencytype', 'uploadedfile_name', 'uploadedfile_name'));
 
+$savecsv = $_GET['savecsv'];
+
 $tariffplanval = preg_split('/-:-/', $tariffplan);
 if (!is_numeric($tariffplanval[0])) {
     echo gettext("No tariffplan defined !");
-    exit ();
+    exit();
 }
 
 $trunkval = preg_split('/-:-/', $trunk);
 if (!is_numeric($trunkval[0])) {
     echo gettext("No Trunk defined !");
-    exit ();
+    exit();
 }
 
 if ($search_sources != 'nochange') {
@@ -116,58 +118,80 @@ if ($task == 'upload') {
     $fp = fopen($the_file, "r");
     if (!$fp) {
         echo gettext('Error: Failed to open the file.');
-        exit ();
+        exit();
     }
 
     $nb_imported = 0;
     $nb_to_import = 0;
     $DBHandle = DbConnect();
 
+    if($savecsv!='false'){
     while (!feof($fp)) {
-
-        //if ($nb_imported==1000) break;
-        $ligneoriginal = fgets($fp, 4096); /* On se dplace d'une ligne */
+        $ligneoriginal = fgets($fp, 4096);
         $ligneoriginal = trim($ligneoriginal);
 
-        // strip out ' and " and, with the exception of dialprefix field,
-        // substitute , for . to allow European style floats, eg: 0,1 == 0.1
-        $ligne = str_replace(array ( '"', "'" ), '', $ligneoriginal);
-        $val = preg_split('/[;,]/', $ligne);
-
-        if ($status != "ok") {
-            if ($currencytype == "cent") {
-                $val[2] = $val[2] / 100;
-            }
-            break;
+        // Skip empty lines
+        if (empty($ligneoriginal)) {
+            continue;
         }
-        if (substr($ligne, 0, 1) != '#' && $val[2] != '' && strlen($val[2]) > 0) {
+
+        // Strip out ' and "
+        $ligne = str_replace(array('"', "'"), '', $ligneoriginal);
+        
+        // Split the line into values
+        $val = preg_split('/[;,]/', $ligne);
+        
+        // Check if the line starts with '#' (comment) or if the line is empty
+        if (substr($ligne, 0, 1) == '#' || empty($val[0])) {
+            continue;
+        }
+
+        // Split DIALPREFIX by dash (-) if there are multiple
+        $dialprefixes = explode('-', $val[0]);
+        
+        // Process each DIALPREFIX
+        foreach ($dialprefixes as $dialprefix) {
+            $dialprefix = trim($dialprefix);
+            if (empty($dialprefix)) {
+                continue;
+            }
+
+            // Check if this dialprefix already exists in the database
+            $check_query = "SELECT COUNT(*) AS count FROM cc_ratecard WHERE idtariffplan = '" . $tariffplanval[0] . "' AND id_trunk = '" . $trunkval[0] . "' AND dialprefix = '" . $dialprefix . "'";
+            $check_result = $DBHandle->Execute($check_query);
+            $row = $check_result->FetchRow();
+            if ($row['count'] > 0) {
+                continue; // Skip this dialprefix as it already exists
+            }
+
             $FG_ADITION_SECOND_ADD_TABLE = 'cc_ratecard';
-            $FG_ADITION_SECOND_ADD_FIELDS = 'idtariffplan, id_trunk, dialprefix, destination, rateinitial'; //$fieldtoimport_sql
+            $FG_ADITION_SECOND_ADD_FIELDS = 'idtariffplan, id_trunk, dialprefix, destination, rateinitial'; // $fieldtoimport_sql
             $FG_ADITION_SECOND_ADD_FIELDS_PREFIX = 'prefix, destination';
+
             if ($currencytype == "cent") {
                 $val[2] = $val[2] / 100;
             }
 
-            $FG_ADITION_SECOND_ADD_VALUE = "'" . $tariffplanval[0] . "', '" . $trunkval[0] . "', '" . $val[0] . "', '" . intval($val[0]) . "', '" . $val[2] . "'";
+            $FG_ADITION_SECOND_ADD_VALUE = "'" . $tariffplanval[0] . "', '" . $trunkval[0] . "', '" . $dialprefix . "', '" . intval($dialprefix) . "', '" . $val[2] . "'";
 
             for ($k = 0; $k < count($fieldtoimport); $k++) {
-                if (!empty ($val[$k +3]) || $val[$k +3] == '0') {
-                    if ($fieldtoimport[$k] == "startdate" && ($val[$k +3] == '0' || $val[$k +3] == ''))
+                if (!empty($val[$k + 3]) || $val[$k + 3] == '0') {
+                    if ($fieldtoimport[$k] == "startdate" && ($val[$k + 3] == '0' || $val[$k + 3] == ''))
                         continue;
-                    if ($fieldtoimport[$k] == "stopdate" && ($val[$k +3] == '0' || $val[$k +3] == ''))
+                    if ($fieldtoimport[$k] == "stopdate" && ($val[$k + 3] == '0' || $val[$k + 3] == ''))
                         continue;
 
                     if ($fieldtoimport[$k] == "buyrate" || $fieldtoimport[$k] == "connectcharge" || $fieldtoimport[$k] == "disconnectcharge") {
                         if ($currencytype == "cent") {
-                            $val[$k +3] = $val[$k +3] / 100;
+                            $val[$k + 3] = $val[$k + 3] / 100;
                         }
                     }
                     $FG_ADITION_SECOND_ADD_FIELDS .= ', ' . $fieldtoimport[$k];
 
-                    if (is_numeric($val[$k +3])) {
-                        $FG_ADITION_SECOND_ADD_VALUE .= ", " . $val[$k +3] . "";
+                    if (is_numeric($val[$k + 3])) {
+                        $FG_ADITION_SECOND_ADD_VALUE .= ", " . $val[$k + 3];
                     } else {
-                        $FG_ADITION_SECOND_ADD_VALUE .= ", '" . trim($val[$k +3]) . "'";
+                        $FG_ADITION_SECOND_ADD_VALUE .= ", '" . trim($val[$k + 3]) . "'";
                     }
 
                     if ($fieldtoimport[$k] == "startdate")
@@ -190,30 +214,19 @@ if ($task == 'upload') {
                 $FG_ADITION_SECOND_ADD_FIELDS .= ', stopdate';
                 $FG_ADITION_SECOND_ADD_VALUE .= ", '" . $begin_date_plus . $end_date . "'";
             }
-            if (intval($val[0]) > 0) {
-                $FG_ADITION_SECOND_ADD_VALUE_PREFIX = "'" . intval($val[0]) . "', '" . $val[1] . "'";
-                $TT_QUERY_PREFIX = "REPLACE INTO cc_prefix " . $FG_ADITION_SECOND_ADD_TABLE_PREFIX . " (" . $FG_ADITION_SECOND_ADD_FIELDS_PREFIX . ") values (" . $FG_ADITION_SECOND_ADD_VALUE_PREFIX . ") ";
-                $DBHandle->Execute($TT_QUERY_PREFIX);
-            }
 
-            $TT_QUERY .= "INSERT INTO " . $FG_ADITION_SECOND_ADD_TABLE . " (" . $FG_ADITION_SECOND_ADD_FIELDS . ") values (" . $FG_ADITION_SECOND_ADD_VALUE . ") ";
-            $nb_to_import++;
-        }
-
-        if ($TT_QUERY != '' && strlen($TT_QUERY) > 0 && ($nb_to_import == 1)) {
-            $nb_to_import = 0;
+            $TT_QUERY = "INSERT INTO " . $FG_ADITION_SECOND_ADD_TABLE . " (" . $FG_ADITION_SECOND_ADD_FIELDS . ") values (" . $FG_ADITION_SECOND_ADD_VALUE . ")";
             $result_query = $DBHandle->Execute($TT_QUERY);
 
             if ($result_query) {
-                $nb_imported = $nb_imported +1;
+                $nb_imported++;
             } else {
-                $buffer_error .= $ligneoriginal . '<br/>';
+                // $buffer_error .= $ligneoriginal . '<br/>';
             }
-            $TT_QUERY = '';
         }
-
-    } // END WHILE EOF
-
+    }
+    // END WHILE EOF
+    }
     if ($TT_QUERY != '' && strlen($TT_QUERY) > 0 && ($nb_to_import > 0)) {
         $result_query = @ $DBHandle->Execute($TT_QUERY);
         if ($result_query)
@@ -350,21 +363,9 @@ if ($status=="ok") {
           $log -> insertLog($_SESSION["admin_id"], 2, "RATE CARD IMPORTED", $nb_imported." Ratecards Imported Successfully", '', $_SERVER['REMOTE_ADDR'], $_SERVER['REQUEST_URI'],'');
           $log = null;
           ?>
-          <?php echo gettext("Success")?>, <?php echo $nb_imported?> &nbsp; <?php echo gettext("new rates have been imported")?>.<br>
+          <?php echo gettext("Success")?> &nbsp; <?php echo gettext("new rates have been imported")?>.<br>
           </span></div>
           <br><br>
-
-          <?php  if (!empty($buffer_error)) { ?>
-          <center>
-          <b><i><?php echo gettext("Line that has not been inserted")?>!</i></b>
-          <div class="myscroll">
-            <span style="color: red;">
-                <?php echo $buffer_error?>
-            </span>
-          </div>
-          </center>
-          <br>
-          <?php  } ?>
       </td>
     </tr>
 </table>
