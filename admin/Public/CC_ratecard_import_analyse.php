@@ -155,7 +155,7 @@ if ($task == 'upload') {
             if (empty($dialprefix)) {
                 continue;
             }
-
+        
             // Check if this dialprefix already exists in the database
             $check_query = "SELECT COUNT(*) AS count FROM cc_ratecard WHERE idtariffplan = '" . $tariffplanval[0] . "' AND id_trunk = '" . $trunkval[0] . "' AND dialprefix = '" . $dialprefix . "'";
             $check_result = $DBHandle->Execute($check_query);
@@ -172,7 +172,7 @@ if ($task == 'upload') {
                 $val[2] = $val[2] / 100;
             }
 
-            $FG_ADITION_SECOND_ADD_VALUE = "'" . $tariffplanval[0] . "', '" . $trunkval[0] . "', '" . $dialprefix . "', '" . intval($dialprefix) . "', '" . $val[2] . "'";
+            $FG_ADITION_SECOND_ADD_VALUE = "'" . $tariffplanval[0] . "', '" . $trunkval[0] . "', '" . $dialprefix . "', '" . $val[1] . "', '" . $val[2] . "'";
 
             for ($k = 0; $k < count($fieldtoimport); $k++) {
                 if (!empty($val[$k + 3]) || $val[$k + 3] == '0') {
