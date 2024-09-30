@@ -285,6 +285,16 @@ class constants
         return $status_list;
     }
 
+    public static function getPromotionStateList()
+    {
+        $status_list = array();
+        $status_list = array();
+        $status_list["0"] = array( gettext("DISABLED"), "0");
+        $status_list["1"] = array( gettext("ENABLED"), "1");
+
+        return $status_list;
+    }
+
     public static function getEmailStatusList()
     {
         $status_list = array();

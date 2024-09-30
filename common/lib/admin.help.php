@@ -107,6 +107,8 @@ if (SHOW_HELP) {
 
     $CC_help_view_invoice = create_help(gettext("Invoice history - The section below allows you to see and create invoices against a customer. Only the closed invoice can be seen on the customer interface"), 'ViewInvoices');
 
+    $CC_help_view_promotion = create_help(gettext("Manage promotions here."));
+
     $CC_help_view_receipt = create_help(gettext("Receipt history - The section below allows you to see and create receipt against a customer.Only the closed receipt can be see in the customer interface. Receipts are only an information for the user and aren't used in the balance of the system"), 'ViewInvoices');
 
     $CC_help_view_refill_agent = create_help(gettext("Agents Refill history - The section below allows you to add refills against an agent. Note that this changes the balance on the account."), 'ViewAgentRefill');

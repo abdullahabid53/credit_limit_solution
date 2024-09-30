@@ -17,7 +17,7 @@ $processed = $this->getProcessed();
 
 if( !($popup_select>=1) &&($this->FG_LIST_ADDING_BUTTON1 || $this->FG_LIST_ADDING_BUTTON2)) {
     ?>
-    <table align="right"><tr align="right">
+    <table  align="right"><tr align="right">
         <td align="right">
         <?php if($this->FG_LIST_ADDING_BUTTON1) {?>
             <a href="<?php echo $this -> FG_LIST_ADDING_BUTTON_LINK1    ?>"> <?php echo $this -> FG_LIST_ADDING_BUTTON_MSG1?>&nbsp;&nbsp;<img src="<?php echo $this -> FG_LIST_ADDING_BUTTON_IMG1?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1?>"></a>

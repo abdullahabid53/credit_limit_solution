@@ -78,6 +78,8 @@ if (SHOW_HELP) {
 
     $CC_help_view_invoice = create_help(gettext("Invoice history - The section below allows you to see and pay the invoices that you have to pay."));
 
+    $CC_help_view_promotion = create_help(gettext("Manage promotions here."));
+
     $CC_help_view_receipt = create_help(gettext("Receipt history - The section below allows you to see the receipt that you received. you can see in them the summary of some withdrawal"));
 
     $CC_help_phonebook = create_help(gettext("Phonebook are set of phone numbers. You can add, remove and edit the phonebook. You can also associate phonebook to a campaign in the Campaign section"));

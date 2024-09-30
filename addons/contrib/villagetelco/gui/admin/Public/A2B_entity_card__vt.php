@@ -233,7 +233,7 @@ if ( $form_action == "list" && (!($popup_select>=1)) ) {
         <INPUT type="hidden" name="batchupdate" value="1">
         <tr>
           <td align="left" class="bgcolor_001" >
-                  <input name="check[upd_inuse]" type="checkbox" <?php if ($check["upd_inuse"]=="on") echo "checked"?>>
+                  <input style="height: 50px;" name="check[upd_inuse]" type="checkbox" <?php if ($check["upd_inuse"]=="on") echo "checked"?>>
           </td>
           <td align="left"  class="bgcolor_001">
                 1)&nbsp;<?php echo gettext("In use"); ?>&nbsp;:
