@@ -970,7 +970,11 @@
 											</li>
 										</ul>
 									</li>
-									<li><a href="A2B_entity_promotion.php?section=15">{php} echo gettext("Promotion");{/php}</a></li>
+									<li>
+										<a class="sb-menu-item mx-4 {if $atmenu == 'promotion'}active-sb-menu{/if}"
+											href="A2B_entity_promotion.php?atmenu=promotion&section=15">{php} echo gettext("Promotion");{/php}
+										</a>
+									</li>
 								</ul>
 							</div>
 						{/if}
@@ -1218,9 +1222,9 @@
 		</ul>
 
 	</div> *}
-			<div class="px-4 py-2 header" style="display: flex; align-items: center;">
+			<div class="px-4 py-2 header" style="display: flex; align-items: center;margin : 0 0 8px 0">
 				<div style="flex-grow: 1;">
-					<p class="mx-2" style="font-size: 14px; font-weight: 600; color: #4CEADB;" id="greeting"></p>
+					<p class="mx-2" style="font-size: 14px; font-weight: 600; color: #014952 ;" id="greeting"></p>
 					<h2 class="navbar-heading">Welcome to dashboard</h2>
 				</div>
 				<a href="A2B_notification.php">

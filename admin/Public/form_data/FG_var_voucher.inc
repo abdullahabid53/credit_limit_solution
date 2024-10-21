@@ -32,7 +32,7 @@
 **/
 
 
-getpost_ifset(array('id', 'username', 'useralias', 'uipass', 'credit', 'language', 'tariff',
+getpost_ifset(array('id', 'username', 'useralias', 'uipass', 'credit', 'bonus_credit', 'language', 'tariff',
     'id_didgroup','id_campaign', 'callback', 'simultaccess', 'currency','typepaid', 'creditlimit',
     'lastname', 'firstname', 'email', 'address','city', 'state', 'country', 'zipcode', 'phone', 'fax', 'inuse',
     'max_concurrent', 'cid', 'runservice', 'firstusedate','expirationdate', 'enableexpire', 'expiredays', 'sip_buddy',
@@ -135,6 +135,14 @@ if (!($popup_select>=1))
 // $show_fields['lastname'] = array(gettext("LASTNAME"), "lastname", "7%", "center", "sort", "20","", "", "", "", "", "");
 $show_fields['id_group'] = array(gettext("GROUP"), "id_group", "6%", "center", "sort", "20", "lie", "cc_card_group", "name", "id='%id'", "%1","");
 $show_fields['credit'] = array("<acronym title=\"".gettext("BALANCE")."\">".gettext("BA")."</acronym>", "credit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
+$show_fields['bonus_credit'] = array("<acronym title=\"".gettext("BONUS BALANCE")."\">".gettext("BB")."</acronym>", "bonus_credit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
+$show_list['bonus_credit'] = 'bonus_credit';
+$show_fields['bonus_credit_validity'] = array("<acronym title=\"".gettext("BONUS BALANCE VALIDITY")."\">".gettext("BBV")."</acronym>", "bonus_credit_validity", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bonus_credit_validity'] = 'bonus_credit_validity';
+$show_fields['bonus_mins'] = array("<acronym title=\"".gettext("BONUS MINS")."\">".gettext("BM")."</acronym>", "bonus_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bonus_mins'] = 'bonus_mins';
+$show_fields['bonus_mins_validity'] = array("<acronym title=\"".gettext("BONUS MINS VALIDITY")."\">".gettext("BMV")."</acronym>", "bonus_mins_validity", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bonus_mins_validity'] = 'bonus_mins_validity';
 
 if (!($popup_select>=1)) {
     $serial_pad_length = $A2B->config["webui"]['card_serial_length'];

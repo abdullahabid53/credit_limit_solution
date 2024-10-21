@@ -67,7 +67,7 @@ $lg_liste= Constants::getLanguages();
 <br/>
 <table style="width : 80%;" class="editform_table1">
    <tr>
-           <th colspan="2" background="../Public/templates/default/images/background_cells.gif">
+           <th colspan="2" >
                <?php echo gettext("AGENT INFO") ?>
            </th>
    </tr>
@@ -75,7 +75,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("LOGIN") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['login']?>
         </td>
     </tr>
@@ -83,7 +83,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("PASSWORD") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['passwd']?>
         </td>
     </tr>
@@ -91,7 +91,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("LAST NAME") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['lastname']?>
         </td>
     </tr>
@@ -99,7 +99,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("FIRST NAME") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['firstname']?>
         </td>
 
@@ -109,7 +109,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("ADDRESS") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['address']?>
         </td>
 
@@ -119,7 +119,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("ZIP CODE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['zipcode']?>
         </td>
     </tr>
@@ -128,7 +128,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("CITY") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['city']?>
         </td>
 
@@ -138,7 +138,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("STATE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['state']?>
         </td>
 
@@ -148,7 +148,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("COUNTRY") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['country']?>
         </td>
 
@@ -157,7 +157,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("EMAIL") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['email']?>
         </td>
 
@@ -166,7 +166,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("PHONE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['phone']?>
         </td>
     </tr>
@@ -174,7 +174,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("FAX") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['fax']?>
         </td>
     </tr>
@@ -182,7 +182,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("BALANCE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo number_format($agent['credit'],3)?>
         </td>
     </tr>
@@ -190,7 +190,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("CURRENCY") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['currency']?>
         </td>
       </tr>
@@ -198,7 +198,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("VAT") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $agent['vat']." %"?>
         </td>
     </tr>
@@ -206,7 +206,7 @@ $lg_liste= Constants::getLanguages();
         <td  class="form_head">
             <?php echo gettext("LANGUAGE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             &nbsp;<?php echo $lg_liste[$agent['language']][0];?>
         </td>
     </tr>

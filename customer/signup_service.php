@@ -109,7 +109,7 @@ $smarty->display('signup_header.tpl');
         </td>
     </tr>
      <tr>
-        <td colspan="2" align="right" class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td colspan="2" align="right" class="tableBodyRight"   width="70%">
             <a class="cssbutton_big" onClick="javascript:document.myForm.submit();"  href="#">
                 <img src="<?php echo Images_Path_Main;?>/icon_arrow_orange.gif"/>
                 <?php echo gettext("SUBSCRIBE THIS SERVICE"); ?>

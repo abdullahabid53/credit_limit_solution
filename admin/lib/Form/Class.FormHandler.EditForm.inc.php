@@ -64,7 +64,7 @@ function sendtolittle(direction) {
     for ($i=0;$i<$this->FG_NB_TABLE_EDITION;$i++) {
         $pos = strpos($this->FG_TABLE_EDITION[$i][14], ":"); // SQL CUSTOM QUERY
         if (strlen($this->FG_TABLE_EDITION[$i][16])>1) {
-            echo '<TR><TD width="%25" valign="top" bgcolor="#FEFEEE" colspan="2" class="tableBodyRight" ><i>';
+            echo '<TR><TD width="%25" valign="top" colspan="2" class="tableBodyRight" ><i>';
             echo $this->FG_TABLE_EDITION[$i][16];
             echo '</i></TD></TR>';
         }
@@ -101,7 +101,7 @@ function sendtolittle(direction) {
                         <INPUT
                         class="form_input_text"
                          <?php if (substr_count($this->FG_TABLE_EDITION[$i][4], "readonly") > 0) {?>
-                         style="background-color: #CCCCCC;"
+                        
                          <?php }?>
                         name=<?php echo $this->FG_TABLE_EDITION[$i][1]?>  <?php echo $this->FG_TABLE_EDITION[$i][4]?> value="<?php if ($this->VALID_SQL_REG_EXP) { echo stripslashes($list[0][$i]); } else { echo $processed[$this->FG_TABLE_ADITION[$i][1]];  }?>">
                         <?php
@@ -144,7 +144,7 @@ function sendtolittle(direction) {
               ?>
                      <textarea class="form_input_textarea"
                      <?php if (substr_count($this->FG_TABLE_EDITION[$i][4], "readonly") > 0) {?>
-                         style="background-color: #CCCCCC;"
+                        
                          <?php }?>
                      name=<?php echo $this->FG_TABLE_EDITION[$i][1]?>  <?php echo $this->FG_TABLE_EDITION[$i][4]?>><?php if ($this->VALID_SQL_REG_EXP) { echo stripslashes($list[0][$i]); } else { echo $processed[$this->FG_TABLE_ADITION[$i][1]];  }?></textarea>
                 <?php
@@ -547,7 +547,7 @@ function sendtolittle(direction) {
                     <TR>
                       <!-- ******************** PARTIE EXTERN : HAS_MANY ***************** -->
                           <TD width="122" class="form_head"><?php echo $this->FG_TABLE_EDITION[$i][0]?></TD>
-                          <TD align="center" valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
+                          <TD  valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
                         <!-- Table with list instance already inserted -->
                         <table cellspacing="0" class="editform_table2">
                           <TR bgcolor="#ffffff">
@@ -612,7 +612,7 @@ function sendtolittle(direction) {
                     <TR>
                       <!-- *******************   Select to ADD new instances  ****************************** -->
                       <TD class="form_head">&nbsp;</TD>
-                      <TD align="center" valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
+                      <TD valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
                         <TABLE width="300" height=50 border=0 align="center" cellPadding=0 cellSpacing=0>
                             <TR>
                                 <TD bgColor=#7f99cc colspan=3 height=16 style="PADDING-LEFT: 5px; PADDING-RIGHT: 5px" class="form_head">

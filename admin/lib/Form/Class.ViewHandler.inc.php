@@ -184,7 +184,7 @@ if ((count($list) > 0) && is_array($list)) {
             <TR>
                 <TD>
                     <TABLE border="0" cellPadding="2" cellSpacing="2" width="100%">
-                        <TR class="form_head">
+                        <TR class="form_head_table">
                             <?php
                             for ($i = 0; $i < $this->FG_NB_TABLE_COL; $i++) {
                             ?>

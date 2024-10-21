@@ -32,7 +32,7 @@
  *
  *
 **/
-
+require_once __DIR__ . '/interface/constants.php';
 define('A2B_CONFIG_DIR', '/etc/');
 define('AST_CONFIG_DIR', '/etc/asterisk/');
 define('DEFAULT_A2BILLING_CONFIG', A2B_CONFIG_DIR . 'a2billing.conf');

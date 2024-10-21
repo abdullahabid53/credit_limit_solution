@@ -67,7 +67,7 @@ $smarty->display('main.tpl');
 <br/>
 <table style="width : 80%;" class="editform_table1">
    <tr>
-           <th colspan="2" background="../Public/templates/default/images/background_cells.gif">
+           <th colspan="2" >
                <?php echo gettext("REMITTANCE INFO") ?>
            </th>
    </tr>
@@ -75,7 +75,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("AGENT") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php
             if (has_rights (ACX_ADMINISTRATOR)) {
                 echo linktoagent($remittance['id_agent']);
@@ -89,7 +89,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("AMOUNT") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php echo $remittance['amount']." ".strtoupper(BASE_CURRENCY);?>
         </td>
    </tr>
@@ -97,7 +97,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("CREATION DATE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php echo $remittance['date']?>
         </td>
     </tr>
@@ -105,7 +105,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("REMITTANCE TYPE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php
             $list_type = Constants::getRemittanceType_List();
             echo $list_type[$remittance['type']][0];?>
@@ -115,7 +115,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("REMITTANCE STATUS") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php
             $list_type = Constants::getRemittanceStatus_List();
             echo $list_type[$remittance['status']][0];?>

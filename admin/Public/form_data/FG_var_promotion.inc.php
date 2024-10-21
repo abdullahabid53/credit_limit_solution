@@ -33,7 +33,7 @@
 
 
 
-getpost_ifset(array('id', 'name', 'type', 'action','start','expiry', 'amount', 'status'));
+getpost_ifset(array('id', 'name', 'type', 'action','start','expiry', 'amount', 'is_enabled'));
 
 
 $FG_INSTANCE_NAME="Promotion";
@@ -64,16 +64,16 @@ $HD_Form ->FG_LIST_ADDING_BUTTON_IMG1 = $ADDING_BUTTON_IMG1;
 // $HD_Form -> FG_TABLE_CLAUSE = $FG_TABLE_CLAUSE;
 $status_list = Constants::getPromotionStateList();
 
-$HD_Form -> AddViewElement(gettext("ID"), "id", "14%", "center", "sort");
-$HD_Form -> AddViewElement(gettext("NAME"), "name", "24%", "center", "sort");
-$HD_Form -> AddViewElement(gettext("TYPE"), "type", "24%", "center", "sort");
-$HD_Form -> AddViewElement(gettext("ACTION"), "action", "24%", "center", "sort");
-$HD_Form -> AddViewElement(gettext("START DATE"), "start", "24%", "center", "sort", "19", "", "", "", "", "", "display_dateformat");
-$HD_Form -> AddViewElement(gettext("END DATE"), "expiry", "24%", "center", "sort", "19", "", "", "", "", "", "display_dateformat");
-$HD_Form -> AddViewElement(gettext("AMOUNT"), "amount", "24%", "center", "sort");
-$HD_Form -> AddViewElement(gettext("STATUS"), "status", "15%", "center", "sort", "", "list", $status_list);
+$HD_Form -> AddViewElement(gettext("ID"), "id", "", "center", "sort");
+$HD_Form -> AddViewElement(gettext("NAME"), "name", "", "center", "sort");
+$HD_Form -> AddViewElement(gettext("TYPE"), "type", "", "center", "sort");
+$HD_Form -> AddViewElement(gettext("ACTION"), "action", "", "center", "sort");
+$HD_Form -> AddViewElement(gettext("START DATE"), "start", "", "center", "sort", "19", "", "", "", "", "", "display_dateformat");
+$HD_Form -> AddViewElement(gettext("END DATE"), "expiry", "", "center", "sort", "19", "", "", "", "", "", "display_dateformat");
+$HD_Form -> AddViewElement(gettext("AMOUNT"), "amount", "", "center", "sort");
+$HD_Form -> AddViewElement(gettext("STATUS"), "is_enabled", "", "center", "sort", "", "list", $status_list);
 
-$HD_Form -> FieldViewElement ('id, name, type, action, start, expiry, amount, status');
+$HD_Form -> FieldViewElement ('id, name, type, action, start, expiry, amount, is_enabled');
 
 $HD_Form -> CV_NO_FIELDS  = gettext("NO")." ".strtoupper($HD_Form->FG_INSTANCE_NAME)." ".gettext("HAVE BEEN CREATED!");
 $HD_Form -> CV_DISPLAY_LINE_TITLE_ABOVE_TABLE = false;
@@ -120,7 +120,7 @@ if (has_rights (ACX_MODIFY_ADMINS) && !($popup_select)) {
 		"type",
 		'$value',
 		"SELECT",
-		"size=\"$len_right_list\"",
+		"",
 		"", "",
 		"list", "", "description, id", "", $right_list, "%1" , "",
 		gettext("Select the type of promotion") );
@@ -133,7 +133,7 @@ if (has_rights (ACX_MODIFY_ADMINS) && !($popup_select)) {
 		"action",
 		'$value',
 		"SELECT",
-		"size=\"$len_action_list\"",
+		"",
 		"", "",
 		"list", "", "description, id", "", $action_list, "%1" , "",
 		gettext("Select the action of promotion") );
@@ -143,21 +143,31 @@ if (has_rights (ACX_MODIFY_ADMINS) && !($popup_select)) {
 		"start",
 		'$value',
 		"INPUT",
-		"size=60 maxlength=50",
+		"size=60 maxlength=50 type=datetime-local",
 		"",
 		gettext("Insert the start date"),
 		"" , "", "", "", "", "", "", "");
 
-	$HD_Form -> AddEditElement (gettext("EXPIRY DATE"),
+	$HD_Form -> AddEditElement (gettext("END DATE"),
 		"expiry",
 		'$value',
 		"INPUT",
-		"size=60 maxlength=50",
+		"size=60 maxlength=50 type=datetime-local",
 		"",
-		gettext("Insert the expiry date"),
+		gettext("Insert the end date"),
 		"" , "", "", "", "", "", "", "");
 
-	$HD_Form -> AddEditElement (gettext("AMOUNT"),
+		$HD_Form -> AddEditElement (gettext("VALIDITY PERIOD"),
+		"validity",
+		'$value',
+		"INPUT",
+		"type=number min=0",
+		"",
+		gettext("Insert the validity days"),
+		"" , "", "", "", "", "", "", "",
+		gettext("Insert the validity days") );;
+
+	$HD_Form -> AddEditElement (gettext("AMOUNT / MINUTES"),
 		"amount",
 		'$value',
 		"INPUT",
@@ -169,12 +179,13 @@ if (has_rights (ACX_MODIFY_ADMINS) && !($popup_select)) {
 	$status_list = array();
 	$status_list["1"] = array( gettext("ENABLED"), 1);
 	$status_list["2"] = array( gettext("DISABLED"), 0);
+	$default_status = isset($value) ? $value : 1;
 	$len_status_list = count($status_list);
 	$HD_Form -> AddEditElement (gettext("STATUS"),
-			"status",
-			$value,
+			"is_enabled",
+			$default_status,
 			"SELECT",
-			"size=\"$len_status_list\"",
+			"",
 			"", "",
 			"list", "", "description, id", "", $status_list, "%1" , "",
 			gettext("Select the status of promotion") );
@@ -183,7 +194,7 @@ if (has_rights (ACX_MODIFY_ADMINS) && !($popup_select)) {
 	        $FG_QUERY_EDITION='id, ';
 	}
 
-	$FG_QUERY_EDITION .='name, type, action, start, expiry, amount, status';
+	$FG_QUERY_EDITION .='name, type, action, start, expiry, validity, amount, is_enabled';
 
 	$HD_Form -> FieldEditElement ($FG_QUERY_EDITION);
 

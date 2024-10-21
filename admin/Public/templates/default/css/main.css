@@ -7,6 +7,7 @@
   min-width: 1000px;
   margin: 0px auto;
 }
+
 #page-wrap #inside {
   /* padding-bottom: 10px; */
   width: 100%;
@@ -22,16 +23,20 @@
 .sb-menu-item:hover {
   color: #4ceadb !important;
 }
+
 .sidebar-item-li:hover {
   color: #4ceadb !important;
 }
+
 .sidebar-item-li-selected {
   font-weight: 500 !important;
   color: #014952 !important;
 }
+
 .sidebar-item-li {
   font-weight: 500 !important;
 }
+
 .navbar-heading {
   font-size: 28px !important;
   color: #014952 !important;
@@ -47,6 +52,7 @@
   overflow-y: auto;
   /* margin-top: -4rem; */
 }
+
 #left-sidebar::-webkit-scrollbar {
   display: none;
 }
@@ -66,6 +72,7 @@
   margin-right: auto;
   text-align: center;
 }
+
 .header-dropdown-menu {
   font-size: 12px !important;
   color: #23272c !important;
@@ -84,22 +91,26 @@
   font-size: 12px;
   text-decoration: none;
 }
+
 .msg_info {
   display: none;
   color: #00529b;
   background-color: #bde5f8;
   background-image: url("../images/msg_info.png");
 }
+
 .msg_success {
   color: #4f8a10;
   background-color: #dff2bf;
   background-image: url("../images/msg_success.png");
 }
+
 .msg_warning {
   color: #9f6000;
   background-color: #feefb3;
   background-image: url("../images/msg_warning.png");
 }
+
 .msg_error {
   color: #d8000c;
   background-color: #ffbaba;
@@ -114,6 +125,7 @@
   text-decoration: none;
   color: #00529b;
 }
+
 .msg_success h1,
 .msg_success h2,
 .msg_success h3 {
@@ -122,6 +134,7 @@
   text-decoration: none;
   color: #00529b;
 }
+
 .msg_warning h1,
 .msg_warning h2,
 .msg_warning h3 {
@@ -130,6 +143,7 @@
   text-decoration: none;
   color: #00529b;
 }
+
 .msg_error h1,
 .msg_error h2,
 .msg_error h3 {
@@ -151,6 +165,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
 }
 
 .login-border-up {
@@ -158,6 +173,7 @@
   /* background-position: top center;
   padding-top: 30px; */
 }
+
 .login-border-center {
   /* background: url(../images/login-border-center.png) repeat-y; */
   /* background-position: center center;
@@ -165,6 +181,7 @@
   padding-left: 20px;
   width: 100%; */
 }
+
 .login-border-down {
   width: 24%;
   background: white;
@@ -182,6 +199,7 @@
   color: #bc2222;
   text-align: center;
 }
+
 .form_input_button:hover {
   cursor: pointer;
 }
@@ -236,6 +254,7 @@ div.scrollreal {
   line-height: 24px;
   text-align: center;
 }
+
 .dashgraph {
   background-color: #ffffff;
   border: 1px solid #666;
@@ -328,12 +347,14 @@ input.button {
   margin: 0px;
   padding: 0px;
 }
+
 a:link {
   color: #666666;
   font-weight: bold;
   font-size: 12px;
   text-decoration: none;
 }
+
 a:visited {
   color: #666666;
   font-weight: bold;
@@ -363,8 +384,9 @@ body {
 
 
 .table-row {
-  border-top: 10px solid #F1F5F9 !important; /* Adds space between rows */
-  background:#FFFFFF;
+  border-top: 10px solid #F1F5F9 !important;
+  /* Adds space between rows */
+  background: #FFFFFF;
   height: 50px;
 }
 
@@ -381,12 +403,13 @@ body {
   padding-top: 8px;
   font-size: 14px;
 }
+
 .tableBodyRight {
   padding-bottom: 4px;
   padding-left: 4px;
   padding-right: 4px;
   padding-top: 4px;
-  font-size: 10px;
+  font-size: 12px;
   /* display: none; */
 }
 
@@ -416,7 +439,8 @@ body {
   background-color: #666666;
 }
 
-.form_head {
+
+.form_head_table {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: bold;
@@ -425,7 +449,23 @@ body {
   background-color: #014952 !important;
   width: auto;
   height: 50px;
+  text-align: end;
+  padding: 0 10px 0 0;
 }
+
+.form_head {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  /* color: #ffffff; */
+  background-color: #FFFFFF !important;
+  width: auto;
+  height: 50px;
+  text-align: end;
+  padding: 0 10px 0 0;
+}
+
 .form_head_red {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
@@ -435,13 +475,17 @@ body {
   background-color: #992222;
   width: auto;
 }
+
 .form_enter {
   background-color: #f9fbf9;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+  /* font-size: 11px; */
   font-weight: bold;
   color: #bc2222;
-  border: 1px solid #c1c1c1;
+  border: 1px solid #B0B0B0;
+  margin: 15px 0 15px 0;
+  border-radius: 8px;
+  padding: 12px 0 12px 7px;
 }
 
 TD.infoBox,
@@ -449,6 +493,7 @@ SPAN.infoBox {
   font-family: Verdana, Arial, sans-serif;
   font-size: 10px;
 }
+
 TD.main,
 P.main {
   font-family: Verdana, Arial, sans-serif;
@@ -462,21 +507,25 @@ TABLE.formArea {
   border-style: solid;
   border-width: 1px;
 }
+
 TD.formAreaTitle {
   font-family: Tahoma, Verdana, Arial, sans-serif;
   font-size: 12px;
   font-weight: bold;
 }
+
 SPAN.errorText {
   font-family: Verdana, Arial, sans-serif;
   color: #ff0000;
 }
+
 .callhistory_totalcost {
   background-color: #000000;
   width: 200px;
   margin: 1px;
   padding: 1px;
 }
+
 .callhistory_td1 {
   background-color: #600101;
   font-family: Verdana;
@@ -484,6 +533,7 @@ SPAN.errorText {
   font-weight: bold;
   color: #ffffff;
 }
+
 .callhistory_td2 {
   background-color: #600101;
   font-family: Verdana;
@@ -491,6 +541,7 @@ SPAN.errorText {
   font-weight: bold;
   color: #ffffff;
 }
+
 .callhistory_td3 {
   background-color: #b72222;
   font-family: Verdana;
@@ -498,6 +549,7 @@ SPAN.errorText {
   font-weight: bold;
   color: #ffffff;
 }
+
 .callhistory_td4 {
   background-color: #b72222;
   font-family: Verdana;
@@ -505,17 +557,20 @@ SPAN.errorText {
   font-weight: bold;
   color: #ffffff;
 }
+
 .callhistory_td5 {
   font-family: Verdana;
   font-size: 10px;
   font-weight: bold;
   color: #ffffff;
 }
+
 .fontstyle_001 {
   font-family: Verdana;
   font-size: 10px;
   color: #000000;
 }
+
 .fontstyle_002 {
   color: #aa4444;
 }
@@ -526,32 +581,40 @@ SPAN.errorText {
   padding: 2px;
   margin: 1px;
 }
+
 .bgcolor_003 {
-  background-color: #cddeff;
+  background-color: #FFFFFF;
 }
+
 .bgcolor_004 {
-  background-color: #000033;
+  background-color: #FFFFFF;
 }
+
 .bgcolor_005 {
-  background-color: #acbdee;
+  background-color: #FFFFFF;
 }
+
 .callhistory_td11 {
   background-color: #7f99cc;
   padding-right: 3px;
   padding-left: 5px;
   height: 16px;
 }
+
 .callback_maintable {
   background-color: #eeeeee;
   border: 0px;
   width: 77%;
 }
+
 .bgcolor_001 {
-  background-color: #e5e5e5;
+  background-color: #FFFFFF;
 }
+
 .forgetpassword_maintable {
   border: 1px solid #c1c1c1;
 }
+
 .forgetpassword_subtable {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -561,6 +624,7 @@ SPAN.errorText {
   background-color: #f9fbf9;
   height: 30px;
 }
+
 .forgetpassword_box {
   background-color: #edf3ff;
   padding-top: 5px;
@@ -568,6 +632,7 @@ SPAN.errorText {
   padding-bottom: 5px;
   padding-left: 5px;
 }
+
 .forgetpassword_image {
   padding-right: 8px;
   padding-left: 8px;
@@ -576,16 +641,20 @@ SPAN.errorText {
   height: 64px;
   background-repeat: no-repeat;
 }
+
 .bgcolor_007 {
   background-color: #dddddd;
   width: 400px;
 }
+
 .bgcolor_006 {
   background-color: #eeeeee;
 }
+
 .bgcolor_008 {
   background-color: #f0f0f0;
 }
+
 .bgcolor_008 {
   background-color: #fff1d1;
 }
@@ -596,6 +665,7 @@ SPAN.errorText {
   font-weight: bold;
   color: #ff0000;
 }
+
 .pp_error_maintable {
   border: 2px #eeeeff;
   background-color: #ffffff;
@@ -603,15 +673,18 @@ SPAN.errorText {
   padding: 1px;
   margin: 2px;
 }
+
 .pp_error_maintable_tr1 {
   background-color: #4e81c4;
   font-size: large;
   color: #ffffff;
 }
+
 .pp_error_maintable_error {
   font-size: medium;
   color: #3050c2;
 }
+
 .changepassword_maintable {
   padding-right: 0px;
   padding-left: 0px;
@@ -621,60 +694,79 @@ SPAN.errorText {
   padding-top: 0px;
   background-color: #f6f6f6;
 }
+
 .bgcolor_009 {
   background-color: #8888cc;
 }
+
 .bgcolor_010 {
   background-color: #5555cc;
 }
+
 .bgcolor_011 {
   background-color: #55cc55;
 }
+
 .bgcolor_012 {
   background-color: #ababab;
 }
+
 .bgcolor_013 {
   background-color: #ed2525;
 }
+
 .bgcolor_014 {
   background-color: #e6e6e6;
 }
+
 .bgcolor_015 {
   background-color: #ededed;
 }
+
 .bgcolor_016 {
   background-color: #ffffff;
 }
+
 .bgcolor_017 {
   background-color: #eaeaea;
 }
+
 .bgcolor_018 {
   background-color: #fafafa;
 }
+
 .bgcolor_019 {
   background-color: #600101;
 }
+
 .bgcolor_020 {
   background-color: #b72222;
 }
+
 .bgcolor_021 {
-  background-color: #7f99cc;
+  background-color: #FFFFFF;
 }
+
 .bgcolor_022 {
   background-color: #c0c0c0;
 }
+
 .bgcolor_023 {
   background-color: #808080;
 }
+
 .bgcolor_024 {
   background-color: #edf3ff;
 }
+
 .bgcolor_025 {
   background-color: #f2e8ed;
 }
+
 .bgcolor_026 {
   background-color: #d2d8ed;
 }
+
 .voucher_table1 {
   padding-right: 0px;
   padding-left: 0px;
@@ -684,6 +776,7 @@ SPAN.errorText {
   padding-top: 0px;
   background-color: #cccccc;
 }
+
 .speeddial_table1 {
   padding-right: 0px;
   padding-left: 0px;
@@ -695,9 +788,11 @@ SPAN.errorText {
   margin-left: auto;
   margin-right: auto;
 }
+
 .NewTableCell {
   border-spacing: 10px;
 }
+
 .toppage_maintable {
   border-top-width: 0px;
   padding-right: 2px;
@@ -713,9 +808,11 @@ SPAN.errorText {
   text-align: center;
   border-right-width: 0px;
 }
+
 .toppage_maintable_editmsg {
   color: #ff0000;
 }
+
 .toppage_askedit {
   border-top-width: 0px;
   padding-right: 2px;
@@ -731,6 +828,7 @@ SPAN.errorText {
   text-align: center;
   border-right-width: 0px;
 }
+
 .fontstyle_002 {
   font-weight: bold;
   font-size: 13px;
@@ -738,6 +836,7 @@ SPAN.errorText {
   font-family: Verdana, Arial, Helvetica;
   text-decoration: none;
 }
+
 .toppage_actionfinish {
   border-top-width: 0px;
   padding-right: 5px;
@@ -753,6 +852,7 @@ SPAN.errorText {
   text-align: center;
   border-right-width: 0px;
 }
+
 .tdstyle_001 {
   padding-right: 4px;
   padding-left: 4px;
@@ -761,6 +861,7 @@ SPAN.errorText {
   padding-top: 4px;
   background-color: #cccccc;
 }
+
 .toppage_customaction {
   border-top-width: 0px;
   padding-right: 5px;
@@ -775,6 +876,7 @@ SPAN.errorText {
   text-align: center;
   border-right-width: 0px;
 }
+
 .form_selectform {
   border-top-width: 0px;
   padding-right: 2px;
@@ -789,6 +891,7 @@ SPAN.errorText {
   text-align: center;
   border-right-width: 0px;
 }
+
 .form_selectform_td1 {
   font-weight: bold;
   font-size: 11px;
@@ -796,6 +899,7 @@ SPAN.errorText {
   font-family: Verdana;
   background-color: #000033;
 }
+
 .form_selectform_table1 {
   border-top-width: 0px;
   border-left-width: 0px;
@@ -805,17 +909,20 @@ SPAN.errorText {
   text-align: center;
   border-right-width: 0px;
 }
+
 .form_selectform_table1_td1 {
   width: 50%;
   background-color: #cddeff;
   text-align: center;
 }
+
 .select_style {
   border-right: #cc3300 2px outset;
   border-top: #cc3300 2px outset;
   border-left: #cc3300 2px outset;
   border-bottom: #cc3300 2px outset;
 }
+
 .viewhandler_table1 {
   border-right: 0px;
   padding-right: 0px;
@@ -829,30 +936,36 @@ SPAN.errorText {
   border-bottom: 0px;
   height: 43px;
 }
+
 .tdstyle_002 {
   padding-right: 3px;
   padding-left: 5px;
   height: 20px;
   background-color: #52bede;
 }
+
 .viewhandler_table2_td3 {
   padding-right: 3px;
   padding-left: 5px;
   height: 20px;
 }
+
 .viewhandler_span1 {
   font-weight: bold;
   font-size: 9px;
   color: #787878;
 }
+
 .viewhandler_filter_td1 {
   padding-bottom: 10px;
   display: flex;
   justify-content: end;
 }
+
 .viewhandler_filter_on {
   font-weight: bold;
 }
+
 .form_input_button {
   background-color: #016774;
   font-size: 17px;
@@ -862,6 +975,7 @@ SPAN.errorText {
   border-radius: 40px;
   padding: 0 20px 0 20px;
 }
+
 #loginbutton {
   width: 85%;
   height: 40px;
@@ -872,13 +986,14 @@ SPAN.errorText {
 
 .custom_a_href {
   display: flex;
-    align-items: center;
-    background: #016774;
-    height: 50px !important;
-    border-radius: 40px;
-    padding: 0 20px 0 20px;
-    width: fit-content;
+  align-items: center;
+  background: #016774;
+  height: 50px !important;
+  border-radius: 40px;
+  padding: 0 20px 0 20px;
+  width: fit-content;
 }
+
 .form_input_button_disabled {
   background-color: #f9fbf9;
   font-family: Arial, Helvetica, sans-serif;
@@ -907,13 +1022,21 @@ SPAN.errorText {
   padding: 0 10px 0 10px;
 }
 
+tr>.tableBodyRight>i {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--Go---Bold-teal, #016774);
+
+}
+
 .form_input_select {
   background-color: #f9fbf9;
-  font-size: 17px;
-  font-weight: 500;
+  /* font-size: 17px;
+  font-weight: 500; */
   height: 50px;
   padding: 0 20px 0 20px;
   border-radius: 8px;
+  border: 1px solid #B0B0B0;
   margin: 10px 0 10px 0;
 }
 
@@ -928,7 +1051,7 @@ SPAN.errorText {
 .form_input_textarea {
   background-color: #f9fbf9;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
+  /* font-size: 11px; */
   font-weight: bold;
   color: #bc2222;
   border-right: #ff7777 1px dashed;
@@ -940,6 +1063,7 @@ SPAN.errorText {
   overflow-x: hidden;
   overflow: -moz-scrollbars-vertical;
 }
+
 .form_input_span {
   background-color: #ffffcc;
   font-family: Arial, Helvetica, sans-serif;
@@ -951,12 +1075,13 @@ SPAN.errorText {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
 .form_input_text {
-  font-size: 18px;
+  /* font-size: 18px; */
   font-weight: 400;
   height: 50px;
   background-color: #f9fbf9;
-  border: 1px solid black;
+  border: 1px solid #B0B0B0;
   border-radius: 8px;
   width: 248px;
   padding: 0 0 0 10px;
@@ -966,12 +1091,14 @@ SPAN.errorText {
 .viewhandler_span2 {
   color: #cc0000;
 }
+
 .viewhandler_table3_td1 {
   border-top-style: none;
   border-bottom: #667766 double;
   border-right-style: none;
   border-left-style: none;
 }
+
 .searchhandler_table1 {
   border-right: 0px;
   padding-right: 2px;
@@ -985,33 +1112,41 @@ SPAN.errorText {
   padding-top: 2px;
   border-bottom: 0px;
 }
+
 .fontstyle_003 {
   font-weight: bold;
-  font-size: 10px;
-  color: #ffffff;
-  font-family: Verdana;
+  font-size: 13px;
+  /* color: #ffffff; */
+  /* font-family: Verdana; */
 }
+
 .fontstyle_004 {
   font-weight: bold;
 }
+
 .fontstyle_005 {
   color: Red;
   font-weight: bold;
 }
+
 .fontstyle_006 {
   font-size: 11px;
   color: #333333;
   font-family: Verdana;
+  height: 50px;
 }
+
 .fontstyle_searchoptions {
   font-size: 11px;
   color: #444444;
   font-family: Verdana;
 }
+
 .bgcolor_002 {
   font-size: 9px;
-  background-color: #555577;
+  background-color: #FFFFFF;
 }
+
 .searchhandler_table4 {
   border-right: 0px;
   padding-right: 2px;
@@ -1025,6 +1160,7 @@ SPAN.errorText {
   padding-top: 2px;
   border-bottom: 0px;
 }
+
 .editform_table1 {
   border-right: 0px;
   padding-right: 3px;
@@ -1035,10 +1171,11 @@ SPAN.errorText {
   width: 95%;
   padding-top: 3px;
   border-bottom: 0px;
-  background-color: #eaeaea;
+  background-color: #FFFFFF;
   margin-left: auto;
   margin-right: auto;
 }
+
 .editform_table1_td1 {
   padding-right: 4px;
   padding-left: 4px;
@@ -1047,6 +1184,7 @@ SPAN.errorText {
   padding-bottom: 4px;
   padding-top: 4px;
 }
+
 .editform_table2 {
   border-right: 0px;
   padding-right: 0px;
@@ -1058,12 +1196,14 @@ SPAN.errorText {
   padding-top: 0px;
   border-bottom: 0px;
   background-color: #edf3ff;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
+
 .editform_table2_td1 {
   background-color: White;
 }
+
 .editform_table3 {
   border-right: 0px;
   padding-right: 0px;
@@ -1075,19 +1215,23 @@ SPAN.errorText {
   padding-top: 0px;
   border-bottom: 0px;
 }
+
 .editform_table3_td1 {
   background-color: #e1e1e1;
   height: 1px;
 }
+
 .editform_table3_tr1 {
   background-color: #ffffff;
 }
+
 .editform_table3_td2 {
   background-color: #aaaaaa;
   height: 16px;
   padding-left: 5px;
   padding-right: 3px;
 }
+
 .editform_table3_td3 {
   padding-bottom: 4px;
   padding-left: 4px;
@@ -1096,6 +1240,7 @@ SPAN.errorText {
   font-size: 10px;
   background-image: url(../images/background_cells.gif);
 }
+
 .editform_table4 {
   border-right: 0px;
   padding-right: 0px;
@@ -1110,6 +1255,7 @@ SPAN.errorText {
   margin-left: auto;
   margin-right: auto;
 }
+
 .editform_table4_td1 {
   padding-bottom: 7px;
   padding-left: 5px;
@@ -1117,16 +1263,19 @@ SPAN.errorText {
   padding-top: 5px;
   background-color: #f3f3f3;
 }
+
 .editform_table5_td1 {
   background-color: #e2e2d3;
   height: 42px;
   width: 206px;
   vertical-align: top;
 }
+
 .editform_table5_td2 {
   width: 400px;
   background-image: url(../images/background_cells.gif);
 }
+
 .editform_table6 {
   border-right: 0px;
   padding-right: 0px;
@@ -1141,15 +1290,18 @@ SPAN.errorText {
   margin-left: auto;
   margin-right: auto;
 }
+
 .editform_table6_td1 {
   height: 16px;
   padding-left: 5px;
   padding-right: 5px;
 }
+
 .editform_table7_td1 {
   color: #000000;
   background-color: #e2e2d3;
 }
+
 .editform_table8 {
   border-right: 0px;
   padding-right: 3px;
@@ -1164,13 +1316,16 @@ SPAN.errorText {
   margin-left: auto;
   margin-right: auto;
   background-color: #ffffff;
+  margin-bottom: 15px;
 }
+
 .editform_dotted_line {
   border-top-style: none;
   border-bottom: medium dotted #667766;
   border-right-style: none;
   border-left-style: none;
 }
+
 .delform_table2 {
   border-right: 0px;
   padding-right: 2px;
@@ -1184,10 +1339,12 @@ SPAN.errorText {
   margin-left: auto;
   margin-right: auto;
 }
+
 .delform_table2_td1 {
   background-color: #cddeff;
   font-weight: bold;
 }
+
 .delform_table3 {
   border-right: 0px;
   padding-right: 0px;
@@ -1203,9 +1360,11 @@ SPAN.errorText {
   margin-right: auto;
   background-image: url(../images/background_cells.gif);
 }
+
 .delform_table3_td1 {
   height: 40px;
 }
+
 .tablestyle_001 {
   border-right: 0px;
   padding-right: 2px;
@@ -1219,6 +1378,7 @@ SPAN.errorText {
   margin-left: auto;
   margin-right: auto;
 }
+
 .delform_table4 {
   padding-right: 4px;
   padding-left: 4px;
@@ -1228,6 +1388,7 @@ SPAN.errorText {
   background-color: #d4d5d7;
   width: 75%;
 }
+
 .delform_table5 {
   border-right: 0px;
   padding-right: 3px;
@@ -1243,6 +1404,7 @@ SPAN.errorText {
   margin-right: auto;
   background-color: #ffffff;
 }
+
 .addform_table1 {
   border-right: 0px;
   padding-right: 2px;
@@ -1255,22 +1417,26 @@ SPAN.errorText {
   border-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #e2e2d3;
+  background-color: #FFFFFF;
 }
+
 .infoBoxNotice {
   background: #ff8e90;
 }
+
 .infoBoxNoticeContents {
   background: #ffe6e6;
   font-family: Verdana, Arial, sans-serif;
   font-size: 10px;
 }
+
 .infoBox {
   background: WhiteSmoke;
   border-color: #7b9ebd;
   border-style: solid;
   border-width: 1px;
 }
+
 .invoice_main_table {
   border-right: LightGrey 1px solid;
   padding-right: 2px;
@@ -1284,6 +1450,7 @@ SPAN.errorText {
   padding-top: 0px;
   border-bottom: LightGrey 1px solid;
 }
+
 .invoice_heading {
   font-weight: normal;
   font-size: 20px;
@@ -1295,6 +1462,7 @@ SPAN.errorText {
   text-align: left;
   text-decoration: none;
 }
+
 .cssbutton_old {
   background: #fff;
   padding: 1px;
@@ -1303,6 +1471,7 @@ SPAN.errorText {
   /* font-variant : small-caps; */
   border: 1px solid #bc2222;
 }
+
 .button_inside {
   color: #bc2222;
   background: #f3edd9;
@@ -1313,12 +1482,12 @@ SPAN.errorText {
 .cssbutton {
   background-color: #f9fbf9;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 9px;
-  color: #bc2222;
-  border-right: #ff5500 2px ridge;
+  font-size: 12px;
+  /* color: #bc2222; */
+  /* border-right: #ff5500 2px ridge;
   border-top: #ff5500 2px ridge;
   border-left: #ff5500 2px ridge;
-  border-bottom: #ff5500 2px ridge;
+  border-bottom: #ff5500 2px ridge; */
   padding: 0px 3px 0px 3px;
   text-align: center;
   vertical-align: super;
@@ -1326,7 +1495,7 @@ SPAN.errorText {
 }
 
 .cssbutton_big {
-  background-image: url(../images/back_button.gif);
+  /* background-image: url(../images/back_button.gif);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 19px;
   border-right: #ffffff 2px ridge;
@@ -1334,11 +1503,19 @@ SPAN.errorText {
   border-left: #cccccc 2px ridge;
   border-bottom: #cccccc 2px ridge;
   padding: 0px 3px 0px 3px;
-  text-align: center;
+  text-align: center; */
+  background: #016774 !important;
+  padding: 10px 25px 10px 25px;
+  color: white !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  border-radius: 40px;
 }
+
 .cssbutton_big img {
   vertical-align: top;
 }
+
 .cssbutton_big:hover {
   background-image: url(../images/back_button_over.gif);
 }
@@ -1348,6 +1525,7 @@ SPAN.errorText {
   color: #555555;
   font-family: Verdana, Arial, Helvetica;
 }
+
 .fontstyle_008 {
   font-weight: bold;
   font-size: 13px;
@@ -1355,6 +1533,7 @@ SPAN.errorText {
   font-family: Verdana, Arial, Helvetica;
   text-decoration: none;
 }
+
 .tablebackgroundblue {
   background-image: url(../images/blueshade.png);
   background-repeat: repeat-x;
@@ -1365,6 +1544,7 @@ SPAN.errorText {
   margin-left: auto;
   width: 80%;
 }
+
 .tablebackgroundcamel {
   background-image: url(../images/orangeshadet.gif);
   background-repeat: repeat-x;
@@ -1374,6 +1554,7 @@ SPAN.errorText {
   border-right: 1px solid #fab000;
   border-bottom: 1px solid #fab000;
 }
+
 .signup_main {
   z-index: 0;
   height: auto;
@@ -1384,10 +1565,12 @@ SPAN.errorText {
   margin-left: auto;
   margin-right: auto;
 }
+
 .cardnumber_lenght_table {
   border: 1px solid Navy;
   background-color: #e4e4e4;
 }
+
 .epayment_conf_table {
   border-right: 0px;
   padding-right: 2px;
@@ -1402,6 +1585,7 @@ SPAN.errorText {
   margin-right: auto;
   background-color: #e2e2d3;
 }
+
 .invoice_table {
   padding: 5px;
   border: solid 1px;
@@ -1411,6 +1595,7 @@ SPAN.errorText {
   margin-right: auto;
   background-color: #eaeaea;
 }
+
 .fontstyle_009 {
   font-family: Verdana;
   font-size: 10px;
@@ -1438,9 +1623,11 @@ div.scroll {
   background-color: #eee;
   padding: 8px;
 }
+
 .main-content {
   background-color: #e2e8f0;
 }
+
 .header {
   background-color: #fff;
 }

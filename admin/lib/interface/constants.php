@@ -614,4 +614,15 @@ class constants
         return $musiconhold_list;
     }
 
+    public static function getDiscount_percentage()
+    {
+        $discount_percentage_list = array();
+        
+        // Add percentages from 0 to 100%
+        for ($i = 0; $i <= 100; $i++) {
+            $discount_percentage_list[$i] = array(gettext("$i%"), (string)$i);
+        }
+        
+        return $discount_percentage_list;
+    }
 }

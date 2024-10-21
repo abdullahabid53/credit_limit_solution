@@ -191,9 +191,9 @@ $HD_Form -> AddEditElement (gettext("EMAIL TO SEND REPORT"),
 	'$value',
 	"INPUT",
 	"size=30 maxlength=30",
-	"1",
+	"",
 	gettext("Insert the email to send the report"),
-	"" , "", "", "", "", "" , "NO-NULL", "");
+	"" , "", "", "", "", "" , "", "");
 
 $HD_Form -> AddEditElement (gettext("CALL PLAN"),
        "dialplan",

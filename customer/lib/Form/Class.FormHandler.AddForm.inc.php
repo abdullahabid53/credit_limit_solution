@@ -44,7 +44,7 @@ $processed = $this->getProcessed();
             $pos = strpos($this->FG_TABLE_ADITION[$i][14], ":");
 
             if (strlen($this->FG_TABLE_ADITION[$i][16])>1 && strtoupper ($this->FG_TABLE_ADITION[$i][3])!=("HAS_MANY")) {
-                echo '<TR><TD width="%25" valign="top" bgcolor="#FEFEEE" colspan="2" class="tableBodyRight" ><i>';
+                echo '<TR><TD width="%25" valign="top" colspan="2" class="tableBodyRight" ><i>';
                 echo $this->FG_TABLE_EDITION[$i][16];
                 echo '</i></TD></TR>';
             }

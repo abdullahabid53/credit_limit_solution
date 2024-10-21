@@ -577,7 +577,7 @@ $HD_Form->create_toppage($form_action);
 if (!$popup_select && $form_action == "ask-add") {
     ?>
     <center>
-        <table width="70%" align="center" cellpadding="2" cellspacing="0">
+        <table width="95%" align="center" cellpadding="2" cellspacing="0">
             <script language="javascript">
                 public
 

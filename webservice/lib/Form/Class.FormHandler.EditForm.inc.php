@@ -64,7 +64,7 @@ function sendtolittle(direction) {
     for ($i=0;$i<$this->FG_NB_TABLE_EDITION;$i++) {
         $pos = strpos($this->FG_TABLE_EDITION[$i][14], ":"); // SQL CUSTOM QUERY
         if (strlen($this->FG_TABLE_EDITION[$i][16])>1) {
-            echo '<TR><TD width="%25" valign="top" bgcolor="#FEFEEE" colspan="2" class="tableBodyRight" ><i>';
+            echo '<TR><TD width="%25" valign="top" colspan="2" class="tableBodyRight" ><i>';
             echo $this->FG_TABLE_EDITION[$i][16];
             echo '</i></TD></TR>';
         }

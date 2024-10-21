@@ -66,7 +66,7 @@ $smarty->display('main.tpl');
 <br/>
 <table style="width : 80%;" class="editform_table1">
    <tr>
-           <th colspan="2" background="../Public/templates/default/images/background_cells.gif">
+           <th colspan="2" >
                <?php echo gettext("PAYMENT INFO") ?>
            </th>
    </tr>
@@ -74,7 +74,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("AGENT") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php echo nameofagent($payment['agent_id']);?>
         </td>
    </tr>
@@ -82,7 +82,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("AMOUNT") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php echo $payment['payment']." ".strtoupper(BASE_CURRENCY);?>
         </td>
    </tr>
@@ -90,7 +90,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("CREATION DATE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php echo $payment['date']?>
         </td>
     </tr>
@@ -98,7 +98,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("PAYMENT TYPE") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php
             $list_type = Constants::getRefillType_List();
             echo $list_type[$payment['payment_type']][0];?>
@@ -108,7 +108,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("DESCRIPTION ") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <?php echo $payment['description']?>
         </td>
     </tr>
@@ -117,7 +117,7 @@ $smarty->display('main.tpl');
         <td  class="form_head">
             <?php echo gettext("LINK REFILL") ?> :
         </td>
-        <td class="tableBodyRight"  background="../Public/templates/default/images/background_cells.gif" width="70%">
+        <td class="tableBodyRight"   width="70%">
             <a href="A2B_refill_info_agent.php?id=<?php echo $payment['id_logrefill']?>"> <img src="<?php echo Images_Path."/link.png"?>" border="0" title="<?php echo gettext("Link to the refill")?>" alt="<?php echo  gettext("Link to the refill")?>"></a>
         </td>
     </tr>

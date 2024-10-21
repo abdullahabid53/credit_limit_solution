@@ -32,7 +32,7 @@
 **/
 
 
-getpost_ifset(array('id', 'username', 'useralias', 'uipass', 'credit', 'language', 'tariff',
+getpost_ifset(array('id', 'username', 'useralias', 'uipass', 'credit', 'bonus_credit', 'language', 'tariff',
     'id_didgroup','id_campaign', 'callback', 'simultaccess', 'currency','typepaid', 'creditlimit',
     'lastname', 'firstname', 'email', 'address','city', 'state', 'country', 'zipcode', 'phone', 'fax', 'inuse',
     'max_concurrent', 'cid', 'runservice', 'firstusedate','expirationdate', 'enableexpire', 'expiredays', 'sip_buddy',
@@ -136,7 +136,20 @@ if (!($popup_select>=1))
 // $show_fields['lastname'] = array(gettext("LASTNAME"), "lastname", "7%", "center", "sort", "20","", "", "", "", "", "");
 $show_fields['id_group'] = array(gettext("GROUP"), "id_group", "6%", "center", "sort", "20", "lie", "cc_card_group", "name", "id='%id'", "%1","");
 $show_fields['credit'] = array("<acronym title=\"".gettext("BALANCE")."\">".gettext("BA")."</acronym>", "credit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
-
+$show_fields['bonus_credit'] = array("<acronym title=\"".gettext("BONUS BALANCE")."\">".gettext("BB")."</acronym>", "bonus_credit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
+$show_list['bonus_credit'] = 'bonus_credit';
+$show_fields['bonus_credit_validity'] = array("<acronym title=\"".gettext("BONUS BALANCE VALIDITY")."\">".gettext("BBV")."</acronym>", "bonus_credit_validity", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bonus_credit_validity'] = 'bonus_credit_validity';
+$show_fields['bonus_mins'] = array("<acronym title=\"".gettext("BONUS MINS")."\">".gettext("BM")."</acronym>", "bonus_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bonus_mins'] = 'bonus_mins';
+$show_fields['bonus_mins_validity'] = array("<acronym title=\"".gettext("BONUS MINS VALIDITY")."\">".gettext("BMV")."</acronym>", "bonus_mins_validity", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bonus_mins_validity'] = 'bonus_mins_validity';
+$show_fields['used_onnet_mins'] = array("<acronym title=\"".gettext("USED ONNET MINS IN SECS")."\">".gettext("ONNET")."</acronym>", "used_onnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['used_onnet_mins'] = 'used_onnet_mins';
+$show_fields['used_offnet_mins'] = array("<acronym title=\"".gettext("USED OFFET MINS IN SECS")."\">".gettext("OFFNET")."</acronym>", "used_offnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['used_offnet_mins'] = 'used_offnet_mins';
+$show_fields['used_intl_mins'] = array("<acronym title=\"".gettext("USED INTL MINS IN SECS")."\">".gettext("INTL")."</acronym>", "used_intl_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['used_intl_mins'] = 'used_intl_mins';
 if (!($popup_select>=1)) {
     $serial_pad_length = $A2B->config["webui"]['card_serial_length'];
     $show_fields['id_seria'] = array(gettext("SERIE"), "id_seria", "*", "center", "sort", "15", "lie", "cc_card_seria", "name","id='%id'", "%1","");
@@ -767,16 +780,20 @@ else {
                    gettext("Choose if you want to enable the service recurring on this account"),
                    "" , "", "", "Yes :1, - No:0", "", "" , "", gettext("Apply recurring service to this account."));
 
-
+    if ($form_action == "ask-add") {
+    $defaulet_value_c_limit = "value=1";
+    }
+    elseif ($form_action == "ask-edit") {
+    $defaulet_value_c_limit = "";
+    }
     $HD_Form -> AddEditElement (gettext("CREDIT LIMIT"),
                    "creditlimit",
                    "",
                    "INPUT",
-                   "size=20 maxlength=20",
+                   "size=20 maxlength=20 type=number min=1 $defaulet_value_c_limit",
                    "4",
                    gettext("Insert the credit limit"),
                    "" , "", "", "", "", "", "NO-NULL", gettext("Credit limit is only used for the postpaid account."));
-
 
 
     $HD_Form -> AddEditElement (gettext("CREDIT LIMIT NOTIFICATION"),

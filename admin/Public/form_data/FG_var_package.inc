@@ -33,7 +33,7 @@
 
 
 
-getpost_ifset(array('id', 'label', 'packagetype', 'billingtype','startday', 'freetimetocall'));
+getpost_ifset(array('id', 'label', 'packagetype', 'billingtype','startday', 'freetimetocall, offnet_minutes, international_minutes'));
 
 $HD_Form = new FormHandler("cc_package_offer","OFFER PACKAGE");
 
@@ -65,7 +65,6 @@ $HD_Form -> AddViewElement(gettext("CREATION DATE"), "creationdate", "15%", "cen
 $HD_Form -> AddViewElement(gettext("PACKAGE TYPE"), "packagetype", "10%", "center", "sort","","list",$packagetype_list);
 $HD_Form -> AddViewElement(gettext("BILLING TYPE"), "billingtype", "10%", "center", "sort","","list",$billingtype_list);
 $HD_Form -> AddViewElement(gettext("STARTING DAY"), "startday", "12%", "center", "sort");
-$HD_Form -> AddViewElement(gettext("FREE"), "freetimetocall", "17%", "center", "sort", "30", "", "", "", "", "", "");
 
 $HD_Form -> FieldViewElement ('label, creationdate, packagetype, billingtype, startday, '.$filter_unit);
 
@@ -91,15 +90,6 @@ $HD_Form -> AddEditElement (gettext("LABEL"),
 	gettext("Insert the package label"),
 	"" , "", "",	"", "", "", "",	"");
 
-$HD_Form -> AddEditElement (gettext("PACKAGE TYPE"),
-	"packagetype",
-	'$value',
-	"SELECT",
-	"",
-	"",
-	"",
-	"list" , "", "", "", $packagetype_list, "%1", "", "");
-
 $HD_Form -> AddEditElement (gettext("BILLING TYPE"),
 	"billingtype",
 	'$value',
@@ -123,6 +113,15 @@ $HD_Form -> AddEditElement (gettext("STARTING DAY"),
    "" , "", "",	"", "", "", "", gettext("The value will be related to billing type ; if monthly accepted value are 1-31 ; if Weekly accepted value 1-7 (Monday to Sunday) "));
 
 
+   $HD_Form -> AddEditElement (gettext("ONNET PACKAGE TYPE"),
+	"packagetype",
+	'$value',
+	"SELECT",
+	"",
+	"",
+	"",
+	"list" , "", "", "", $packagetype_list, "%1", "", "");
+
 $HD_Form -> AddEditElement (gettext("FREE ON NET MINUTES"),
    "freetimetocall",
    '$value',
@@ -130,7 +129,7 @@ $HD_Form -> AddEditElement (gettext("FREE ON NET MINUTES"),
    "size=10 maxlength=10",
    "4",
    gettext("Insert the amount of free time to call (seconds)"),
-   "" , "", "",	"", "", "", "", gettext("Insert the amount of free on net minutes, in seconds,for the FREE SECONDS mode. For NUMBER OF FREE CALLS insert the number of free calls"));
+   "" , "", "",	"", "", "", "", gettext("Insert the amount of free on net minutes, in seconds,for the FREE SECONDS mode. For UNLIMITED CALLS set it to 0"));
 
 
    $HD_Form -> AddEditElement (gettext("FREE OFF NET MINUTES"),
@@ -140,7 +139,7 @@ $HD_Form -> AddEditElement (gettext("FREE ON NET MINUTES"),
    "size=10 maxlength=10",
    "4",
    gettext("Insert the amount of free time to call (seconds)"),
-   "" , "", "",	"", "", "", "", gettext("Insert the amount of free off net minutes, in seconds,for the FREE SECONDS mode. For NUMBER OF FREE CALLS insert the number of free calls"));
+   "" , "", "",	"", "", "", "", gettext("Insert the amount of free off net minutes, in seconds."));
 
    $HD_Form -> AddEditElement (gettext("FREE INTERNATIONAL MINUTES"),
    "international_minutes",
@@ -149,11 +148,11 @@ $HD_Form -> AddEditElement (gettext("FREE ON NET MINUTES"),
    "size=10 maxlength=10",
    "4",
    gettext("Insert the amount of free time to call (seconds)"),
-   "" , "", "",	"", "", "", "", gettext("Insert the amount of free international minutes, in seconds,for the FREE SECONDS mode. For NUMBER OF FREE CALLS insert the number of free calls"));
+   "" , "", "",	"", "", "", "", gettext("Insert the amount of free international minutes, in seconds."));
 
 
 
-$HD_Form -> FieldEditElement ('label, packagetype, billingtype, startday, freetimetocall, offnet_minutes, international_minutes');
+$HD_Form -> FieldEditElement ('label, billingtype, startday, packagetype, freetimetocall, offnet_minutes, international_minutes');
 
 
 $HD_Form -> FG_INTRO_TEXT_EDITION= gettext("Modify the properties of the")." ".$HD_Form->FG_INSTANCE_NAME.".";

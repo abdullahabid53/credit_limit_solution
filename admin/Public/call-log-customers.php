@@ -365,7 +365,7 @@ $smarty->display ( 'main.tpl' );
         } else {
             ?>
         <tr>
-        <td align="left" valign="top" class="bgcolor_004"><font
+        <td align="left"  class="bgcolor_004"><font
             class="fontstyle_003">&nbsp;&nbsp;<?php
             echo gettext ( "CUSTOMERS" );
             ?></font>

@@ -38,7 +38,7 @@ getpost_ifset(array('id', 'idtariffplan', 'dialprefix', 'destination', 'buyrate'
 'billingblockb', 'stepchargec', 'chargec', 'timechargec', 'billingblockc', 'startdate', 'stopdate',
 'starttime', 'endtime', 'id_trunk', 'musiconhold','tariffplan', 'tariffgroup','posted','id_outbound_cidgroup','rounding_calltime',
 'rounding_threshold', 'additional_block_charge', 'additional_block_charge_time', 'additional_grace','minimal_cost','announce_time_correction',
-'cancelsearch_callplanlcr', 'deleteselected'));
+'cancelsearch_callplanlcr', 'deleteselected', 'dicount_percent', 'disc_starttime', 'disc_endtime'));
 
 // put all the destination name to lowercase
 $destination = strtolower ($destination);
@@ -111,6 +111,7 @@ if (!$popup_select) {
 
 
 $musiconhold_list = Constants::getMusicOnHold_List();
+$getDiscount_percentage = Constants::getDiscount_percentage();
 $yesno = Constants::getYesNoList();
 
 //
@@ -610,14 +611,49 @@ if (ADVANCED_MODE) {
 	   "",
 	   "list" , "", "", "", $musiconhold_list, "%1", "", "" );
 }
+if ($form_action=="ask-add") {
+	$discount = " value=00:00:00 ";
+	$discount_plus = " value=00:00:00 ";
+}
+
+$HD_Form -> AddEditElement(gettext("DISCOUNT PERCENT"),
+   "discount_percent",
+   '$value',
+   "SELECT",
+   "",
+   "",
+   "",
+   "list" , "", "", "", $getDiscount_percentage, "%1", "", "" );
+
+   $HD_Form->AddEditElement(
+      gettext("DISCOUNT START TIME"),
+      "disc_starttime",
+      '$value',
+      "INPUT",
+      "type='time'",
+      "",
+      gettext("Insert the start time"),
+      "" , "", "", "", "",  "", "", gettext("Set the start time for discounted rates")
+  );
+  
+  $HD_Form->AddEditElement(
+      gettext("DISCOUNT END TIME"),
+      "disc_endtime",
+      '$value',
+      "INPUT",
+      "type='time'",
+      "",
+      gettext("Insert the end time"),
+      "" , "", "", "", "",  "", "", gettext("Set the end time for discounted rates")
+  );
 
 
 if (ADVANCED_MODE) {
 	// This Variable store the argument for the SQL query
-	$HD_Form -> FieldEditElement ('cc_ratecard.idtariffplan, dialprefix, cc_ratecard.destination, buyrate, buyrateinitblock, buyrateincrement, rateinitial, initblock, billingblock, connectcharge, disconnectcharge,disconnectcharge_after, minimal_cost, stepchargea, chargea, timechargea, billingblocka, stepchargeb, chargeb, timechargeb, billingblockb, stepchargec, chargec, timechargec, billingblockc,announce_time_correction, startdate, stopdate, starttime, endtime, rounding_calltime, rounding_threshold, additional_block_charge, additional_block_charge_time,additional_grace, id_trunk, id_outbound_cidgroup, tag, musiconhold');
+	$HD_Form -> FieldEditElement ('cc_ratecard.idtariffplan, dialprefix, cc_ratecard.destination, buyrate, buyrateinitblock, buyrateincrement, rateinitial, initblock, billingblock, connectcharge, disconnectcharge,disconnectcharge_after, minimal_cost, stepchargea, chargea, timechargea, billingblocka, stepchargeb, chargeb, timechargeb, billingblockb, stepchargec, chargec, timechargec, billingblockc,announce_time_correction, startdate, stopdate, starttime, endtime, rounding_calltime, rounding_threshold, additional_block_charge, additional_block_charge_time,additional_grace, id_trunk, id_outbound_cidgroup, tag, musiconhold, discount_percent, disc_starttime, disc_endtime');
 } else {
 	// This Variable store the argument for the SQL query
-	$HD_Form -> FieldEditElement ('cc_ratecard.idtariffplan, dialprefix, cc_ratecard.destination, buyrate, buyrateinitblock, buyrateincrement, rateinitial, initblock, billingblock, connectcharge, disconnectcharge,disconnectcharge_after, minimal_cost, startdate, stopdate, starttime, endtime, rounding_calltime, rounding_threshold, additional_block_charge, additional_block_charge_time,additional_grace, id_trunk, id_outbound_cidgroup, tag');
+	$HD_Form -> FieldEditElement ('cc_ratecard.idtariffplan, dialprefix, cc_ratecard.destination, buyrate, buyrateinitblock, buyrateincrement, rateinitial, initblock, billingblock, connectcharge, disconnectcharge,disconnectcharge_after, minimal_cost, startdate, stopdate, starttime, endtime, rounding_calltime, rounding_threshold, additional_block_charge, additional_block_charge_time,additional_grace, id_trunk, id_outbound_cidgroup, tag, discount_percent, disc_starttime, disc_endtime');
 }
 
 

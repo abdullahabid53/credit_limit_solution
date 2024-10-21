@@ -65,7 +65,7 @@ $group_title = $config_group[0];
 $group_description = $config_group[2];
 
 ?>
-<table width="92%" align="center" class="bar-status">
+<table style="padding: 0 30px 0 30px;" width="92%" align="center" class="bar-status">
     <tr>
         <td>
             <table width="100%" style="border:1px solid">
