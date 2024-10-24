@@ -29,12 +29,14 @@
 }
 
 .sidebar-item-li-selected {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
   color: #014952 !important;
+  /* font-size: 1.6vh; */
 }
 
 .sidebar-item-li {
   font-weight: 500 !important;
+  /* font-size: 1.6vh; */
 }
 
 .navbar-heading {
@@ -42,9 +44,37 @@
   color: #014952 !important;
 }
 
+.sidebar-scroll-stl {
+  overflow-y: auto;
+  height: 100vh;
+  /* Firefox scrollbar */
+  scrollbar-color: #FFFFFF #014952; /* thumb color, track color */
+  scrollbar-width: thin; /* Thin scrollbar for Firefox */
+}
+
+/* Chrome, Safari, and Edge */
+.sidebar-scroll-stl::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+.sidebar-scroll-stl::-webkit-scrollbar-track {
+  background: #F5F5F5; /* Color of the track */
+}
+
+.sidebar-scroll-stl::-webkit-scrollbar-thumb {
+  background-color: #FF6347; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.sidebar-scroll-stl::-webkit-scrollbar-thumb:hover {
+  background-color: #FF4500; /* Darker color on hover */
+}
+
+
+
 #left-sidebar {
   /* width: 200px; */
-  width: 15%;
+  width: 17%;
   float: left;
   /* padding-top: 20px; */
   height: 100vh;
@@ -87,7 +117,7 @@
   padding: 15px 10px 20px 50px;
   background-repeat: no-repeat;
   background-position: 10px center;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   text-decoration: none;
 }
@@ -121,7 +151,7 @@
 .msg_info h2,
 .msg_info h3 {
   margin: 0px 0px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-family: 'Poppins', sans-serif;
   text-decoration: none;
   color: #00529b;
 }
@@ -130,7 +160,7 @@
 .msg_success h2,
 .msg_success h3 {
   margin: 0px 0px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-family: 'Poppins', sans-serif;
   text-decoration: none;
   color: #00529b;
 }
@@ -139,7 +169,7 @@
 .msg_warning h2,
 .msg_warning h3 {
   margin: 0px 0px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-family: 'Poppins', sans-serif;
   text-decoration: none;
   color: #00529b;
 }
@@ -148,7 +178,7 @@
 .msg_error h2,
 .msg_error h3 {
   margin: 0px 0px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-family: 'Poppins', sans-serif;
   text-decoration: none;
   color: #d8000c;
 }
@@ -162,6 +192,7 @@
   margin-top: -220px; 
   margin-left: -220px; */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -189,11 +220,12 @@
   background-position: bottom center;
   padding-bottom: 30px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
 .login-title {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: bold;
   color: #bc2222;
@@ -247,7 +279,7 @@ div.scrollreal {
 }
 
 .dashtitle {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-weight: bold;
   padding-bottom: 5px;
   font-size: 20px;
@@ -261,7 +293,7 @@ div.scrollreal {
 }
 
 p {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   line-height: 20px;
   margin: 10px 0px;
@@ -269,7 +301,7 @@ p {
 }
 
 h1 {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 22px;
   line-height: 26px;
@@ -278,7 +310,7 @@ h1 {
 }
 
 h2 {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 20px;
   line-height: 24px;
@@ -287,7 +319,7 @@ h2 {
 }
 
 h3 {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
@@ -296,7 +328,7 @@ h3 {
 }
 
 h4 {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 15px;
   line-height: 20px;
@@ -305,7 +337,7 @@ h4 {
 }
 
 h5 {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 12px;
   line-height: 18px;
@@ -314,7 +346,7 @@ h5 {
 }
 
 .version {
-  font-family: geneva, verdana, arial, "ms sans serif", sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-weight: normal;
   font-size: 10px;
   line-height: 5px;
@@ -326,7 +358,7 @@ h5 {
 input,
 textarea {
   background-color: #fff;
-  font-family: verdana, arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 12px;
   color: #565c56;
   border-style: solid;
@@ -338,7 +370,7 @@ textarea {
 
 input.button {
   background-color: #fff;
-  font-family: verdana, arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 12px;
   color: #565c56;
   border-style: solid;
@@ -378,7 +410,7 @@ a:hover {
 
 body {
   color: #000000;
-  font-family: Verdana, Arial, Tahoma, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0px;
 }
 
@@ -389,7 +421,6 @@ body {
   background: #FFFFFF;
   height: 50px;
 }
-
 
 
 .tableBody {
@@ -404,12 +435,18 @@ body {
   font-size: 14px;
 }
 
+.custom-th-stl{
+  font-size: 20px;
+  color:#016774
+}
+
 .tableBodyRight {
-  padding-bottom: 4px;
+  /* padding-bottom: 4px; */
   padding-left: 4px;
   padding-right: 4px;
-  padding-top: 4px;
-  font-size: 12px;
+  /* padding-top: 4px; */
+  font-size: 16px;
+  background: #FFFFFF !important;
   /* display: none; */
 }
 
@@ -431,7 +468,7 @@ body {
 }
 
 .form_invoice_head {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
@@ -441,7 +478,7 @@ body {
 
 
 .form_head_table {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
@@ -454,20 +491,20 @@ body {
 }
 
 .form_head {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
   text-transform: uppercase;
-  /* color: #ffffff; */
   background-color: #FFFFFF !important;
   width: auto;
   height: 50px;
   text-align: end;
   padding: 0 10px 0 0;
+  font-weight: 600;
+  color: #273052;
 }
 
 .form_head_red {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
@@ -478,7 +515,7 @@ body {
 
 .form_enter {
   background-color: #f9fbf9;
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   /* font-size: 11px; */
   font-weight: bold;
   color: #bc2222;
@@ -490,13 +527,13 @@ body {
 
 TD.infoBox,
 SPAN.infoBox {
-  font-family: Verdana, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
 }
 
 TD.main,
 P.main {
-  font-family: Verdana, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   line-height: 1.5;
 }
@@ -509,13 +546,13 @@ TABLE.formArea {
 }
 
 TD.formAreaTitle {
-  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: bold;
 }
 
 SPAN.errorText {
-  font-family: Verdana, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   color: #ff0000;
 }
 
@@ -528,7 +565,7 @@ SPAN.errorText {
 
 .callhistory_td1 {
   background-color: #600101;
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: bold;
   color: #ffffff;
@@ -536,7 +573,7 @@ SPAN.errorText {
 
 .callhistory_td2 {
   background-color: #600101;
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: bold;
   color: #ffffff;
@@ -544,7 +581,7 @@ SPAN.errorText {
 
 .callhistory_td3 {
   background-color: #b72222;
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: bold;
   color: #ffffff;
@@ -552,21 +589,21 @@ SPAN.errorText {
 
 .callhistory_td4 {
   background-color: #b72222;
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: bold;
   color: #ffffff;
 }
 
 .callhistory_td5 {
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: bold;
   color: #ffffff;
 }
 
 .fontstyle_001 {
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   color: #000000;
 }
@@ -616,7 +653,7 @@ SPAN.errorText {
 }
 
 .forgetpassword_subtable {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: bold;
   color: #ff0000;
@@ -660,7 +697,7 @@ SPAN.errorText {
 }
 
 .error_message {
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: bold;
   color: #ff0000;
@@ -833,7 +870,7 @@ SPAN.errorText {
   font-weight: bold;
   font-size: 13px;
   color: #555555;
-  font-family: Verdana, Arial, Helvetica;
+    font-family: 'Poppins', sans-serif;
   text-decoration: none;
 }
 
@@ -895,9 +932,9 @@ SPAN.errorText {
 .form_selectform_td1 {
   font-weight: bold;
   font-size: 11px;
-  color: #ffffff;
-  font-family: Verdana;
-  background-color: #000033;
+  /* color: #000; */
+    font-family: 'Poppins', sans-serif;
+  background-color: #FFFFFF;
 }
 
 .form_selectform_table1 {
@@ -905,14 +942,14 @@ SPAN.errorText {
   border-left-width: 0px;
   border-bottom-width: 0px;
   width: 100%;
-  background-color: #acbdee;
+  /* background-color: #acbdee; */
   text-align: center;
   border-right-width: 0px;
 }
 
 .form_selectform_table1_td1 {
   width: 50%;
-  background-color: #cddeff;
+  /* background-color: #cddeff; */
   text-align: center;
 }
 
@@ -996,7 +1033,7 @@ SPAN.errorText {
 
 .form_input_button_disabled {
   background-color: #f9fbf9;
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: bold;
   color: gray;
@@ -1007,8 +1044,8 @@ SPAN.errorText {
 }
 
 .form_input_checkbox {
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 23px;
 }
 
 .form_input_radio {
@@ -1023,26 +1060,73 @@ SPAN.errorText {
 }
 
 tr>.tableBodyRight>i {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: var(--Go---Bold-teal, #016774);
-
+  font-style: normal;
+  font-family: 'Poppins', sans-serif;
 }
+
+.custom-scroll-stl {
+  width: 100%;
+  overflow-y: auto;
+  padding: 0 0 10px 0;
+  margin: 0 0 10px 0;
+}
+
+.custom-scroll-stl::-webkit-scrollbar {
+  width: 8px; /* Scrollbar width */
+}
+
+.custom-scroll-stl::-webkit-scrollbar-thumb {
+  background-color: #4CAF50; /* Color of the scrollbar */
+  border-radius: 10px; /* Rounded edges */
+}
+
+.custom-scroll-stl::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Background color of scrollbar track */
+}
+
+/* For Firefox */
+.custom-scroll-stl {
+  scrollbar-width: thin;
+  scrollbar-color: #016774 #f1f1f1;
+}
+
+
+
+
+
+
+
+
+
 
 .form_input_select {
   background-color: #f9fbf9;
-  /* font-size: 17px;
-  font-weight: 500; */
+  font-size: 14px;
+  font-weight: 500;
   height: 50px;
   padding: 0 20px 0 20px;
   border-radius: 8px;
   border: 1px solid #B0B0B0;
   margin: 10px 0 10px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.form_input_select:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+} 
+
+.form_input_select:focus {
+  border-color: #014952;
+  outline: none; 
 }
 
 .form_input_select_disabled {
   background-color: #f9fbf9;
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: bold;
   color: gray;
@@ -1050,7 +1134,7 @@ tr>.tableBodyRight>i {
 
 .form_input_textarea {
   background-color: #f9fbf9;
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   /* font-size: 11px; */
   font-weight: bold;
   color: #bc2222;
@@ -1066,7 +1150,7 @@ tr>.tableBodyRight>i {
 
 .form_input_span {
   background-color: #ffffcc;
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: bold;
   color: #bc2222;
@@ -1077,7 +1161,7 @@ tr>.tableBodyRight>i {
 }
 
 .form_input_text {
-  /* font-size: 18px; */
+  font-size: 14px;
   font-weight: 400;
   height: 50px;
   background-color: #f9fbf9;
@@ -1086,6 +1170,16 @@ tr>.tableBodyRight>i {
   width: 248px;
   padding: 0 0 0 10px;
   margin: 10px 0 10px 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form_input_text:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+} 
+
+.form_input_text:focus {
+  border-color: #014952;
+  outline: none; 
 }
 
 .viewhandler_span2 {
@@ -1117,7 +1211,7 @@ tr>.tableBodyRight>i {
   font-weight: bold;
   font-size: 13px;
   /* color: #ffffff; */
-  /* font-family: Verdana; */
+  /*   font-family: 'Poppins', sans-serif; */
 }
 
 .fontstyle_004 {
@@ -1132,14 +1226,14 @@ tr>.tableBodyRight>i {
 .fontstyle_006 {
   font-size: 11px;
   color: #333333;
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   height: 50px;
 }
 
 .fontstyle_searchoptions {
   font-size: 11px;
   color: #444444;
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
 }
 
 .bgcolor_002 {
@@ -1180,7 +1274,7 @@ tr>.tableBodyRight>i {
   padding-right: 4px;
   padding-left: 4px;
   font-size: 10px;
-  background-image: url(../images/background_cells.gif);
+  /* background-image: url(../images/background_cells.gif); */
   padding-bottom: 4px;
   padding-top: 4px;
 }
@@ -1426,7 +1520,7 @@ tr>.tableBodyRight>i {
 
 .infoBoxNoticeContents {
   background: #ffe6e6;
-  font-family: Verdana, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
 }
 
@@ -1466,7 +1560,7 @@ tr>.tableBodyRight>i {
 .cssbutton_old {
   background: #fff;
   padding: 1px;
-  font-family: Arial, Verdana;
+  font-family: 'Poppins', sans-serif;
   /* font-size: x-small; */
   /* font-variant : small-caps; */
   border: 1px solid #bc2222;
@@ -1481,7 +1575,7 @@ tr>.tableBodyRight>i {
 
 .cssbutton {
   background-color: #f9fbf9;
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 12px;
   /* color: #bc2222; */
   /* border-right: #ff5500 2px ridge;
@@ -1496,7 +1590,7 @@ tr>.tableBodyRight>i {
 
 .cssbutton_big {
   /* background-image: url(../images/back_button.gif);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
   font-size: 19px;
   border-right: #ffffff 2px ridge;
   border-top: #ffffff 2px ridge;
@@ -1523,14 +1617,14 @@ tr>.tableBodyRight>i {
 .fontstyle_007 {
   font-size: 13px;
   color: #555555;
-  font-family: Verdana, Arial, Helvetica;
+    font-family: 'Poppins', sans-serif;
 }
 
 .fontstyle_008 {
   font-weight: bold;
   font-size: 13px;
   color: #ffffff;
-  font-family: Verdana, Arial, Helvetica;
+    font-family: 'Poppins', sans-serif;
   text-decoration: none;
 }
 
@@ -1583,7 +1677,7 @@ tr>.tableBodyRight>i {
   border-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #e2e2d3;
+  background-color: #FFFFFF;
 }
 
 .invoice_table {
@@ -1597,7 +1691,7 @@ tr>.tableBodyRight>i {
 }
 
 .fontstyle_009 {
-  font-family: Verdana;
+    font-family: 'Poppins', sans-serif;
   font-size: 10px;
   color: #666666;
 }
@@ -1630,4 +1724,10 @@ div.scroll {
 
 .header {
   background-color: #fff;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }

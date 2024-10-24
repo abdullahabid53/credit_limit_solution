@@ -348,7 +348,7 @@ $smarty->display ( 'main.tpl' );
 
 <!-- ** ** ** ** ** Part for the research ** ** ** ** ** -->
 <center>
-<FORM METHOD=POST name="myForm"
+<FORM style="margin-top: 20px;" METHOD=POST name="myForm"
     ACTION="<?php
     echo $PHP_SELF?>?s=1&t=0&order=<?php
     echo $order?>&sens=<?php
@@ -356,7 +356,8 @@ $smarty->display ( 'main.tpl' );
     echo $current_page?>">
 <INPUT TYPE="hidden" NAME="posted" value=1> <INPUT TYPE="hidden"
     NAME="current_page" value=0>
-<TABLE class="bar-status" width="85%" border="0" cellspacing="1"
+    <a onclick="showAdvanceFilters()" style="color: white !important;font-size: 17px;font-weight: 400; background: #014952; padding: 10px; border-radius: 20px; cursor: pointer;"> Advance Filters</a>
+    <TABLE id = "advance_filters" style="margin-top: 20px; display: none;" class="bar-status" width="85%" border="0" cellspacing="1"
     cellpadding="2" align="center">
         <?php
         if ($_SESSION ["pr_groupID"] == 2 && is_numeric ( $_SESSION ["pr_IDCust"] )) {
@@ -387,7 +388,7 @@ $smarty->display ( 'main.tpl' );
                                         onclick="window.open('A2B_entity_card.php?popup_select=2&popup_formname=myForm&popup_fieldname=entercustomer_num' , 'CardNumberSelection','scrollbars=1,width=550,height=330,top=20,left=100,scrollbars=1');"><img
                                         src="<?php echo Images_Path; ?>/icon_arrow_orange.gif"></a>
                 </td>
-                <td width="50%">
+                <td width="55%">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td align="left" class="fontstyle_searchoptions"><?php echo gettext ( "CallPlan" ); ?> :</td>
@@ -514,7 +515,7 @@ $smarty->display ( 'main.tpl' );
                 }
                 ?>
                 </select></td>
-                <td class="fontstyle_searchoptions"><input type="checkbox"
+                <td width="55%" class="fontstyle_searchoptions"><input type="checkbox"
                     name="today" value="true" <?php
                     if ($today) {
                         ?> checked <?php
@@ -597,7 +598,7 @@ $smarty->display ( 'main.tpl' );
         <td class="bgcolor_003" align="left">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td>&nbsp;&nbsp;<INPUT TYPE="text" NAME="dst"
+                <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="dst"
                     value="<?php
                     echo $dst?>" class="form_input_text"></td>
                 <td class="fontstyle_searchoptions" align="center"><input
@@ -648,7 +649,7 @@ $smarty->display ( 'main.tpl' );
         <td class="bgcolor_005" align="left">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td>&nbsp;&nbsp;<INPUT TYPE="text" NAME="src"
+                <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="src"
                     value="<?php
                     echo "$src";
                     ?>" class="form_input_text"></td>
@@ -701,7 +702,7 @@ $smarty->display ( 'main.tpl' );
         <td class="bgcolor_005" align="left">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td>&nbsp;&nbsp;<INPUT TYPE="text" NAME="dnid"
+                <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="dnid"
                     value="<?php
                     echo "$dnid";
                     ?>" class="form_input_text"></td>
@@ -751,7 +752,7 @@ $smarty->display ( 'main.tpl' );
         <td class="bgcolor_002" align="left"><font class="fontstyle_003">&nbsp;&nbsp;<?php
         echo gettext ( "CALL TYPE" );
         ?></font></td>
-        <td class="bgcolor_003" align="center">
+        <td style="padding: 0 0 0 10px;" class="bgcolor_003" align="center">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td class="fontstyle_searchoptions"><select NAME="choose_calltype"
@@ -796,12 +797,12 @@ $smarty->display ( 'main.tpl' );
 
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="20%" class="fontstyle_searchoptions">
+                <td style="padding: 0 0 0 10px;" width="45%" class="fontstyle_searchoptions">
                     <?php
                     echo gettext ( "SHOW CALLS" );
                     ?> :
                </td>
-                <td width="80%" class="fontstyle_searchoptions"><select
+                <td width="55%" class="fontstyle_searchoptions"><select
                     NAME="terminatecauseid" size="1" class="form_input_select">
                     <option value='ANSWER'
                         <?php
@@ -879,7 +880,7 @@ $smarty->display ( 'main.tpl' );
                 </select></td>
             </tr>
             <tr class="bgcolor_005">
-                <td class="fontstyle_searchoptions">
+                <td style="padding: 0 0 0 10px;" class="fontstyle_searchoptions">
                     <?php
                     echo gettext ( "RESULT" );
                     ?> :
@@ -904,7 +905,7 @@ $smarty->display ( 'main.tpl' );
                     ?>></td>
             </tr>
             <tr>
-                <td class="fontstyle_searchoptions">
+                <td style="padding: 0 0 0 10px;" class="fontstyle_searchoptions">
                     <?php
                     echo gettext ( "CURRENCY" );
                     ?> :
@@ -950,7 +951,7 @@ $smarty->display ( 'main.tpl' );
 
 <!-- ** ** ** ** ** Part to display the CDR ** ** ** ** ** -->
 
-<center><?php
+<center style="margin-top: 20px;"><?php
 echo gettext ( "Number of call" );
 ?> : <?php
 if (is_array ( $list ) && count ( $list ) > 0) {
@@ -1365,9 +1366,19 @@ if ($profit > 500 && $rand_num==4 && SHOW_DONATION) {
 <a href="export_csv.php?var_export=<?php echo $FG_EXPORT_SESSION_VAR?>&var_export_type=type_xml" target="_blank"><img src="<?php echo Images_Path; ?>/icons_xml.gif" border="0" height="32" /><?php echo gettext ( "Export XML" ); ?></a>
 
 <?php } else { ?>
-<center>
-<h3><?php echo gettext ( "No calls in your selection");?>.</h3>
-<?php  } ?>
+    <center>
+        <h3><?php echo gettext ( "No calls in your selection");?>.</h3>
+        <?php  } ?>
+        <script>
+            function showAdvanceFilters() {
+        var table = document.getElementById("advance_filters");
+        if (table.style.display === "none") {
+            table.style.display = "table"; // Use "table" for proper table display
+        } else {
+            table.style.display = "none";
+        }
+    }
+        </script>
 </center>
 
 <?php

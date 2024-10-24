@@ -105,7 +105,7 @@ function Check() {
         }
     ?>
 
-    <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2" align="center">
+    <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2"  align="center">
 
         <tr>
             <td width="19%" align="left" valign="top" class="bgcolor_004">

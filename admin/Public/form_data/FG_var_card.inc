@@ -280,7 +280,7 @@ if (($popup_select>=1)) {
 } else {
     $HD_Form -> FG_INFO = true;
     $HD_Form -> FG_OTHER_BUTTON1 = true;
-    $HD_Form -> FG_OTHER_BUTTON2 = true;
+    $HD_Form -> FG_OTHER_BUTTON2 = false;
     $HD_Form -> FG_OTHER_BUTTON3 = true;
     $HD_Form -> FG_OTHER_BUTTON4 = true;
     $HD_Form -> FG_OTHER_BUTTON5 = false;

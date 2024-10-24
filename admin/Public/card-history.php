@@ -222,7 +222,7 @@ $smarty->display( 'main.tpl');
 
 <BR/>
 <!-- ** ** ** ** ** Part to display the CDR ** ** ** ** ** -->
-     <table width="<?php echo $FG_HTML_TABLE_WIDTH?>" border="0" align="center" cellpadding="0" cellspacing="0">
+     <table style="margin: 0 0 0 1%;" width="<?php echo $FG_HTML_TABLE_WIDTH?>" border="0" align="center" cellpadding="0" cellspacing="0">
         <TR bgcolor="#ffffff">
           <TD class="callhistory_td11">
             <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">

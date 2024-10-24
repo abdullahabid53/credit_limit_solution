@@ -77,7 +77,7 @@ function sendtolittle(direction) {
               <TD width="%75" valign="top" class="tableBodyRight" background="<?php echo Images_Path;?>/background_cells_red.gif" >
         <?php } else { ?>
             <TD width="%25" valign="middle" class="form_head"> 		<?php echo $this->FG_TABLE_EDITION[$i][0]?> 		</TD>
-            <TD width="%75" valign="top" class="tableBodyRight" background="<?php echo Images_Path;?>/background_cells.gif" >
+            <TD width="%75" valign="top" class="tableBodyRight"   >
         <?php }
 
             if ($this->FG_DEBUG == 1) print($this->FG_TABLE_EDITION[$i][3]);
@@ -335,7 +335,7 @@ function sendtolittle(direction) {
                     <TR>
                       <!-- *******************   Select to ADD new instances  ****************************** -->
                       <TD class="form_head">&nbsp;</TD>
-                      <TD align="center" valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
+                      <TD align="center" valign="top"   class="text"><br>
                         <TABLE width="300" height=50 border=0 align="center" cellPadding=0 cellSpacing=0>
                             <TR>
                                 <TD bgColor=#7f99cc colspan=3 height=16 style="PADDING-LEFT: 5px; PADDING-RIGHT: 5px" class="form_head">
@@ -420,7 +420,7 @@ function sendtolittle(direction) {
                     <TR>
                       <!-- ******************** PARTIE EXTERN : INSERT ***************** -->
                         <TD width="122" class="form_head"><?php echo $this->FG_TABLE_EDITION[$i][0]?></TD>
-                          <TD align="center" valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
+                          <TD align="center" valign="top"   class="text"><br>
 
                         <!-- Table with list instance already inserted -->
                         <table cellspacing="0" class="editform_table2">
@@ -490,7 +490,7 @@ function sendtolittle(direction) {
                     <TR>
                       <!-- *******************   Select to ADD new instances  ****************************** -->
                       <TD class="form_head">&nbsp;</TD>
-                      <TD align="center" valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
+                      <TD align="center" valign="top"   class="text"><br>
                         <TABLE width="300" height=50 border=0 align="center" cellPadding=0 cellSpacing=0>
                             <TR>
                                 <TD bgColor=#7f99cc colspan=3 height=16 style="PADDING-LEFT: 5px; PADDING-RIGHT: 5px" class="form_head">
@@ -547,7 +547,7 @@ function sendtolittle(direction) {
                     <TR>
                       <!-- ******************** PARTIE EXTERN : HAS_MANY ***************** -->
                           <TD width="122" class="form_head"><?php echo $this->FG_TABLE_EDITION[$i][0]?></TD>
-                          <TD align="center" valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
+                          <TD align="center" valign="top" class="text"><br>
                         <!-- Table with list instance already inserted -->
                         <table cellspacing="0" class="editform_table2">
                           <TR bgcolor="#ffffff">
@@ -612,7 +612,7 @@ function sendtolittle(direction) {
                     <TR>
                       <!-- *******************   Select to ADD new instances  ****************************** -->
                       <TD class="form_head">&nbsp;</TD>
-                      <TD align="center" valign="top" background="<?php echo Images_Path;?>/background_cells.gif" class="text"><br>
+                      <TD align="center" valign="top"   class="text"><br>
                         <TABLE width="300" height=50 border=0 align="center" cellPadding=0 cellSpacing=0>
                             <TR>
                                 <TD bgColor=#7f99cc colspan=3 height=16 style="PADDING-LEFT: 5px; PADDING-RIGHT: 5px" class="form_head">

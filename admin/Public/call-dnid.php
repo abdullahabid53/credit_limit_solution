@@ -619,7 +619,7 @@ $smarty->display('main.tpl');
 
 <?php echo gettext("Number of call");?> : <?php  if (is_array($list) && count($list)>0) { echo $nb_record; } else {echo "0";}?></center>
 
-      <table width="<?php echo $FG_HTML_TABLE_WIDTH?>" border="0" align="center" cellpadding="0" cellspacing="0">
+      <table style="background: aquamarine;" width="<?php echo $FG_HTML_TABLE_WIDTH?>" border="0" align="center" cellpadding="0" cellspacing="0">
         <TR bgcolor="#ffffff">
           <TD  class="bgcolor_021" height=16 style="PADDING-LEFT: 5px; PADDING-RIGHT: 3px">
             <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">

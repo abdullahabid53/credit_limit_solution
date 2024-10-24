@@ -61,7 +61,7 @@ $error["ERR-0002"] 		= gettext("No such card number found. Please check your car
 ?>
 
 <div id="login-wrapper" class="login-border-up">
-    <div class="login-border-down">
+    <div class="login-border-down" style="background: none !important;">
     <div class="login-border-center">
     <table>
     <tr>

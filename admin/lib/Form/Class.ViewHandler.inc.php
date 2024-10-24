@@ -221,7 +221,7 @@ if ((count($list) > 0) && is_array($list)) {
                         for ($ligne_number = 0; $ligne_number < count($list); $ligne_number++) {
                         ?>
 
-                            <TR bgcolor="<?php echo $this->FG_TABLE_ALTERNATE_ROW_COLOR[$ligne_number % 2] ?>" class="table-row" onmouseover="bgColor='#FFDEA6'" onMouseOut="bgColor='<?php echo $this->FG_TABLE_ALTERNATE_ROW_COLOR[$ligne_number % 2] ?>'">
+                            <TR class="table-row" onmouseover="bgColor='#FFDEA6'" onMouseOut="bgColor='<?php echo $this->FG_TABLE_ALTERNATE_ROW_COLOR[$ligne_number % 2] ?>'">
                                 <?php
                                 $k = 0;
                                 for ($i = 0; $i < $this->FG_NB_TABLE_COL; $i++) {
@@ -762,7 +762,7 @@ if ((count($list) > 0) && is_array($list)) {
                         } //  for (ligne_number=0;ligne_number<count($list);$ligne_number++)
                         while ($ligne_number < 7) {
                         ?>
-                            <TR bgcolor="<?php echo $this->FG_TABLE_ALTERNATE_ROW_COLOR[$ligne_number % 2] ?>">
+                            <TR class="table-row" bgcolor="#FFFFFF">
                                 <?php
                                 $REMOVE_COL = ($this->FG_OTHER_BUTTON1 || $this->FG_OTHER_BUTTON2 || $this->FG_OTHER_BUTTON3 || $this->FG_OTHER_BUTTON4 || $this->FG_EDITION || $this->FG_INFO || $this->FG_DELETION) ? 0 : 1;
                                 for ($i = 0; $i < $this->FG_NB_TABLE_COL - $REMOVE_COL; $i++) {

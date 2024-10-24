@@ -4,31 +4,31 @@ select.icon-menu option {
     padding-left:30px;
 }
 a:link {
-   	font-family: Arial,Verdana;
+   	font-family: 'Poppins', sans-serif;
 	color: #005298;
 	text-decoration: none;
 }
 
 a:visited {
-   	font-family: Arial,Verdana;
+   	font-family: 'Poppins', sans-serif;
 	color: #005298;
 	text-decoration: none;
 }
 
 a:active {
-   	font-family: Arial,Verdana;
+   	font-family: 'Poppins', sans-serif;
 	color: #005298;
 	text-decoration: none;
 }
 
 a:hover {
-   	font-family: Arial,Verdana;
+   	font-family: 'Poppins', sans-serif;
 	color: #3b60af;
 	
 }
 
 table {
-	font-family: Arial,Verdana;
+	font-family: 'Poppins', sans-serif;
 	font-size: 7px;
 }
 
@@ -37,7 +37,7 @@ table {
 }
 
 body {
-	font-family: Arial,Verdana;
+	font-family: 'Poppins', sans-serif;
 	color: #666666;
 	background: #FCFCFC;
 }
@@ -45,7 +45,7 @@ body {
 
 
 .upload_textfield {
-	font-family: Arial,Verdana;
+	font-family: 'Poppins', sans-serif;
 	font-size: 9px;
 	color: #666666;
 	border: solid 1px;
@@ -54,7 +54,7 @@ body {
 }
 
 .upload_button {
-	font-family: Arial,Verdana;
+	font-family: 'Poppins', sans-serif;
 	font-size: 10px;
 	color: #FFFFFF;
 	background-color: #3399FF;
@@ -62,7 +62,7 @@ body {
 }
 
 textarea {
-	font-family: Arial,Verdana;
+	font-family: 'Poppins', sans-serif;
 	font-size: 9px;
 	color: #666666;
 	background-color: #FFFFFF;
@@ -79,7 +79,7 @@ textarea {
 }
 
 .select {
-	font-family: Arial,Verdana;
+	font-family: 'Poppins', sans-serif;
 	font-size: 9px;
 	color: #666666;
 	background-color: #FFFFFF;

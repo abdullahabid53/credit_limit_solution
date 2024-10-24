@@ -72,11 +72,11 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1">
                <tr>
-                       <th colspan="2" >
+                       <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
                            <?php echo gettext("ACCOUNT INFO") ?>
                        </th>
                </tr>
-               <tr height="20px">
+               <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("STATUS") ?> :
                     </td>
@@ -86,7 +86,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         echo $list_typepaid[$card['typepaid']][0];?>
                     </td>
                </tr>
-               <tr height="20px">
+               <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("ACCOUNT NUMBER") ?> :
                     </td>
@@ -94,7 +94,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['username']?>
                     </td>
                </tr>
-               <tr height="20px">
+               <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("SERIAL NUMBER") ?> :
                     </td>
@@ -102,7 +102,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo str_pad($card['serial'], $A2B->config["webui"]['card_serial_length'] , "0", STR_PAD_LEFT); ?>
                     </td>
                </tr>
-               <tr height="20px">
+               <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("WEB ALIAS") ?> :
                     </td>
@@ -110,7 +110,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['useralias']?>
                     </td>
                </tr>
-               <tr height="20px">
+               <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("WEB PASSWORD") ?> :
                     </td>
@@ -118,7 +118,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['uipass']?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("LANGUAGE") ?> :
                     </td>
@@ -126,7 +126,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['language']?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("STATUS") ?> :
                     </td>
@@ -136,7 +136,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         echo $list_status[$card['status']][0];?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("CREATION DATE") ?> :
                     </td>
@@ -144,7 +144,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['creationdate']?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("EXPIRATION DATE") ?> :
                     </td>
@@ -152,7 +152,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['expirationdate']?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("FIRST USE DATE") ?> :
                     </td>
@@ -160,7 +160,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['firstusedate']?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("LAST USE DATE") ?> :
                     </td>
@@ -168,7 +168,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['lastuse']?>
                     </td>
                 </tr>
-                  <tr height="20px">
+                  <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("CALLBACK") ?> :
                     </td>
@@ -176,7 +176,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['callback']?>
                     </td>
                 </tr>
-                  <tr height="20px">
+                  <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("LOCK") ?> :
                     </td>
@@ -184,7 +184,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo ($card['block'] ? gettext("LOCK") : gettext("UNLOCK")) ?>
                     </td>
                 </tr>
-                  <tr height="20px">
+                  <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("LOCK PIN") ?> :
                     </td>
@@ -192,7 +192,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['lock_pin']?>
                     </td>
                 </tr>
-                  <tr height="20px">
+                  <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("LOCK DATE") ?> :
                     </td>
@@ -206,12 +206,12 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1"  >
                 <tr>
-                    <th colspan="2" >
+                    <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
                          <?php echo gettext("CUSTOMER INFO") ?>
                      </th>
 
                 </tr>
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("LAST NAME") ?> :
                     </td>
@@ -220,7 +220,7 @@ echo Display_Login_Button ($DBHandle, $id);
                     </td>
 
                 </tr>
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("FIRST NAME") ?> :
                     </td>
@@ -230,7 +230,7 @@ echo Display_Login_Button ($DBHandle, $id);
 
                 </tr>
 
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("ADDRESS") ?> :
                     </td>
@@ -240,7 +240,7 @@ echo Display_Login_Button ($DBHandle, $id);
 
                 </tr>
 
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("ZIP CODE") ?> :
                     </td>
@@ -249,7 +249,7 @@ echo Display_Login_Button ($DBHandle, $id);
                     </td>
                 </tr>
 
-                <tr  height="20px">
+                <tr  class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("CITY") ?> :
                     </td>
@@ -259,7 +259,7 @@ echo Display_Login_Button ($DBHandle, $id);
 
                 </tr>
 
-                <tr  height="20px">
+                <tr  class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("STATE") ?> :
                     </td>
@@ -269,7 +269,7 @@ echo Display_Login_Button ($DBHandle, $id);
 
                 </tr>
 
-                <tr  height="20px">
+                <tr class="table-row"  height="20px">
                     <td  class="form_head">
                         <?php echo gettext("COUNTRY") ?> :
                     </td>
@@ -278,7 +278,7 @@ echo Display_Login_Button ($DBHandle, $id);
                     </td>
 
                 </tr>
-                <tr  height="20px">
+                <tr class="table-row"  height="20px">
                     <td  class="form_head">
                         <?php echo gettext("EMAIL") ?> :
                     </td>
@@ -287,7 +287,7 @@ echo Display_Login_Button ($DBHandle, $id);
                     </td>
 
                 </tr>
-                <tr  height="20px">
+                <tr class="table-row"  height="20px">
                     <td  class="form_head">
                         <?php echo gettext("PHONE") ?> :
                     </td>
@@ -295,7 +295,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['phone']?>
                     </td>
                 </tr>
-                <tr  height="20px">
+                <tr class="table-row"  height="20px">
                     <td  class="form_head">
                         <?php echo gettext("FAX") ?> :
                     </td>
@@ -317,11 +317,11 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1">
                <tr>
-                       <th colspan="2" >
+                       <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
                            <?php echo gettext("ACCOUNT STATUS") ?>
                        </th>
                </tr>
-               <tr height="20px">
+               <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("BALANCE") ?> :
                     </td>
@@ -329,7 +329,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         &nbsp;<?php echo $card['credit']?>
                     </td>
                 </tr>
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("CURRENCY") ?> :
                     </td>
@@ -337,7 +337,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['currency']?>
                     </td>
                   </tr>
-               <tr height="20px">
+               <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("CREDIT LIMIT") ?> :
                     </td>
@@ -345,7 +345,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['creditlimit']?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("AUTOREFILL") ?> :
                     </td>
@@ -353,7 +353,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         <?php echo $card['autorefill']?>
                     </td>
                 </tr>
-                   <tr height="20px">
+                   <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("INVOICE DAY") ?> :
                     </td>
@@ -367,12 +367,12 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1"  >
                 <tr>
-                    <th colspan="2" >
+                    <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
                          <?php echo gettext("COMPANY INFO") ?>
                      </th>
 
                 </tr>
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("COMPANY NAME") ?> :
                     </td>
@@ -380,7 +380,7 @@ echo Display_Login_Button ($DBHandle, $id);
                         &nbsp;<?php echo $card['company_name']?>
                     </td>
                 </tr>
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("COMPANY WEBSITE") ?> :
                     </td>
@@ -390,7 +390,7 @@ echo Display_Login_Button ($DBHandle, $id);
 
                 </tr>
 
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("VAT REGISTRATION NUMBER") ?> :
                     </td>
@@ -400,7 +400,7 @@ echo Display_Login_Button ($DBHandle, $id);
 
                 </tr>
 
-                <tr height="20px">
+                <tr class="table-row" height="20px">
                     <td  class="form_head">
                         <?php echo gettext("TRAFFIC PER MONTH") ?> :
                     </td>
@@ -409,7 +409,7 @@ echo Display_Login_Button ($DBHandle, $id);
                     </td>
                 </tr>
 
-                <tr  height="20px">
+                <tr class="table-row"  height="20px">
                     <td  class="form_head">
                         <?php echo gettext("TARGET TRAFIC") ?> :
                     </td>
@@ -435,7 +435,7 @@ echo Display_Login_Button ($DBHandle, $id);
         ?>
           <table width="100%" class="editform_table1">
         <tr>
-           <th colspan="2" >
+           <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
                     <?php echo gettext("CALLER-ID LIST ") ?>
            </th>
         </tr>
@@ -538,7 +538,7 @@ echo Display_Login_Button ($DBHandle, $id);
         ?>
         <table width="100%" class="editform_table1">
            <tr>
-               <th colspan="2" >
+               <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
                        <?php echo gettext("SIP-CONFIG") ?>
                </th>
            </tr>
@@ -639,7 +639,7 @@ $subscription_clause = "id_cc_card = ".$id." AND cc_card_subscription.id_subscri
 $subscription_result = $subscription_table -> Get_list($DBHandle, $subscription_clause, 'startdate', 'DESC', NULL, NULL, 10, 0);
 if (sizeof($subscription_result)>0 && $subscription_result[0]!=null) {
 ?>
-<table class="toppage_maintable">
+<table style="margin: 0 1% 0 1%;" class="toppage_maintable">
     <tr>
         <td height="20" align="center">
             <font class="toppage_maintable_text">
@@ -649,7 +649,7 @@ if (sizeof($subscription_result)>0 && $subscription_result[0]!=null) {
     </tr>
 </table>
 
-<table width="95%"  cellspacing="2" cellpadding="2" border="0">
+<table style="margin: 0 1% 0 1%;" width="95%"  cellspacing="2" cellpadding="2" border="0">
 
     <tr class="form_head">
         <td class="tableBody"  width="15%" align="center" style="padding: 2px;">
@@ -721,7 +721,7 @@ if (sizeof($payment_result)>0 && $payment_result[0]!=null) {
     </tr>
 </table>
 
-<table width="95%"  cellspacing="2" cellpadding="2" border="0">
+<table style="margin: 0 1% 0 1%;" width="95%"  cellspacing="2" cellpadding="2" border="0">
 
     <tr class="form_head">
         <td class="tableBody"  width="15%" align="center" style="padding: 2px;">
@@ -748,7 +748,7 @@ if (sizeof($payment_result)>0 && $payment_result[0]!=null) {
             if($i%2==0) $bg="#fcfbfb";
             else  $bg="#f2f2ee";
     ?>
-            <tr bgcolor="<?php echo $bg; ?>"  >
+            <tr  class="table-row" bgcolor="<?php echo $bg; ?>"  >
                 <td class="tableBody" align="center">
                   <?php echo $payment['id']; ?>
                 </td>
@@ -781,7 +781,7 @@ $refill_result = $refill_table -> Get_list($DBHandle, $refill_clause, 'date', 'D
 
 if (sizeof($refill_result)>0 && $refill_result[0]!=null) {
 ?>
-<table class="toppage_maintable">
+<table style="margin: 0 1% 0 1%;" class="toppage_maintable">
     <tr>
         <td height="20" align="center">
             <font class="toppage_maintable_text">
@@ -791,7 +791,7 @@ if (sizeof($refill_result)>0 && $refill_result[0]!=null) {
     </tr>
 </table>
 
-<table width="95%"  cellspacing="2" cellpadding="2" border="0">
+<table style="margin: 0 1% 0 1%;" width="95%"  cellspacing="2" cellpadding="2" border="0">
 
     <tr class="form_head">
         <td class="tableBody"  width="15%" align="center" style="padding: 2px;">
@@ -815,7 +815,7 @@ if (sizeof($refill_result)>0 && $refill_result[0]!=null) {
             if($i%2==0) $bg="#fcfbfb";
             else  $bg="#f2f2ee";
     ?>
-            <tr bgcolor="<?php echo $bg; ?>"  >
+            <tr class="table-row" bgcolor="<?php echo $bg; ?>"  >
                 <td class="tableBody" align="center">
                   <?php echo $refill['id']; ?>
                 </td>
@@ -845,7 +845,7 @@ $call_clause = "card_id = ".$id." AND CAST(cc_call.destination AS CHAR) = cc_pre
 $call_result = $call_table -> Get_list($DBHandle, $call_clause, 'starttime', 'DESC', NULL, NULL, 10, 0);
 if (sizeof($call_result)>0 && $call_result[0]!=null) {
 ?>
-<table class="toppage_maintable">
+<table style="margin: 0 1% 0 1%;" class="toppage_maintable">
     <tr>
         <td height="20" align="center">
             <font class="toppage_maintable_text">
@@ -855,7 +855,7 @@ if (sizeof($call_result)>0 && $call_result[0]!=null) {
     </tr>
 </table>
 
-<table width="95%"  cellspacing="2" cellpadding="2" border="0">
+<table style="margin: 0 1% 0 1%;" width="95%"  cellspacing="2" cellpadding="2" border="0">
 
     <tr class="form_head">
         <td class="tableBody"  width="15%" align="center" style="padding: 2px;">

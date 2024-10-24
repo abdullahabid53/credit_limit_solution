@@ -100,7 +100,7 @@ th,
 h3,
 input {
   /* redundant rules for bad browsers  */
-  font-family: verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: x-small;
   voice-family: '"}"';
   voice-family: inherit;
@@ -241,6 +241,7 @@ img.rss {
   padding: 4px 10px 20px 0px;
   text-decoration: none;
   color: #ffffff;
+  font-weight: 500;
 }
 
 ul#menu_horizontal {
@@ -283,7 +284,7 @@ ul#menu_horizontal {
   line-height: normal;
   top: 0;
   z-index: 1;
-  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   /* height: 25px; */
   height: 55px;
   display: flex;
@@ -325,7 +326,7 @@ ul#menu_horizontal a {
 #nav ul li span,
 #nav ul li a {
   padding: 2px 2px 4px 20px;
-  font-size: 12px;
+  /* font-size: 1.4vh; */
 }
 
 #side {
@@ -334,15 +335,16 @@ ul#menu_horizontal a {
   margin-bottom: 1em;
 }
 #kiki .w2 {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   text-decoration: none;
 }
 .menu-active{
   background-color: #4CEADB;
   padding: 10px 10px 10px 0px;
-  width: 184px;
+  width: 90%;
 }
 .active-sb-menu{
   color: #4CEADB !important;
+  font-weight: 500 !important;
 }

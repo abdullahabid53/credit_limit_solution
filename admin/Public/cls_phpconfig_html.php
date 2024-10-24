@@ -390,7 +390,7 @@ var $_OC_HTML_colspan = "3";
             -->
             </style>
 
-            <table width="100%" border="0" cellspacing="5" cellpadding="0">
+            <table style="margin: 0 1% 0 1%;" width="98%" border="0" cellspacing="5" cellpadding="0">
                 <tr>
                     <td colspan="<?php echo  $this->_OC_HTML_colspan ?>">
                     <table border="0" width="100%" cellpadding="0" cellspacing="0">

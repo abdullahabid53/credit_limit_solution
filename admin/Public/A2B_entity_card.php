@@ -229,7 +229,7 @@ if ($form_action == 'list' && !($popup_select >= 1)) {
 
     ?>
         <!-- ** ** ** ** ** Part for the Update ** ** ** ** ** -->
-         <div class="d-flex mt-1">
+         <div class="d-flex mt-1 custom-scroll-stl">
         <div class="toggle_hide2show" style="padding: 0 30px 0 30px;">
             <center>
                 <a href="#" target="_self" class="toggle_menu custom_a_href"><img class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16">

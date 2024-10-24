@@ -193,7 +193,7 @@ $smarty->display('main.tpl');
     <?php
         }
     ?>
-    <TABLE class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2" align="center">
+    <TABLE class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2"  align="center">
         <?php  if ($_SESSION["pr_groupID"]==2 && is_numeric($_SESSION["pr_IDCust"])) { ?>
         <?php  } else { ?>
         <tr>

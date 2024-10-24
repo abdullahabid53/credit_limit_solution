@@ -81,7 +81,7 @@ $HD_Form->create_toppage($form_action);
         }
     ?>
 
-    <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2" align="center">
+    <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2" style="margin: 0 30px 0 30px;" align="center">
         <tbody>
         <?php  if ($_SESSION["pr_groupID"]==2 && is_numeric($_SESSION["pr_IDCust"])) { ?>
         <?php  } else { ?>

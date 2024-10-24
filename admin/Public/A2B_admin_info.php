@@ -69,7 +69,7 @@ $lg_liste= Constants::getLanguages();
 <br/>
 <table style="width : 80%;" class="editform_table1">
    <tr>
-           <th colspan="2" >
+           <th colspan="2" class="custom-th-stl">
                <?php echo gettext("ADMIN INFO") ?>
            </th>
    </tr>

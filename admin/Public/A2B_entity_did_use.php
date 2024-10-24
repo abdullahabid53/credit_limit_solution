@@ -130,7 +130,7 @@ if (!isset($inuse) || $inuse=="")$inuse=1;
             }
         ?>
 
-        <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2" align="center">
+        <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2"  align="center">
         <tbody>
         <tr>
             <td class="bgcolor_001" align="left" colspan="2">

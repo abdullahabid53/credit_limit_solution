@@ -82,7 +82,7 @@ if ($form_action == 'list' && !($popup_select >= 1)) {
     <?php
         }
     ?>
-    <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2" align="center">
+    <table class="bar-status" width="85%" border="0" cellspacing="1" cellpadding="2"  align="center">
         <tbody>
         <tr>
             <td class="bgcolor_002" align="left">

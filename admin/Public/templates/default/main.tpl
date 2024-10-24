@@ -6,11 +6,9 @@
 			<div id="leftmenu-down">
 				<div id="leftmenu-middle">
 
-					<ul id="nav">
+					<ul id="nav" class="sidebar-scroll-stl">
 						<div class="" style="display: flex;align-items: center;justify-content: center;">
-							<img class="mb-5" style="padding-left: 2px; padding-bottom: 15px; cursor: pointer;"
-								src="templates/{$SKIN_NAME}/images/collapse-btn.png" />
-							<img class="mb-5 mt-2" width="150" style="padding:20px 2px 4px 20px"
+							<img class="mb-5 mt-2" width="150" style="padding:20px 2px 4px 20px; margin-right: 15%;"
 								src="../../common/images/logo/go-dash-logo.png" />
 						</div>
 
@@ -687,12 +685,6 @@
 											<li><a class="sb-menu-item mx-4 {if $atmenu == 'Charges'}active-sb-menu{/if}"
 													href="A2B_entity_charge.php?atmenu=Charges&section=10"> {php} echo
 													gettext("Charges");{/php}</a></li>
-											<li><a class="sb-menu-item mx-4 {if $atmenu == 'agentsituation'}active-sb-menu{/if}"
-													href="A2B_entity_agentsituation.php?atmenu=agentsituation&section=10">{php}
-													echo gettext("Agents Balance");{/php}</a></li>
-											<li><a class="sb-menu-item mx-4 {if $atmenu == 'Commissions'}active-sb-menu{/if}"
-													href="A2B_entity_commission_agent.php?atmenu=Commissions&section=10"> {php}
-													echo gettext("Commissions");{/php}</a></li>
 											<li><a class="sb-menu-item mx-4 {if $atmenu == 'Remittance'}active-sb-menu{/if}"
 													href="A2B_entity_remittance_request.php?atmenu=Remittance&section=10"> {php}
 													echo gettext("Remittance Request");{/php}</a></li>
@@ -960,16 +952,6 @@
 									style="display:none;">
 								{/if}
 								<ul>
-									<li>
-										<ul>
-											<li>
-												<a class="sb-menu-item mx-4 {if $atmenu == 'autodialer'}active-sb-menu{/if}"
-													href="A2B_entity_campaign.php?atmenu=autodialer&section=15">
-													{php} echo gettext("Autodialer");{/php}
-												</a>
-											</li>
-										</ul>
-									</li>
 									<li>
 										<a class="sb-menu-item mx-4 {if $atmenu == 'promotion'}active-sb-menu{/if}"
 											href="A2B_entity_promotion.php?atmenu=promotion&section=15">{php} echo gettext("Promotion");{/php}

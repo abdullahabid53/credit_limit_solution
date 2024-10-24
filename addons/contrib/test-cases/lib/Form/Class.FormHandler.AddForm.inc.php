@@ -57,7 +57,7 @@ $processed = $this->getProcessed();
               <TD width="%75" valign="top" class="tableBodyRight" background="<?php echo Images_Path;?>/background_cells_red.gif" class="text">
         <?php } else { ?>
             <TD width="%25" valign="middle" class="form_head"> 		<?php echo $this->FG_TABLE_ADITION[$i][0]?> 		</TD>
-            <TD width="%75" valign="top" class="tableBodyRight" background="<?php echo Images_Path;?>/background_cells.gif" class="text">
+            <TD width="%75" valign="top" class="tableBodyRight"   class="text">
         <?php } ?>
 
     <?php
