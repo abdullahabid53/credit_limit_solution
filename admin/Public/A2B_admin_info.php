@@ -69,11 +69,11 @@ $lg_liste= Constants::getLanguages();
 <br/>
 <table style="width : 80%;" class="editform_table1">
    <tr>
-           <th colspan="2" class="custom-th-stl">
+           <th colspan="2" class="custom-th-stl details-page-heading">
                <?php echo gettext("ADMIN INFO") ?>
            </th>
    </tr>
-   <tr height="20px">
+   <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("LOGIN") ?> :
         </td>
@@ -81,7 +81,7 @@ $lg_liste= Constants::getLanguages();
             &nbsp;<?php echo $admin['login']?>
         </td>
     </tr>
-    <tr height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("NAME") ?> :
         </td>
@@ -90,7 +90,7 @@ $lg_liste= Constants::getLanguages();
         </td>
     </tr>
 
-    <tr height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("ADDRESS") ?> :
         </td>
@@ -100,7 +100,7 @@ $lg_liste= Constants::getLanguages();
 
     </tr>
 
-    <tr height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("ZIP CODE") ?> :
         </td>
@@ -109,7 +109,7 @@ $lg_liste= Constants::getLanguages();
         </td>
     </tr>
 
-    <tr  height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("CITY") ?> :
         </td>
@@ -119,7 +119,7 @@ $lg_liste= Constants::getLanguages();
 
     </tr>
 
-    <tr  height="20px">
+    <tr class="table-row"  height="20px">
         <td  class="form_head">
             <?php echo gettext("STATE") ?> :
         </td>
@@ -129,7 +129,7 @@ $lg_liste= Constants::getLanguages();
 
     </tr>
 
-    <tr  height="20px">
+    <tr class="table-row"  height="20px">
         <td  class="form_head">
             <?php echo gettext("COUNTRY") ?> :
         </td>
@@ -138,7 +138,7 @@ $lg_liste= Constants::getLanguages();
         </td>
 
     </tr>
-    <tr  height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("EMAIL") ?> :
         </td>
@@ -147,7 +147,7 @@ $lg_liste= Constants::getLanguages();
         </td>
 
     </tr>
-    <tr  height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("PHONE") ?> :
         </td>
@@ -155,7 +155,7 @@ $lg_liste= Constants::getLanguages();
             &nbsp;<?php echo $admin['phone']?>
         </td>
     </tr>
-    <tr  height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("FAX") ?> :
         </td>

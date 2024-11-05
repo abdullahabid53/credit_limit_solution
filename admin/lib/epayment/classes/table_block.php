@@ -44,7 +44,7 @@
         if (isset($contents[$i][0]) && is_array($contents[$i][0])) {
           for ($x=0, $y=sizeof($contents[$i]); $x<$y; $x++) {
             if (isset($contents[$i][$x]['text']) && tep_not_null(isset($contents[$i][$x]['text']))) {
-              $tableBox_string .= '    <td';
+              $tableBox_string .= '    <td style = "padding: 0 0 0 20px"';
               if (isset($contents[$i][$x]['align']) && tep_not_null($contents[$i][$x]['align'])) $tableBox_string .= ' align="' . $contents[$i][$x]['align'] . '"';
               if (isset($contents[$i][$x]['params']) && tep_not_null(isset($contents[$i][$x]['params']))) {
                 $tableBox_string .= ' ' . $contents[$i][$x]['params'];
@@ -59,7 +59,7 @@
             }
           }
         } else {
-          $tableBox_string .= '    <td';
+          $tableBox_string .= '    <td style = "padding: 0 0 0 20px"';
           if (isset($contents[$i]['align']) && tep_not_null($contents[$i]['align'])) $tableBox_string .= ' align="' . $contents[$i]['align'] . '"';
           if (isset($contents[$i]['params']) && tep_not_null($contents[$i]['params'])) {
             $tableBox_string .= ' ' . $contents[$i]['params'];

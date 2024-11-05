@@ -78,7 +78,7 @@ echo $CC_help_currency;
 
 ?>
 <div align="center">
-<table align="center" border="0" width="65%"  cellspacing="1" cellpadding="2">
+<table align="center" border="0" width="98%" style="padding: 0 30px 0 30px;"  cellspacing="1" cellpadding="2">
     <FORM name="updateForm" action="<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL)?>" method="post">
     <INPUT type="hidden" name="updatecurrency" value="1">
     <?php

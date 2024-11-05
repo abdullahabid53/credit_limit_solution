@@ -29,7 +29,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  *
-**/
+ **/
 
 include '../lib/admin.defines.php';
 include '../lib/admin.module.access.php';
@@ -56,10 +56,10 @@ if ($result == "success") {
     $message = gettext("Record updated successfully");
 }
 $instance_sub_table = new Table("cc_payment_methods", "payment_filename");
-if (!empty ($id)) {
+if (!empty($id)) {
     $paymentMethodID = intval($id);
 } else {
-    exit (gettext("Payment module ID not found"));
+    exit(gettext("Payment module ID not found"));
 }
 
 $QUERY = " id = %u";
@@ -76,8 +76,8 @@ $return = null;
 
 if (tep_not_null($action)) {
     switch ($action) {
-        case 'save' :
-            while (list ($key, $value) = each($configuration)) {
+        case 'save':
+            while (list($key, $value) = each($configuration)) {
                 if ($key == 'MODULE_PAYMENT_PLUGNPAY_ACCEPTED_CC') {
                     $value = join($value, ', ');
                 }
@@ -97,7 +97,7 @@ $GLOBALS['plugnpay']->enabled = true;
 //$GLOBALS['iridium']->enabled = true;
 $module_keys = $payment_modules->keys();
 
-$keys_extra = array ();
+$keys_extra = array();
 $instance_sub_table = new Table("cc_configuration", "configuration_title, configuration_value, configuration_description, use_function, set_function");
 
 for ($j = 0, $k = sizeof($module_keys); $j < $k; $j++) {
@@ -115,10 +115,10 @@ $mInfo = new objectInfo($module_info);
 
 $keys = '';
 reset($mInfo->keys);
-while (list ($key, $value) = each($mInfo->keys)) {
+while (list($key, $value) = each($mInfo->keys)) {
     $keys .= '<b>' . $value['title'] . '</b><br>' . $value['description'] . '<br>';
     if ($value['set_function']) {
-        eval ('$keys .= ' . $value['set_function'] . "'" . $value['value'] . "', '" . $key . "');");
+        eval('$keys .= ' . $value['set_function'] . "'" . $value['value'] . "', '" . $key . "');");
     } else {
         $keys .= tep_draw_input_field('configuration[' . $key . ']', $value['value']);
     }
@@ -126,17 +126,19 @@ while (list ($key, $value) = each($mInfo->keys)) {
 }
 
 $keys = substr($keys, 0, strrpos($keys, '<br><br>'));
-$heading[] = array (
+$heading[] = array(
     'text' => '<b>' . $mInfo->title . '</b>'
 );
-$contents = array (
-    'form' => tep_draw_form('modules',
-    "A2B_entity_payment_settings.php?" . 'method=' . $paymentMethod . '&action=save&id=' . $id
-));
-$contents[] = array (
+$contents = array(
+    'form' => tep_draw_form(
+        'modules',
+        "A2B_entity_payment_settings.php?" . 'method=' . $paymentMethod . '&action=save&id=' . $id
+    )
+);
+$contents[] = array(
     'text' => $keys
 );
-$contents[] = array (
+$contents[] = array(
     'align' => 'center',
     'text' => '<br><input type=submit name=submitbutton value=Update class=form_input_button> <a href="A2B_entity_payment_configuration.php?atmenu=payment"><input type="button" name="cancelbutton" value="Cancel" class="form_input_button"></a>'
 );
@@ -149,25 +151,31 @@ echo $PAYMENT_METHOD;
 
 ?>
 
-<table class="epayment_conf_table">
-<tr class="form_head">
-    <td><font color="#FFFFFF"><?php echo gettext("CONFIGURATION"); ?></font></td>
-</tr>
-<tr >
-    <td><font color="Green"><b><?php echo $message ?></b></font></td>
-</tr>
+<table class="editform_table1">
+ 
+        <tr class="form_head">
+            <td>
+                <font color="#FFFFFF"><?php echo gettext("CONFIGURATION"); ?></font>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <font color="Green"><b><?php echo $message ?></b></font>
+            </td>
+        </tr>
 
-    <tr>
-        <?php
-        if ( (tep_not_null($heading)) && (tep_not_null($contents)) ) {
-            echo '            <td width="25%" valign="top">' . "\n";
+        <tr>
+            <?php
+            if ((tep_not_null($heading)) && (tep_not_null($contents))) {
+                echo '            <td width="25%" valign="top">' . "\n";
 
-            $box = new box;
-            echo $box->infoBox($heading, $contents);
-            echo '            </td>' . "\n";
-        }
-        ?>
-    </tr>
+                $box = new box;
+                echo $box->infoBox($heading, $contents);
+                echo '            </td>' . "\n";
+            }
+            ?>
+        </tr>
+
 </table>
 
 <?php

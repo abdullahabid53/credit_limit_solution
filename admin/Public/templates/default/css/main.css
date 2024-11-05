@@ -24,6 +24,10 @@
   color: #4ceadb !important;
 }
 
+.details-page-heading {
+	padding: 20px 0px 20px 50px;
+}
+
 .sidebar-item-li:hover {
   color: #4ceadb !important;
 }

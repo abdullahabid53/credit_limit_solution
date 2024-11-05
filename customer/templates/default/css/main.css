@@ -96,6 +96,10 @@
 	padding-bottom : 30px;
 }
 
+.details-page-heading {
+	padding: 20px 0px 20px 50px;
+}
+
 .login-title{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;

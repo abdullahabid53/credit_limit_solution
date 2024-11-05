@@ -67,11 +67,11 @@ $smarty->display('main.tpl');
 <br/>
 <table style="width : 80%;" class="editform_table1">
    <tr>
-           <th colspan="2" >
+           <th colspan="2" class="custom-th-stl details-page-heading">
                <?php echo gettext("REFILL INFO") ?>
            </th>
    </tr>
-   <tr height="20px">
+   <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("ACCOUNT NUMBER") ?> :
         </td>
@@ -85,7 +85,7 @@ $smarty->display('main.tpl');
             ?>
         </td>
    </tr>
-   <tr height="20px">
+   <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("AMOUNT") ?> :
         </td>
@@ -93,7 +93,7 @@ $smarty->display('main.tpl');
             <?php echo $refill['credit']." ".strtoupper(BASE_CURRENCY);?>
         </td>
    </tr>
-       <tr height="20px">
+    <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("CREATION DATE") ?> :
         </td>
@@ -101,7 +101,7 @@ $smarty->display('main.tpl');
             <?php echo $refill['date']?>
         </td>
     </tr>
-   <tr height="20px">
+   <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("REFILL TYPE") ?> :
         </td>
@@ -111,7 +111,7 @@ $smarty->display('main.tpl');
             echo $list_type[$refill['refill_type']][0];?>
         </td>
    </tr>
-   <tr height="20px">
+   <tr class="table-row" height="20px">
         <td  class="form_head">
             <?php echo gettext("DESCRIPTION ") ?> :
         </td>

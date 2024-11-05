@@ -146,10 +146,14 @@ $show_fields['bonus_mins_validity'] = array("<acronym title=\"".gettext("BONUS M
 $show_list['bonus_mins_validity'] = 'bonus_mins_validity';
 $show_fields['used_onnet_mins'] = array("<acronym title=\"".gettext("USED ONNET MINS IN SECS")."\">".gettext("ONNET")."</acronym>", "used_onnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
 $show_list['used_onnet_mins'] = 'used_onnet_mins';
-$show_fields['used_offnet_mins'] = array("<acronym title=\"".gettext("USED OFFET MINS IN SECS")."\">".gettext("OFFNET")."</acronym>", "used_offnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_fields['used_offnet_mins'] = array("<acronym title=\"".gettext("USED OFFNET MINS IN SECS")."\">".gettext("OFFNET")."</acronym>", "used_offnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
 $show_list['used_offnet_mins'] = 'used_offnet_mins';
 $show_fields['used_intl_mins'] = array("<acronym title=\"".gettext("USED INTL MINS IN SECS")."\">".gettext("INTL")."</acronym>", "used_intl_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
 $show_list['used_intl_mins'] = 'used_intl_mins';
+$show_fields['bundle_crossnet_mins'] = array("<acronym title=\"".gettext("USED BUNDLE CROSSNET MINS IN SECS")."\">".gettext("BCM")."</acronym>", "bundle_crossnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bundle_crossnet_mins'] = 'bundle_crossnet_mins';
+$show_fields['bundle_intl_mins'] = array("<acronym title=\"".gettext("USED BUNDLE INTL MINS IN SECS")."\">".gettext("BIM")."</acronym>", "bundle_intl_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bundle_intl_mins'] = 'bundle_intl_mins';
 if (!($popup_select>=1)) {
     $serial_pad_length = $A2B->config["webui"]['card_serial_length'];
     $show_fields['id_seria'] = array(gettext("SERIE"), "id_seria", "*", "center", "sort", "15", "lie", "cc_card_seria", "name","id='%id'", "%1","");
@@ -259,6 +263,7 @@ $HD_Form -> FG_FILTER_SEARCH_FORM_SELECT_TEXT = '';
 $HD_Form -> AddSearchElement_Select(gettext("SELECT SERIE"),"cc_card_seria","id, name", "", "name", "ASC", "id_seria");
 $HD_Form -> AddSearchElement_Select(gettext("SELECT LANGUAGE"), null, null, null, null, null, "language", 0, $language_list_r);
 $HD_Form -> AddSearchElement_Select(gettext("SELECT TARIFF"), "cc_tariffgroup", "id, tariffgroupname", "", "tariffgroupname", "ASC", "tariff");
+$HD_Form -> AddSearchElement_Select(gettext("SELECT LABEL"), "cc_package_offer", "id, label", "", "label", "ASC", "label");
 $HD_Form -> AddSearchElement_Select(gettext("SELECT STATUS"), null, null, null, null,null , "status", 0, $cardstatus_list_r);
 $HD_Form -> AddSearchElement_Select(gettext("SELECT ACCESS"), null, null, null, null, null, "simultaccess", 0, $simultaccess_list_r);
 $HD_Form -> AddSearchElement_Select(gettext("SELECT GROUP"), "cc_card_group", "id, name", "", "name", "ASC", "id_group");
@@ -668,6 +673,27 @@ else {
                    "",
                    "" , "", "", "", "", "", "NO", gettext(""));
 }
+
+$HD_Form -> AddEditElement (gettext("Bundle"),
+                   "bundle_id",
+                   "",
+                   "SELECT",
+                   "", "", "",
+                   "sql",
+                   "cc_package_offer",
+                   "label, id",
+                   "", "", "%1", "", gettext(""), "", '<OPTION  value="-1" selected>'.gettext("NO PACKAGE OFFER").'</OPTION>' );
+
+                   $HD_Form -> AddEditElement (gettext("BUNDLE VALIDITY"),
+                   "bundle_validity",
+                   '$value',
+                   "INPUT",
+                   "size=60 maxlength=50 type=datetime-local",
+                   "",
+                   gettext("Insert the validity date"),
+                   "" , "", "", "", "", "", "", "");
+                   
+
 
     $HD_Form -> AddEditElement (gettext("CALL PLAN"),
                    "tariff",
@@ -1114,7 +1140,7 @@ else {
 
     $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, id_group, id_seria, lastname, firstname, email, '.
             ' address, city, state, country, zipcode, phone, fax, serial_no, company_name, company_website, '.
-            $update_field_typepaid.' tariff, id_didgroup, id_timezone, language, currency, status, block, lock_pin, simultaccess,  runservice, creditlimit, ' .
+            $update_field_typepaid.'bundle_id, bundle_validity, tariff, id_didgroup, id_timezone, language, currency, status, block, lock_pin, simultaccess,  runservice, creditlimit, ' .
             ' credit_notification, notify_email, email_notification, ' .$add_fields_voicemail.
             ' id_campaign, ' .
             ' firstusedate, enableexpire, expirationdate, expiredays, sip_buddy, iax_buddy, mac_addr, inuse, max_concurrent, ' .

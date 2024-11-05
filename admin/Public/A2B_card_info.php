@@ -72,7 +72,7 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1">
                <tr>
-                       <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
+                       <th colspan="2" class="custom-th-stl details-page-heading">
                            <?php echo gettext("ACCOUNT INFO") ?>
                        </th>
                </tr>
@@ -206,7 +206,7 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1"  >
                 <tr>
-                    <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
+                    <th colspan="2" class="custom-th-stl details-page-heading">
                          <?php echo gettext("CUSTOMER INFO") ?>
                      </th>
 
@@ -317,7 +317,7 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1">
                <tr>
-                       <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
+                       <th colspan="2" class="custom-th-stl details-page-heading">
                            <?php echo gettext("ACCOUNT STATUS") ?>
                        </th>
                </tr>
@@ -367,7 +367,7 @@ echo Display_Login_Button ($DBHandle, $id);
         <td valign="top" width="50%" >
             <table width="100%" class="editform_table1"  >
                 <tr>
-                    <th style="padding: 20px 0px 20px 50px;" colspan="2" class="custom-th-stl">
+                    <th colspan="2" class="custom-th-stl details-page-heading">
                          <?php echo gettext("COMPANY INFO") ?>
                      </th>
 

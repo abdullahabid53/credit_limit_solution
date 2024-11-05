@@ -66,7 +66,7 @@ if ((count($list) > 0) && is_array($list)) {
 
 
     <div align="center" style="    padding: 0 30px 0 30px;">
-        <table width="<?php echo $this->FG_VIEW_TABLE_WITDH; ?>" align="center" border="0" cellpadding="0" cellspacing="0">
+        <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
             <?php if ($this->CV_DISPLAY_LINE_TITLE_ABOVE_TABLE) { ?>
                 <TR>
                     <TD class="tdstyle_002"><span>
