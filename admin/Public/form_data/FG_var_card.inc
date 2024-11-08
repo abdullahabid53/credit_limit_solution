@@ -437,7 +437,7 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "" , "", "", "", "", "", "", gettext("currency : ").strtoupper(BASE_CURRENCY) );
 
 
-    $HD_Form -> AddEditElement (gettext("CUSTOMER GROUP"),
+                   $HD_Form -> AddEditElement (gettext("CUSTOMER GROUP"),
                    "id_group",
                    "",
                    "SELECT",
@@ -445,7 +445,8 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "sql",
                    "cc_card_group",
                    "name, id",
-                   "", "", "%1", "", "", "", "", "");
+                   "", "", "%1", "", "", "", 
+                   '<OPTION value="" selected>'.gettext("Choose Group").'</OPTION>', ""); 
 
     $HD_Form -> AddEditElement (gettext("SERIAL"),
                    "id_seria",

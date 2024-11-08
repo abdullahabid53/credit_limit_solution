@@ -85,7 +85,16 @@ $HD_Form -> CV_NO_FIELDS  = gettext("THERE IS NO")." ".strtoupper($HD_Form->FG_I
 $HD_Form -> CV_DISPLAY_LINE_TITLE_ABOVE_TABLE = false;
 $HD_Form -> CV_TEXT_TITLE_ABOVE_TABLE = '';
 $HD_Form -> CV_DISPLAY_FILTER_ABOVE_TABLE = false;
+$HD_Form -> FG_FILTER_APPLY = true;
+$HD_Form -> FG_FILTERFIELD = 'cardnumber';
+$HD_Form -> FG_FILTERFIELDNAME = gettext('Name');
+$HD_Form -> FG_FILTER_FORM_ACTION = 'list';
 
+
+if (isset($filterprefix)  &&  (strlen($filterprefix)>0)){
+    if (strlen($HD_Form -> FG_TABLE_CLAUSE)>0) $HD_Form -> FG_TABLE_CLAUSE.=" AND ";
+    $HD_Form -> FG_TABLE_CLAUSE.="tariffgroupname like '$filterprefix%'";
+}
 
 if ($popup_select) {
 	$HD_Form -> FG_LIMITE_DISPLAY = 7;

@@ -78,6 +78,16 @@ $HD_Form -> CV_DISPLAY_FILTER_ABOVE_TABLE = false;
 $HD_Form -> FG_EDITION = true;
 $HD_Form -> FG_DELETION = true;
 $HD_Form -> FG_ADDITION = true;
+$HD_Form -> FG_FILTER_APPLY = true;
+$HD_Form -> FG_FILTERFIELD = 'cardnumber';
+$HD_Form -> FG_FILTERFIELDNAME = gettext('Tariff Name');
+$HD_Form -> FG_FILTER_FORM_ACTION = 'list';
+
+
+if (isset($filterprefix)  &&  (strlen($filterprefix)>0)){
+    if (strlen($HD_Form -> FG_TABLE_CLAUSE)>0) $HD_Form -> FG_TABLE_CLAUSE.=" AND ";
+    $HD_Form -> FG_TABLE_CLAUSE.="tariffname like '$filterprefix%'";
+}
 
 
 $HD_Form -> AddEditElement (gettext("TARIFFNAME"),

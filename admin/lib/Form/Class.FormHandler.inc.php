@@ -1275,17 +1275,31 @@ class FormHandler
 					echo "CV_CURRENT_PAGE = ".$this -> CV_CURRENT_PAGE."<br>";
 				}
 				if ($route == "Postpaid") {
-					$clause = "typepaid = 1";
+					$clause = $this->FG_TABLE_CLAUSE;
+					if (!empty($clause)) {
+						$clause .= " AND ";
+					}
+					$clause .= "typepaid = 1";
 				} 
 				else if ($route == "Prepaid") {
-					$clause = "typepaid = 2";
+					$clause = $this->FG_TABLE_CLAUSE;
+					if (!empty($clause)) {
+						$clause .= " AND ";
+					}
+					$clause .= "typepaid = 2";
+				} 
+				else if ($route == "Multi") {
+					$clause = $this->FG_TABLE_CLAUSE;
+					if (!empty($clause)) {
+						$clause .= " AND ";
+					}
+					$clause .= "typepaid = 2";
+				} 
+				else {
+					$clause = $this->FG_TABLE_CLAUSE;
 				}
-				 else if ($route == "Multi") {
-					$clause = "typepaid = 2";
-				} else {
-					$clause = null;
-				}
-				
+
+
 				$list = $instance_table->Get_list(
 					$this->DBHandle,
 					$clause,
@@ -1297,7 +1311,6 @@ class FormHandler
 					$this->CV_CURRENT_PAGE * $this->FG_LIMITE_DISPLAY,
 					$this->SQL_GROUP
 				);
-				// echo(json_encode($list));die;
 				if ($this->FG_DEBUG == 3) echo "<br>Clause : ".$this -> FG_TABLE_CLAUSE;
 				if (DB_TYPE == "postgres") {
 					$this -> FG_NB_RECORD = $instance_table -> Table_count ($this -> DBHandle, $this -> FG_TABLE_CLAUSE);
