@@ -213,20 +213,13 @@ class iam_csvdump
     }
 
 
-    public function _db_connect_mysql($dbname="mysql", $user="root", $password="", $host="localhost")
+    public function _db_connect_mysql($dbname = "mysql", $user = "root", $password = "", $host = "localhost")
     {
-      $result = @mysql_pconnect($host, $user, $password);
-      if (!$result) {     // If no connection, return 0
-
-       return false;
-      }
-
-      if (!@mysql_select_db($dbname)) {  // If db not set, return 0
-
-       return false;
-      }
-
-      return $result;
+        $conn = @mysqli_connect($host, $user, $password, $dbname);
+        if (!$conn) {
+            return false; // Connection failed
+        }
+        return $conn; // Return the connection object
     }
 
     /**
@@ -265,25 +258,65 @@ class iam_csvdump
       }
     }
 
-    public function _generate_csv_mysql($query_string, $dbname="mysql", $user="root", $password="", $host="localhost")
+    public function _generate_csv_mysql($query_string, $dbname = "mysql", $user = "root", $password = "", $host = "localhost")
     {
+    // Connect to the database
+    $conn = $this->_db_connect_mysql($dbname, $user, $password, $host);
+    if (!$conn) {
+        die("Error. Cannot connect to Database.");
+    }
 
+    // Execute the query
+    $result = @mysqli_query($conn, $query_string);
+    if (!$result) {
+        die("Could not perform the Query: " . mysqli_error($conn));
+    }
 
-      if(!$conn= $this->_db_connect_mysql($dbname, $user , $password, $host))
-          die("Error. Cannot connect to Database.");
-      else {
-        $result = @mysql_query($query_string, $conn);
-        if(!$result)
-            die("Could not perform the Query: ".mysql_error());
-        else {
-            $file = "";
-            $crlf = $this->_define_newline();
-            while ($str= @mysql_fetch_array($result, MYSQL_NUM)) {
-                $file .= $this->arrayToCsvString($str,",").$crlf;
-            }
-            echo $file;
+    // Status list mapping
+    $cardstatus_list = array(
+        "2" => array(gettext("NEW"), "2"),
+        "1" => array(gettext("ACTIVE"), "1"),
+        "0" => array(gettext("CANCELLED"), "0"),
+        "3" => array(gettext("WAITING-MAILCONFIRMATION"), "3"),
+        "4" => array(gettext("RESERVED"), "4"),
+        "5" => array(gettext("EXPIRED"), "5"),
+        "6" => array(gettext("SUSPENDED FOR UNDERPAYMENT"), "6"),
+        "7" => array(gettext("SUSPENDED FOR LITIGATION"), "7"),
+        "8" => array(gettext("WAITING SUBSCRIPTION PAYMENT"), "8")
+    );
+
+    $file = "";
+    $crlf = $this->_define_newline();
+
+    // Get column names to find the index of 'status'
+    $fields = mysqli_fetch_fields($result);
+    $status_index = -1;
+
+    // Determine the index of the 'status' column
+    foreach ($fields as $index => $field) {
+        if (strcasecmp($field->name, "status") == 0) {
+            $status_index = $index;
+            break;
         }
-      }
+    }
+
+    // Fetch each row of the result set
+    while ($row = @mysqli_fetch_array($result, MYSQLI_NUM)) {
+        // Replace 'status' column value if the index is found
+        if ($status_index != -1 && isset($cardstatus_list[$row[$status_index]])) {
+            $row[$status_index] = $cardstatus_list[$row[$status_index]][0]; // Use the status text
+        }
+
+        // Convert the row to a CSV string and append it to the file content
+        $file .= $this->arrayToCsvString($row, ",") . $crlf;
+    }
+
+    // Output the file content
+    echo $file;
+
+    // Free the result set and close the connection
+    mysqli_free_result($result);
+    mysqli_close($conn);
     }
     /*
         Function to Create XML String for the Data for Post Gre SQL

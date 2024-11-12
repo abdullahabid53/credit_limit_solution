@@ -58,11 +58,17 @@ getpost_ifset(array (
     'upd_activated',
     'upd_used',
     'upd_credittype',
+    'upd_tariff',
     'batchupdate',
     'check',
     'type',
     'mode'
 ));
+
+$instance_table = new Table;
+
+$call_plan = $instance_table -> SQLExec($DBHandle, "SELECT id , tariffgroupname from cc_tariffgroup", 1);
+
 
 // CHECK IF REQUEST OF BATCH UPDATE
 if ($batchupdate == 1 && is_array($check)) {
@@ -167,11 +173,11 @@ if ($form_action == "list" && (!($popup_select>=1))	) {
 <!-- ** ** ** ** ** Part for the Update ** ** ** ** ** -->
 <div class="toggle_hide2show">
 <center><a href="#" target="_self" class="toggle_menu"><img class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16"> <font class="fontstyle_002"><?php echo gettext("BATCH UPDATE");?> </font></a></center>
-    <div class="tohide" style="display:none;">
+    <div class="tohide" style="display:none;margin-bottom:10px">
 
 <center>
 <b>&nbsp;<?php echo $HD_Form -> FG_NB_RECORD ?> <?php echo gettext("vouchers selected!"); ?>&nbsp;<?php echo gettext("Use the options below to batch update the selected vouchers.");?></b>
-    <table align="center" border="0" width="65%"  cellspacing="1" cellpadding="2">
+    <table align="center" border="0" width="90%"  cellspacing="1" cellpadding="2">
         <tbody>
         <form name="updateForm" action="<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL)?>" method="post">
         <?php
@@ -184,26 +190,11 @@ if ($form_action == "list" && (!($popup_select>=1))	) {
         ?>
         <INPUT type="hidden" name="batchupdate" value="1">
         <tr>
-          <td align="left" class="bgcolor_001" >
-                  <input name="check[upd_used]" type="checkbox" <?php if ($check["upd_used"]=="on") echo "checked"?>>
-          </td>
-          <td align="left"  class="bgcolor_001">
-                1)&nbsp;<?php echo gettext("USED"); ?>&nbsp;:
-                <select NAME="upd_used" size="1" class="form_input_select">
-                <?php
-                    foreach ($used_list as $key => $cur_value) {
-                ?>
-                    <option value='<?php echo $cur_value[1] ?>'  <?php if ($upd_inuse==$cur_value[1]) echo 'selected="selected"'?>><?php echo $cur_value[0] ?></option>
-                <?php } ?>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td align="left"  class="bgcolor_001">
+          <td align="left"  class="bgcolor_001" style="padding: 0 0 0 10px;">
               <input name="check[upd_activated]" type="checkbox" <?php if ($check["upd_activated"]=="on") echo "checked"?> >
           </td>
           <td align="left" class="bgcolor_001">
-                  2)&nbsp;<?php echo gettext("ACTIVATED");?>&nbsp;:
+                  1)&nbsp;<?php echo gettext("ACTIVATED");?>&nbsp;:
                 <select NAME="upd_activated" size="1" class="form_input_select">
                     <?php
                        foreach ($actived_list as $key => $cur_value) {
@@ -214,12 +205,12 @@ if ($form_action == "list" && (!($popup_select>=1))	) {
           </td>
         </tr>
         <tr>
-          <td align="left" class="bgcolor_001">
+          <td align="left" class="bgcolor_001" style="padding: 0 0 0 10px;">
                   <input name="check[upd_credit]" type="checkbox" <?php if ($check["upd_credit"]=="on") echo "checked"?>>
                 <input name="mode[upd_credit]" type="hidden" value="2">
           </td>
           <td align="left"  class="bgcolor_001">
-                  3)&nbsp;<?php echo gettext("CREDIT");?>&nbsp;:
+                  2)&nbsp;<?php echo gettext("CREDIT");?>&nbsp;:
                     <input class="form_input_text" name="upd_credit" size="10" maxlength="10"  value="<?php if (isset($upd_credit)) echo $upd_credit; else echo '0';?>">
                 <font class="version">
                 <input type="radio" NAME="type[upd_credit]" value="1" <?php if ((!isset($type["upd_credit"]))|| ($type["upd_credit"]==1) ) {?>checked<?php }?>><?php echo gettext("Equals");?>
@@ -229,11 +220,11 @@ if ($form_action == "list" && (!($popup_select>=1))	) {
           </td>
         </tr>
         <tr>
-          <td align="left" class="bgcolor_001">
+          <td align="left" class="bgcolor_001" style="padding: 0 0 0 10px;">
                   <input name="check[upd_currency]" type="checkbox" <?php if ($check["upd_currency"]=="on") echo "checked"?>>
           </td>
           <td align="left"  class="bgcolor_001">
-                4)&nbsp;<?php echo gettext("CURRENCY");?>&nbsp;:
+                3)&nbsp;<?php echo gettext("CURRENCY");?>&nbsp;:
                 <select NAME="upd_currency" size="1" class="form_input_select">
                 <?php
                     foreach ($currencies_list as $key => $cur_value) {
@@ -244,18 +235,41 @@ if ($form_action == "list" && (!($popup_select>=1))	) {
           </td>
         </tr>
         <tr>
-          <td align="left" class="bgcolor_001">
+          <td align="left" class="bgcolor_001" style="padding: 0 0 0 10px;">
                   <input name="check[upd_tag]" type="checkbox" <?php if ($check["upd_tag"]=="on") echo "checked"?>>
           </td>
           <td align="left"  class="bgcolor_001">
-                5)&nbsp;<?php echo gettext("TAG");?>&nbsp;:
+                4)&nbsp;<?php echo gettext("TAG");?>&nbsp;:
                 <input class="form_input_text"  name="upd_tag" size="10" maxlength="6" value="<?php echo $upd_tag; ?>">
                 <br/>
         </td>
         </tr>
         <tr>
+          <td align="left" class="bgcolor_001" style="padding: 0 0 0 10px;">
+                  <input name="check[upd_tag]" type="checkbox" <?php if ($check["upd_tag"]=="on") echo "checked"?>>
+          </td>
+          <td align="left"  class="bgcolor_001">
+                5)&nbsp;<?php echo gettext("Expiry Date");?>&nbsp;:
+                <input class="form_input_text" name="expirationdate" size="40" maxlength="40" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                <br/>
+        </td>
+        </tr>
+        <td align="left"  class="bgcolor_001" style="padding: 0 0 0 10px;">
+              <input name="check[upd_tariff]" type="checkbox" <?php if ($check["upd_tariff"]=="on") echo "checked"?> >
+          </td>
+        <td align="left" class="bgcolor_001">
+                  6)&nbsp;<?php echo gettext("Call Plan");?>&nbsp;:
+                <select NAME="upd_tariff" size="1" class="form_input_select">
+                    <?php
+                       foreach ($call_plan as $callplan) {
+                    ?>
+                        <option value='<?php echo $callplan['id'] ?>' <?php ?>><?php echo $callplan['tariffgroupname']?></option>
+                    <?php } ?>
+                </select><br/>
+          </td>
+        <tr>
             <td align="right" class="bgcolor_001"></td>
-             <td align="right"  class="bgcolor_001">
+             <td align="right"  class="bgcolor_001" style="padding: 0 10px 10px 10px;">
                 <input class="form_input_button"  value=" <?php echo gettext("BATCH UPDATE VOUCHER");?>  " type="submit">
             </td>
         </tr>

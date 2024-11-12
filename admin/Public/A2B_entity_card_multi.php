@@ -52,7 +52,7 @@ getpost_ifset(array('nb_to_create', 'creditlimit', 'cardnum', 'addcredit', 'choo
 $DBHandle_max = DbConnect();
 
 // Fetch the highest serial_no
-$query = "SELECT serial_no FROM cc_card ORDER BY serial_no DESC LIMIT 1";
+$query = "SELECT serial_no, order_no FROM cc_card ORDER BY serial_no DESC LIMIT 1";
 $resmax = $DBHandle_max->Execute($query);
 
 if (!$resmax) {
@@ -62,6 +62,7 @@ if (!$resmax) {
 $row = $resmax->FetchRow();
 if ($row) {
     $serial_no = $row['serial_no'] + 1;
+    $order_no = $row['order_no'] + 1;
 } else {
     $serial_no = 1000000000; // Starting serial number if none exists
 }
@@ -134,7 +135,7 @@ if ($nbcard > 0 && $action == "generate" && $nb_error == 0) {
 
     $FG_ADITION_SECOND_ADD_TABLE = "cc_card";
     $FG_ADITION_SECOND_ADD_FIELDS = "username, useralias, credit, tariff, activated, lastname, firstname, email, address, city, state, country, status, zipcode, phone, simultaccess, currency, typepaid, " .
-            "enableexpire, expirationdate, expiredays, uipass, runservice, tag, discount, serial_no, sip_buddy, iax_buddy, vat";
+            "enableexpire, expirationdate, expiredays, uipass, runservice, tag, discount, serial_no, order_no, sip_buddy, iax_buddy, vat";
 
     if (DB_TYPE != "postgres") {
         $FG_ADITION_SECOND_ADD_FIELDS .= ",creationdate ";
@@ -175,7 +176,7 @@ if ($nbcard > 0 && $action == "generate" && $nb_error == 0) {
 
     
         $FG_ADITION_SECOND_ADD_VALUE = "'$accountnumber', '$useralias', '$addcredit', '$choose_tariff', 't', '$gen_id', '', '', '', '', '', '$id_country', '$status', '', '', $choose_simultaccess, '$choose_currency', " .
-            "$choose_typepaid, $enableexpire, '$expirationdate', $expiredays, '$passui_secret', '$runservice', '$tag', '$discount', '$serial_no_value', " .
+            "$choose_typepaid, $enableexpire, '$expirationdate', $expiredays, '$passui_secret', '$runservice', '$tag', '$discount', '$serial_no_value', '$order_no', " .
             "$sip_buddy, $iax_buddy, '$vat'";
     
         if (DB_TYPE != "postgres") $FG_ADITION_SECOND_ADD_VALUE .= ", now() ";
@@ -191,32 +192,11 @@ if ($nbcard > 0 && $action == "generate" && $nb_error == 0) {
         $instance_realtime->insert_voip_config($sip, $iax, $id_cc_card, $accountnumber, $passui_secret);
 
 
-
-
-
-    //     if($k>0){
-    //     // Get the database handle
-    //     $DBHandle_max = DbConnect();
-
-    //     // Fetch the highest serial_no
-    //     $query = "SELECT serial_no FROM cc_card ORDER BY serial_no DESC LIMIT 1";
-    //     $resmax = $DBHandle_max->Execute($query);
-
-    //     if (!$resmax) {
-    //         die("Query failed: " . $DBHandle_max->ErrorMsg());
-    //     }
-
-    //     $row = $resmax->FetchRow();
-    //     if ($row) {
-    //         $serial_no = $row['serial_no'] + 1;
-    //     } else {
-    //         $serial_no = 1000000000; // Starting serial number if none exists
-    //     }
-    // }
 }
 
     $serial_no++;
     $serial_no_value = $serial_no;
+    $order_no++;
     
     // Save Sip accounts to file
     if (isset($sip)) {
@@ -362,7 +342,7 @@ $list_country = $instance_table_country->Get_list($HD_Form->DBHandle, $FG_TABLE_
 
     <strong>8)</strong>
     <?php echo gettext("Serial number");?> 
-    <input disabled type="text" name="serial_no" id="serial_no" value="<?php echo isset($serial_no) ? htmlspecialchars($serial_no) : ''; ?>">
+    <input class="form_input_text" disabled type="text" name="serial_no" id="serial_no" value="<?php echo isset($serial_no) ? htmlspecialchars($serial_no) : ''; ?>">
     <br/>
 
 
@@ -450,6 +430,10 @@ $list_country = $instance_table_country->Get_list($HD_Form->DBHandle, $FG_TABLE_
         <option value="7"> <?php echo gettext("SUSPENDED FOR LITIGATION");?> </option>
         <option value="8"> <?php echo gettext("WAITING SUBSCRIPTION PAYMENT");?> </option>
     </select>
+    <br/>
+    <strong>18)</strong>
+    <?php echo gettext("Order number");?> 
+    <input class="form_input_text" disabled type="text" name="order_no" id="order_no" value="<?php echo isset($order_no) ? htmlspecialchars($order_no) : ''; ?>">
     <br/>
     </td>
 </tr>

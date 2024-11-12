@@ -81,6 +81,7 @@ $discount_list  = $cnts->getDiscount_List();
 $simultaccess_list = $cnts->getCardAccess_List();
 $simultaccess_list_r = $cnts->getCardAccess_Revert_List();
 $limits_notify_list = $cnts->getLimitNotify_List($A2B);
+$actived_list = $cnts->getCardStatus_List();
 
 $currency_list = array();
 $currency_list_r = array();
@@ -238,19 +239,12 @@ $HD_Form -> FG_FILTER_SEARCH_1_TIME_FIELD_BIS = 'firstusedate';
 
 
 $HD_Form -> AddSearchElement_C1(gettext("ACCOUNT NUMBER"), 'username','usernametype');
-$HD_Form -> AddSearchElement_C1(gettext("EMAIL"), 'email','emailtype');
-$HD_Form -> AddSearchElement_C1(gettext("LASTNAME"),'lastname','lastnametype');
-$HD_Form -> AddSearchElement_C1(gettext("FIRSTNAME"),'firstname','firstnametype');
-$HD_Form -> AddSearchElement_C1(gettext("LOGIN"),'useralias','useraliastype');
-$HD_Form -> AddSearchElement_C1(gettext("MACADDRESS"),'mac_addr','macaddresstype');
-$HD_Form -> AddSearchElement_C1(gettext("COMPANY NAME"),'company_name','companynametype');
 $HD_Form -> AddSearchElement_C2(gettext("CUSTOMER ID"),'id1','id1type','id2','id2type','id');
-$HD_Form -> AddSearchElement_C2(gettext("SERIAL"),'serial1','serial1type','serial2','serial2type','serial');
+$HD_Form -> AddSearchElement_C2(gettext("SERIAL NUMBER"),'serial_no1','serial_no1type','serial_no2','serial_no2type','serial_no');
 $HD_Form -> AddSearchElement_C2(gettext("CREDIT"),'credit1','credit1type','credit2','credit2type','credit');
 $HD_Form -> AddSearchElement_C2(gettext("INUSE"),'inuse1','inuse1type','inuse2','inuse2type','inuse');
 
 $HD_Form -> FG_FILTER_SEARCH_FORM_SELECT_TEXT = '';
-$HD_Form -> AddSearchElement_Select(gettext("SELECT SERIE"),"cc_card_seria","id, name", "", "name", "ASC", "id_seria");
 $HD_Form -> AddSearchElement_Select(gettext("SELECT LANGUAGE"), null, null, null, null, null, "language", 0, $language_list_r);
 $HD_Form -> AddSearchElement_Select(gettext("SELECT TARIFF"), "cc_tariffgroup", "id, tariffgroupname", "", "tariffgroupname", "ASC", "tariff");
 $HD_Form -> AddSearchElement_Select(gettext("SELECT STATUS"), null, null, null, null,null , "status", 0, $cardstatus_list_r);
@@ -259,6 +253,8 @@ $HD_Form -> AddSearchElement_Select(gettext("SELECT GROUP"), "cc_card_group", "i
 $HD_Form -> AddSearchElement_Select(gettext("SELECT CURRENCY"), null, null, null, null, null, "currency", 0, $currency_list_r);
 $HD_Form -> AddSearchElement_Select(gettext("SELECT LANGUAGE"), null, null, null, null, null, "language", 0, $language_list_r);
 $HD_Form -> AddSearchElement_Select(gettext("SELECT PAYMENT TYPE"), null, null, null, null, null, "typepaid", 0, $typepaid_list_r);
+$HD_Form -> AddSearchElement_Select(gettext("SELECT ORDER NO"), "cc_card", "DISTINCT order_no , order_no, tag", null, "order_no", "ASC", "order_no");
+
 
 if (($popup_select>=1)) {
     $HD_Form -> FG_OTHER_BUTTON1 = true;
