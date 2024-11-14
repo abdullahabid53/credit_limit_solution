@@ -53,9 +53,10 @@ getpost_ifset(array (
     'popup_formname',
     'popup_fieldname',
     'upd_tag',
+    'upd_expirationdate',
     'upd_currency',
     'upd_credit',
-    'upd_activated',
+    'upd_status',
     'upd_used',
     'upd_credittype',
     'upd_tariff',
@@ -191,11 +192,11 @@ if ($form_action == "list" && (!($popup_select>=1))	) {
         <INPUT type="hidden" name="batchupdate" value="1">
         <tr>
           <td align="left"  class="bgcolor_001" style="padding: 0 0 0 10px;">
-              <input name="check[upd_activated]" type="checkbox" <?php if ($check["upd_activated"]=="on") echo "checked"?> >
+              <input name="check[upd_status]" type="checkbox" <?php if ($check["upd_status"]=="on") echo "checked"?> >
           </td>
           <td align="left" class="bgcolor_001">
                   1)&nbsp;<?php echo gettext("ACTIVATED");?>&nbsp;:
-                <select NAME="upd_activated" size="1" class="form_input_select">
+                <select NAME="upd_status" size="1" class="form_input_select">
                     <?php
                        foreach ($actived_list as $key => $cur_value) {
                     ?>
@@ -246,11 +247,11 @@ if ($form_action == "list" && (!($popup_select>=1))	) {
         </tr>
         <tr>
           <td align="left" class="bgcolor_001" style="padding: 0 0 0 10px;">
-                  <input name="check[upd_tag]" type="checkbox" <?php if ($check["upd_tag"]=="on") echo "checked"?>>
+                  <input name="check[upd_expirationdate]" type="checkbox" <?php if ($check["upd_expirationdate"]=="on") echo "checked"?>>
           </td>
           <td align="left"  class="bgcolor_001">
                 5)&nbsp;<?php echo gettext("Expiry Date");?>&nbsp;:
-                <input class="form_input_text" name="expirationdate" size="40" maxlength="40" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                <input class="form_input_text" name="upd_expirationdate" size="40" maxlength="40" value="<?php echo date('Y-m-d H:i:s'); ?>">
                 <br/>
         </td>
         </tr>

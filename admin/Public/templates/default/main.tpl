@@ -63,11 +63,6 @@
 													gettext("Add :: Search");{/php}</a>
 											</li>
 											<li class="">
-												<a class="sb-menu-item mx-4 {if $atmenu == 'import'}active-sb-menu{/if}"
-													href="CC_card_import.php?section=1&atmenu=import">{php} echo
-													gettext("Import");{/php}</a>
-											</li>
-											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'sip'}active-sb-menu{/if}"
 													href="A2B_entity_friend.php?atmenu=sip&section=1">{php} echo gettext("VoIP
 											Settings");{/php}</a>
@@ -664,6 +659,11 @@
 											<li><a class="sb-menu-item mx-4 {if $atmenu == 'voucher'}active-sb-menu{/if}"
 													href="A2B_entity_voucher.php?atmenu=voucher&section=10">{php} echo
 													gettext("Vouchers");{/php}</a></li>
+													<li class="">
+														<a class="sb-menu-item mx-4 {if $atmenu == 'import'}active-sb-menu{/if}"
+															href="CC_card_import.php?section=10&atmenu=import">{php} echo
+															gettext("Import");{/php}</a>
+													</li>
 											<li><a class="sb-menu-item mx-4 {if $atmenu == 'moneysituation'}active-sb-menu{/if}"
 													href="A2B_entity_moneysituation.php?atmenu=moneysituation&section=10">{php}
 													echo gettext("Customers Balance");{/php}</a></li>

@@ -56,13 +56,10 @@ if ($search_sources!='nochange') {
 }
 
 $field[0]="username";
-$field[1]="useralias";
-$field[2]="uipass";
-$field[3]="credit";
-$field[4]="lastname";
-$field[5]="firstname";
-$field[6]="activated";
-$field[7]="status";
+$field[1]="credit";
+$field[2]="activated";
+$field[3]="status";
+$field[4]="call plan";
 
 $FG_DEBUG = 0;
 
@@ -145,8 +142,9 @@ if ($task=='upload') {
 
             $FG_ADITION_SECOND_ADD_TABLE  = 'cc_card';
             $useralias_val = ($val[1] == '') ? $val[0]: $val[1];
-            $FG_ADITION_SECOND_ADD_FIELDS = 'username, useralias, uipass, credit, lastname, firstname, activated, status'; //$fieldtoimport_sql
-            $FG_ADITION_SECOND_ADD_VALUE  = "'".$val[0]."', '$useralias_val', '".$val[2]."', '".$val[3]."', '".$val[4]."', '".$val[5]."', '".$val[6]."', '".$val[7]."'";
+            $FG_ADITION_SECOND_ADD_FIELDS = 'username, credit, activated, status, tariff';
+            $FG_ADITION_SECOND_ADD_VALUE  = "'".$val[0]."', '".$val[1]."', '".$val[2]."', '".$val[3]."', '".$val[4]."'";
+
 
             for ($k=0;$k<count($fieldtoimport);$k++) {
                 if (!empty($val[$k + 8]) || $val[$k + 8]=='0') {
@@ -175,6 +173,19 @@ if ($task=='upload') {
                 $FG_ADITION_SECOND_ADD_VALUE .= ", '".$begin_date.$end_date."'";
             }
 
+            $useralias_val = generateRandomAlias();
+            $FG_ADITION_SECOND_ADD_VALUE .= ", '".$useralias_val."'";
+            $FG_ADITION_SECOND_ADD_FIELDS .= ", useralias";
+
+
+            $uipass_val = generateRandomUIPass();
+            $FG_ADITION_SECOND_ADD_VALUE .= ", '".$uipass_val."'";
+            $FG_ADITION_SECOND_ADD_FIELDS .= ", uipass";
+
+            $FG_ADITION_SECOND_ADD_VALUE .= ", '2'";
+            $FG_ADITION_SECOND_ADD_FIELDS .= ", typepaid";
+
+
             $TT_QUERY .= "INSERT INTO ".$FG_ADITION_SECOND_ADD_TABLE." (".$FG_ADITION_SECOND_ADD_FIELDS.") values (".trim ($FG_ADITION_SECOND_ADD_VALUE).") ";
             $nb_to_import++;
         }
@@ -192,6 +203,7 @@ if ($task=='upload') {
         }
 
     } // END WHILE EOF
+    
 
 
     if ($TT_QUERY!='' && strlen($TT_QUERY)>0 && ($nb_to_import>0)) {
@@ -199,8 +211,25 @@ if ($task=='upload') {
         if ($result_query) $nb_imported = $nb_imported + $nb_to_import;
     }
 
-}
 
+}
+    function generateRandomAlias() {
+        // Generate a random 15-digit number starting with "999"
+        $randomAlias = '999' . mt_rand(100000000000, 999999999999);
+        return $randomAlias;
+    }
+    function generateRandomUIPass() {
+        // Define characters to use for uipass
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $uipass = '';
+    
+        // Generate a 20-character long random string
+        for ($i = 0; $i < 20; $i++) {
+            $uipass .= $characters[rand(0, strlen($characters) - 1)];
+        }
+    
+        return $uipass;
+    }
 $Temps2 = time();
 $Temps = $Temps2 - $Temps1;
 

@@ -52,19 +52,8 @@ $smarty->display('main.tpl');
 
 ?>
 
-<script language="JavaScript">
+<script language="JavaScript" type="text/javascript">
 <!--
-function sendtofield(form)
-{
-    if (form.listemail.value.length < 5) {
-        alert ('<?php echo addslashes(gettext("Insert emails on the Field!")); ?>');
-        form.listemail.focus ();
-
-        return (false);
-    }
-    document.forms["prefs"].elements["task"].value = "field";
-    document.forms[0].submit();
-}
 
 function sendtoupload(form)
 {
@@ -79,7 +68,134 @@ function sendtoupload(form)
     document.prefs.submit();
 }
 
-//-->
+function deselectHeaders()
+{
+    document.prefs.unselected_search_sources[0].selected = false;
+    document.prefs.selected_search_sources[0].selected = false;
+}
+
+function resetHidden()
+{
+    var tmp = '';
+    for (i = 1; i < document.prefs.selected_search_sources.length; i++) {
+        tmp += document.prefs.selected_search_sources[i].value;
+        if (i < document.prefs.selected_search_sources.length - 1)
+            tmp += "\t";
+    }
+
+    document.prefs.search_sources.value = tmp;
+}
+
+function addSource()
+{
+    for (i = 1; i < document.prefs.unselected_search_sources.length; i++) {
+        if (document.prefs.unselected_search_sources[i].selected) {
+            document.prefs.selected_search_sources[document.prefs.selected_search_sources.length] = new Option(document.prefs.unselected_search_sources[i].text, document.prefs.unselected_search_sources[i].value);
+            document.prefs.unselected_search_sources[i] = null;
+            i--;
+        }
+    }
+
+    resetHidden();
+}
+
+function removeSource()
+{
+    for (i = 1; i < document.prefs.selected_search_sources.length; i++) {
+        if (document.prefs.selected_search_sources[i].selected) {
+            document.prefs.unselected_search_sources[document.prefs.unselected_search_sources.length] = new Option(document.prefs.selected_search_sources[i].text, document.prefs.selected_search_sources[i].value)
+            document.prefs.selected_search_sources[i] = null;
+            i--;
+        }
+    }
+
+    resetHidden();
+}
+
+function moveSourceUp()
+{
+    var sel = document.prefs.selected_search_sources.selectedIndex;
+	//var sel = document.prefs["selected_search_sources[]"].selectedIndex;
+	
+    if (sel == -1 || document.prefs.selected_search_sources.length <= 2) return;
+
+    // deselect everything but the first selected item
+    document.prefs.selected_search_sources.selectedIndex = sel;
+
+    if (sel == 1) {
+        tmp = document.prefs.selected_search_sources[sel];
+        document.prefs.selected_search_sources[sel] = null;
+        document.prefs.selected_search_sources[document.prefs.selected_search_sources.length] = tmp;
+        document.prefs.selected_search_sources.selectedIndex = document.prefs.selected_search_sources.length - 1;
+    } else {
+        tmp = new Array();
+
+        for (i = 1; i < document.prefs.selected_search_sources.length; i++) {
+            tmp[i - 1] = new Option(document.prefs.selected_search_sources[i].text, document.prefs.selected_search_sources[i].value)
+        }
+
+        for (i = 0; i < tmp.length; i++) {
+            if (i + 1 == sel - 1) {
+                document.prefs.selected_search_sources[i + 1] = tmp[i + 1];
+            } else if (i + 1 == sel) {
+                document.prefs.selected_search_sources[i + 1] = tmp[i - 1];
+            } else {
+                document.prefs.selected_search_sources[i + 1] = tmp[i];
+            }
+        }
+
+        document.prefs.selected_search_sources.selectedIndex = sel - 1;
+    }
+
+    resetHidden();
+}
+
+function moveSourceDown()
+{
+    var sel = document.prefs.selected_search_sources.selectedIndex;
+
+    if (sel == -1 || document.prefs.selected_search_sources.length <= 2) return;
+
+    // deselect everything but the first selected item
+    document.prefs.selected_search_sources.selectedIndex = sel;
+
+    if (sel == document.prefs.selected_search_sources.length - 1) {
+        tmp = new Array();
+
+        for (i = 1; i < document.prefs.selected_search_sources.length; i++) {
+            tmp[i - 1] = new Option(document.prefs.selected_search_sources[i].text, document.prefs.selected_search_sources[i].value)
+        }
+
+        document.prefs.selected_search_sources[1] = tmp[tmp.length - 1];
+        for (i = 0; i < tmp.length - 1; i++) {
+            document.prefs.selected_search_sources[i + 2] = tmp[i];
+        }
+
+        document.prefs.selected_search_sources.selectedIndex = 1;
+    } else {
+        tmp = new Array();
+
+        for (i = 1; i < document.prefs.selected_search_sources.length; i++) {
+            tmp[i - 1] = new Option(document.prefs.selected_search_sources[i].text, document.prefs.selected_search_sources[i].value)
+        }
+
+        for (i = 0; i < tmp.length; i++) {
+            if (i + 1 == sel) {
+                document.prefs.selected_search_sources[i + 1] = tmp[i + 1];
+            } else if (i + 1 == sel + 1) {
+                document.prefs.selected_search_sources[i + 1] = tmp[i - 1];
+            } else {
+                document.prefs.selected_search_sources[i + 1] = tmp[i];
+            }
+        }
+
+        document.prefs.selected_search_sources.selectedIndex = sel + 1;
+    }
+
+    resetHidden();
+}
+
+// -->
 </script>
 
 <?php
@@ -229,25 +345,23 @@ function moveSourceDown()
         <td colspan="2" align=center>
         <?php echo gettext("These fields are mandatory");?><br>
 
-        <select  name="bydefault" multiple="multiple" size="4" width="40" class="form_input_select">
+        <select  name="bydefault" multiple="multiple" size="4" width="40" class="">
             <option value="bb1"><?php echo gettext("username");?></option>
-            <option value="bb2"><?php echo gettext("useralias");?></option>
-            <option value="bb3"><?php echo gettext("uipass");?></option>
-            <option value="bb4"><?php echo gettext("credit");?></option>
-            <option value="bb5"><?php echo gettext("lastname");?></option>
-            <option value="bb6"><?php echo gettext("firstname");?></option>
-            <option value="bb7"><?php echo gettext("activated");?></option>
-            <option value="bb8"><?php echo gettext("status");?></option>
+            <option value="bb2"><?php echo gettext("credit");?></option>
+            <option value="bb3"><?php echo gettext("activated");?></option>
+            <option value="bb4"><?php echo gettext("status");?></option>
+            <option value="bb5"><?php echo gettext("callplan");?></option>
         </select>
         <br/><br/>
 
         <?php echo gettext("Choose the additional fields to import from the CSV file");?>.<br>
 
         <input name="search_sources" value="nochange" type="hidden">
+        <!-- <input name="typepaid" value="2" type="hidden"> -->
         <table>
             <tr>
             <td>
-                <select name="unselected_search_sources" multiple="multiple" size="9" width="50" onchange="deselectHeaders()" class="form_input_select">
+                <select name="unselected_search_sources" multiple="multiple" size="9" width="50" onchange="deselectHeaders()" class="">
                     <option value=""><?php echo gettext("Unselected Fields...");?></option>
                     <option value="creationdate"><?php echo gettext("creationdate");?></option>
                     <option value="firstusedate"><?php echo gettext("firstusedate");?></option>
@@ -290,6 +404,10 @@ function moveSourceDown()
                     <option value="invoiceday"><?php echo gettext("invoiceday");?></option>
                     <option value="autorefill"><?php echo gettext("autorefill");?></option>
                     <option value="loginkey"><?php echo gettext("loginkey");?></option>
+                    <option value="useralias"><?php echo gettext("useralias");?></option>
+                    <option value="uipass"><?php echo gettext("uipass");?></option>
+                    <option value="lastname"><?php echo gettext("lastname");?></option>
+                    <option value="firstname"><?php echo gettext("firstname");?></option>
                 </select>
             </td>
 
@@ -299,7 +417,7 @@ function moveSourceDown()
             <a href="" onclick="removeSource(); return false;"><img src="<?php echo Images_Path;?>/back.png" alt="remove source" title="remove source" border="0"></a>
             </td>
             <td>
-            <select name="selected_search_sources" multiple="multiple" size="9" width="50" onchange="deselectHeaders();" class="form_input_select">
+            <select name="selected_search_sources" multiple="multiple" size="9" width="50" onchange="deselectHeaders();" class="">
                 <option value=""><?php echo gettext("Selected Fields...");?></option>
             </select>
             </td>

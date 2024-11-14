@@ -592,59 +592,8 @@ $smarty->display ( 'main.tpl' );
         </td>
     </tr>
     <tr>
-        <td class="bgcolor_002" align="left"><font class="fontstyle_003">&nbsp;&nbsp;<?php
-        echo gettext ( "PHONENUMBER" );
-        ?></font>
-        </td>
-        <td class="bgcolor_003" align="left">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="dst"
-                    value="<?php
-                    echo $dst?>" class="form_input_text"></td>
-                <td class="fontstyle_searchoptions" align="center"><input
-                    type="radio" NAME="dsttype" value="1"
-                    <?php
-                    if ((! isset ( $dsttype )) || ($dsttype == 1)) {
-                        ?> checked <?php
-                    }
-                    ?>><?php
-                    echo gettext ( "Exact" );
-                    ?></td>
-                <td class="fontstyle_searchoptions" align="center"><input
-                    type="radio" NAME="dsttype" value="2" <?php
-                    if ($dsttype == 2) {
-                        ?>
-                    checked <?php
-                    }
-                    ?>><?php
-                    echo gettext ( "Begins with" );
-                    ?></td>
-                <td class="fontstyle_searchoptions" align="center"><input
-                    type="radio" NAME="dsttype" value="3" <?php
-                    if ($dsttype == 3) {
-                        ?>
-                    checked <?php
-                    }
-                    ?>><?php
-                    echo gettext ( "Contains" );
-                    ?></td>
-                <td class="fontstyle_searchoptions" align="center"><input
-                    type="radio" NAME="dsttype" value="4" <?php
-                    if ($dsttype == 4) {
-                        ?>
-                    checked <?php
-                    }
-                    ?>><?php
-                    echo gettext ( "Ends with" );
-                    ?></td>
-            </tr>
-        </table>
-        </td>
-    </tr>
-    <tr>
         <td align="left" class="bgcolor_004"><font class="fontstyle_003">&nbsp;&nbsp;<?php
-        echo gettext ( "CALLERID" );
+        echo gettext ( "CALLER A" );
         ?></font>
         </td>
         <td class="bgcolor_005" align="left">
@@ -694,6 +643,58 @@ $smarty->display ( 'main.tpl' );
         </table>
         </td>
     </tr>
+    <tr>
+        <td class="bgcolor_002" align="left"><font class="fontstyle_003">&nbsp;&nbsp;<?php
+        echo gettext ( "CALLER B" );
+        ?></font>
+        </td>
+        <td class="bgcolor_003" align="left">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="dst"
+                    value="<?php
+                    echo $dst?>" class="form_input_text"></td>
+                <td class="fontstyle_searchoptions" align="center"><input
+                    type="radio" NAME="dsttype" value="1"
+                    <?php
+                    if ((! isset ( $dsttype )) || ($dsttype == 1)) {
+                        ?> checked <?php
+                    }
+                    ?>><?php
+                    echo gettext ( "Exact" );
+                    ?></td>
+                <td class="fontstyle_searchoptions" align="center"><input
+                    type="radio" NAME="dsttype" value="2" <?php
+                    if ($dsttype == 2) {
+                        ?>
+                    checked <?php
+                    }
+                    ?>><?php
+                    echo gettext ( "Begins with" );
+                    ?></td>
+                <td class="fontstyle_searchoptions" align="center"><input
+                    type="radio" NAME="dsttype" value="3" <?php
+                    if ($dsttype == 3) {
+                        ?>
+                    checked <?php
+                    }
+                    ?>><?php
+                    echo gettext ( "Contains" );
+                    ?></td>
+                <td class="fontstyle_searchoptions" align="center"><input
+                    type="radio" NAME="dsttype" value="4" <?php
+                    if ($dsttype == 4) {
+                        ?>
+                    checked <?php
+                    }
+                    ?>><?php
+                    echo gettext ( "Ends with" );
+                    ?></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+    
 
     <tr>
         <td align="left" class="bgcolor_004"><font class="fontstyle_003">&nbsp;&nbsp;<?php
