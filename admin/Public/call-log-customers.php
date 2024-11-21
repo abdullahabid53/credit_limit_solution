@@ -82,7 +82,7 @@ if (! isset ( $current_page ) || ($current_page == "")) {
 $FG_DEBUG = 0;
 
 // The variable FG_TABLE_NAME define the table name to use
-$FG_TABLE_NAME = "cc_call t1 LEFT OUTER JOIN cc_trunk t3 ON t1.id_trunk = t3.id_trunk LEFT OUTER JOIN cc_ratecard t4 ON t1.id_ratecard = t4.id";
+$FG_TABLE_NAME = "cc_call t1 LEFT OUTER JOIN cc_trunk t5 ON t1.source_trunk_id = t5.id_trunk LEFT OUTER JOIN  cc_trunk t3 ON t1.id_trunk = t3.id_trunk LEFT OUTER JOIN cc_ratecard t4 ON t1.id_ratecard = t4.id LEFT OUTER JOIN cc_did t6 ON t1.id_did = t6.id";
 
 // THIS VARIABLE DEFINE THE COLOR OF THE HEAD TABLE
 $FG_TABLE_ALTERNATE_ROW_COLOR [] = "#FFFFFF";
@@ -119,7 +119,8 @@ $FG_TABLE_COL [] = array (gettext ( "Sell Rate" ), "rateinitial", "6%", "center"
 $FG_TABLE_COL [] = array (gettext ( "Duration" ), "sessiontime", "5%", "center", "SORT", "30", "", "", "", "", "", "display_minute" );
 $FG_TABLE_COL [] = array (gettext ( "Free Duration" ), "free_sessiontime", "5%", "center", "SORT", "30", "", "", "", "", "", "display_minute" );
 $FG_TABLE_COL [] = array (gettext ( "Account" ), "card_id", "6%", "center", "sort", "", "lie_link", "cc_card", "username,id", "id='%id'", "%1", "", "A2B_entity_card.php" );
-$FG_TABLE_COL [] = array (gettext ( "Trunk" ), "trunkcode", "6%", "center", "SORT", "30" );
+$FG_TABLE_COL [] = array (gettext ( " SRC Trunk" ), "source_trunk_name", "6%", "center", "SORT", "30" );
+$FG_TABLE_COL [] = array (gettext ( " DST Trunk" ), "trunkcode", "6%", "center", "SORT", "30" );
 $FG_TABLE_COL [] = array ('<acronym title="' . gettext ( "Terminate Cause" ) . '">' . gettext ( "TC" ) . '</acronym>', "terminatecauseid", "7%", "center", "SORT", "", "list", $dialstatus_list );
 $FG_TABLE_COL [] = array (gettext ( "CallType" ), "sipiax", "6%", "center", "SORT", "", "list", $list_calltype );
 $FG_TABLE_COL [] = array (gettext ( "Buy" ), "buycost", "7%", "center", "SORT", "30", "", "", "", "", "", "display_2bill" );
@@ -136,8 +137,36 @@ if (has_rights (ACX_DELETE_CDR)) {
 }
 
 // This Variable store the argument for the SQL query
-$FG_COL_QUERY = 't1.starttime, t1.src, t1.dnid, t1.calledstation, t1.destination AS dest, t4.buyrate, t4.rateinitial, t1.sessiontime, t1.free_sessiontime, t1.card_id, t3.trunkcode, t1.terminatecauseid, t1.sipiax, t1.buycost, t1.sessionbill, case when t1.sessionbill!=0 then ((t1.sessionbill-t1.buycost)/t1.sessionbill)*100 else NULL end as margin,case when t1.buycost!=0 then ((t1.sessionbill-t1.buycost)/t1.buycost)*100 else NULL end as markup';
-
+$FG_COL_QUERY = 't1.starttime, 
+                 t1.src, 
+                 t1.dnid, 
+                 t1.calledstation, 
+                 t1.destination AS dest, 
+                 CASE 
+                     WHEN t1.id_did IS NOT NULL THEN t6.aleg_carrier_cost_min_offp 
+                     ELSE t4.buyrate 
+                 END AS buyrate, 
+                 CASE 
+                     WHEN t1.id_did IS NOT NULL THEN t6.aleg_retail_cost_min_offp 
+                     ELSE t4.rateinitial 
+                 END AS rateinitial, 
+                 t1.sessiontime, 
+                 t1.free_sessiontime, 
+                 t1.card_id, 
+                 t5.trunkcode AS source_trunk_name, 
+                 t3.trunkcode, 
+                 t1.terminatecauseid, 
+                 t1.sipiax, 
+                 t1.buycost, 
+                 t1.sessionbill, 
+                 CASE 
+                     WHEN t1.sessionbill != 0 THEN ((t1.sessionbill - t1.buycost) / t1.sessionbill) * 100 
+                     ELSE NULL 
+                 END AS margin, 
+                 CASE 
+                     WHEN t1.buycost != 0 THEN ((t1.sessionbill - t1.buycost) / t1.buycost) * 100 
+                     ELSE NULL 
+                 END AS markup';
 if (LINK_AUDIO_FILE) {
     $FG_COL_QUERY .= ', t1.uniqueid';
 }
@@ -358,7 +387,7 @@ $smarty->display ( 'main.tpl' );
 <INPUT TYPE="hidden" NAME="posted" value=1> <INPUT TYPE="hidden"
     NAME="current_page" value=0>
     <a onclick="showAdvanceFilters()" style="color: white !important;font-size: 17px;font-weight: 400; background: #014952; padding: 10px; border-radius: 20px; cursor: pointer;"> Advance Filters</a>
-    <TABLE id = "advance_filters" style="margin-top: 20px; display: none;" class="bar-status" width="85%" border="0" cellspacing="1"
+    <TABLE id = "advance_filters" style="margin-top: 20px; display: none; width: 100%;" class="bar-status" width="85%" border="0" cellspacing="1"
     cellpadding="2" align="center">
         <?php
         if ($_SESSION ["pr_groupID"] == 2 && is_numeric ( $_SESSION ["pr_IDCust"] )) {
@@ -380,12 +409,12 @@ $smarty->display ( 'main.tpl' );
             echo gettext ( "Enter the customer ID" );
             ?>: <INPUT TYPE="text"
                     NAME="entercustomer" value="<?php echo $entercustomer?>"
-                    class="form_input_text"> <a href="#"
+                    class="form_input_text form_input_text_filters"> <a href="#"
                     onclick="window.open('A2B_entity_card.php?popup_select=1&popup_formname=myForm&popup_fieldname=entercustomer' , 'CardNumberSelection','scrollbars=1,width=550,height=330,top=20,left=100,scrollbars=1');"><img
                     src="<?php echo Images_Path; ?>/icon_arrow_orange.gif"></a>
-                 <BR> OR <br>
-                <?php echo gettext ( "Enter the customer number" );?>: <INPUT TYPE="text" NAME="entercustomer_num"
-                    value="<?php echo $entercustomer_num?>" class="form_input_text"> <a href="#"
+                 <br>
+                <?php echo gettext ( "Enter the customer no" );?>: <INPUT TYPE="text" NAME="entercustomer_num"
+                    value="<?php echo $entercustomer_num?>" class="form_input_text form_input_text_filters"> <a href="#"
                                         onclick="window.open('A2B_entity_card.php?popup_select=2&popup_formname=myForm&popup_fieldname=entercustomer_num' , 'CardNumberSelection','scrollbars=1,width=550,height=330,top=20,left=100,scrollbars=1');"><img
                                         src="<?php echo Images_Path; ?>/icon_arrow_orange.gif"></a>
                 </td>
@@ -393,13 +422,13 @@ $smarty->display ( 'main.tpl' );
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td align="left" class="fontstyle_searchoptions"><?php echo gettext ( "CallPlan" ); ?> :</td>
-                        <td align="left" class="fontstyle_searchoptions"><INPUT TYPE="text" NAME="entertariffgroup" value="<?php echo $entertariffgroup?>" size="4" class="form_input_text">&nbsp;<a href="#" onclick="window.open('A2B_entity_tariffgroup.php?popup_select=2&popup_formname=myForm&popup_fieldname=entertariffgroup' , 'CallPlanSelection','scrollbars=1,width=550,height=330,top=20,left=100');"><img
+                        <td align="left" class="fontstyle_searchoptions"><INPUT TYPE="text" NAME="entertariffgroup" value="<?php echo $entertariffgroup?>" size="4" class="form_input_text form_input_text_filters">&nbsp;<a href="#" onclick="window.open('A2B_entity_tariffgroup.php?popup_select=2&popup_formname=myForm&popup_fieldname=entertariffgroup' , 'CallPlanSelection','scrollbars=1,width=550,height=330,top=20,left=100');"><img
                             src="<?php echo Images_Path; ?>/icon_arrow_orange.gif"></a></td>
                         <td align="left" class="fontstyle_searchoptions"><?php echo gettext ( "Provider" ); ?> :
 
             <td align="left" class="fontstyle_searchoptions"><INPUT
                             TYPE="text" NAME="enterprovider"
-                            value="<?php echo $enterprovider?>" size="4" class="form_input_text">&nbsp;<a href="#"
+                            value="<?php echo $enterprovider?>" size="4" class="form_input_text form_input_text_filters">&nbsp;<a href="#"
                             onclick="window.open('A2B_entity_provider.php?popup_select=2&popup_formname=myForm&popup_fieldname=enterprovider' , 'ProviderSelection','scrollbars=1,width=550,height=330,top=20,left=100');"><img
                             src="<?php echo Images_Path; ?>/icon_arrow_orange.gif"></a></td>
                     </tr>
@@ -408,7 +437,7 @@ $smarty->display ( 'main.tpl' );
                         <td align="left" class="fontstyle_searchoptions"><INPUT
                             TYPE="text" NAME="entertrunk" value="<?php
             echo $entertrunk?>"
-                            size="4" class="form_input_text">&nbsp;<a href="#"
+                            size="4" class="form_input_text form_input_text_filters">&nbsp;<a href="#"
                             onclick="window.open('A2B_entity_trunk.php?popup_select=2&popup_formname=myForm&popup_fieldname=entertrunk' , 'TrunkSelection','scrollbars=1,width=550,height=330,top=20,left=100');"><img
                             src="<?php
             echo Images_Path;
@@ -420,7 +449,7 @@ $smarty->display ( 'main.tpl' );
                             TYPE="text" NAME="enterratecard"
                             value="<?php
             echo $enterratecard?>" size="4"
-                            class="form_input_text">&nbsp;<a href="#"
+                            class="form_input_text form_input_text_filters">&nbsp;<a href="#"
                             onclick="window.open('A2B_entity_def_ratecard.php?popup_select=2&popup_formname=myForm&popup_fieldname=enterratecard' , 'RatecardSelection','scrollbars=1,width=550,height=330,top=20,left=100');"><img
                             src="<?php
             echo Images_Path;
@@ -451,7 +480,7 @@ $smarty->display ( 'main.tpl' );
                     ?>> <?php
                     echo gettext ( "From" );
                     ?> :
-                <select name="fromstatsday_sday" class="form_input_select">
+                <select name="fromstatsday_sday" class="form_input_select form_input_select_filter">
                     <?php
                     for ($i = 1; $i <= 31; $i ++) {
                         if ($fromstatsday_sday == sprintf ( "%02d", $i ))
@@ -462,7 +491,7 @@ $smarty->display ( 'main.tpl' );
                     }
                     ?>
                 </select> <select name="fromstatsmonth_sday"
-                    class="form_input_select">
+                    class="form_input_select form_input_select_filter">
                 <?php
                 $year_actual = date ( "Y" );
                 $monthname = array (gettext ( "January" ), gettext ( "February" ), gettext ( "March" ), gettext ( "April" ), gettext ( "May" ), gettext ( "June" ), gettext ( "July" ), gettext ( "August" ), gettext ( "September" ), gettext ( "October" ), gettext ( "November" ), gettext ( "December" ) );
@@ -492,7 +521,7 @@ $smarty->display ( 'main.tpl' );
                     ?>>
                 <?php
                 echo gettext ( "Time :" )?>
-                <select name="fromstatsday_hour" class="form_input_select">
+                <select name="fromstatsday_hour" class="form_input_select form_input_select_filter">
                 <?php
                 for ($i = 0; $i <= 23; $i ++) {
                     if ($fromstatsday_hour == sprintf ( "%02d", $i )) {
@@ -504,7 +533,7 @@ $smarty->display ( 'main.tpl' );
                 }
                 ?>
                 </select> : <select name="fromstatsday_min"
-                    class="form_input_select">
+                    class="form_input_select form_input_select_filter">
                 <?php
                 for ($i = 0; $i < 60; $i = $i + 5) {
                     if ($fromstatsday_min == sprintf ( "%02d", $i )) {
@@ -525,7 +554,7 @@ $smarty->display ( 'main.tpl' );
                 <?php
                 echo gettext ( "To" );
                 ?>  :
-                <select name="tostatsday_sday" class="form_input_select">
+                <select name="tostatsday_sday" class="form_input_select form_input_select_filter">
                 <?php
                 for ($i = 1; $i <= 31; $i ++) {
                     if ($tostatsday_sday == sprintf ( "%02d", $i )) {
@@ -536,7 +565,7 @@ $smarty->display ( 'main.tpl' );
                     echo '<option value="' . sprintf ( "%02d", $i ) . "\"$selected>" . sprintf ( "%02d", $i ) . '</option>';
                 }
                 ?>
-                </select> <select name="tostatsmonth_sday" class="form_input_select">
+                </select> <select name="tostatsmonth_sday" class="form_input_select form_input_select_filter">
                 <?php
                 $year_actual = date ( "Y" );
                 for ($i = $year_actual; $i >= $year_actual - 1; $i --) {
@@ -564,7 +593,7 @@ $smarty->display ( 'main.tpl' );
                     ?>>
                 <?php
                 echo gettext ( "Time :" )?>
-                <select name="tostatsday_hour" class="form_input_select">
+                <select name="tostatsday_hour" class="form_input_select form_input_select_filter">
                 <?php
                 for ($i = 0; $i <= 23; $i ++) {
                     if ($tostatsday_hour == sprintf ( "%02d", $i )) {
@@ -575,7 +604,7 @@ $smarty->display ( 'main.tpl' );
                     echo '<option value="' . sprintf ( "%02d", $i ) . "\"$selected>" . sprintf ( "%02d", $i ) . '</option>';
                 }
                 ?>
-                </select> : <select name="tostatsday_min" class="form_input_select">
+                </select> : <select name="tostatsday_min" class="form_input_select form_input_select_filter">
                 <?php
                 for ($i = 0; $i < 60; $i = $i + 5) {
                     if ($tostatsday_min == sprintf ( "%02d", $i )) {
@@ -602,7 +631,7 @@ $smarty->display ( 'main.tpl' );
                 <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="src"
                     value="<?php
                     echo "$src";
-                    ?>" class="form_input_text"></td>
+                    ?>" class="form_input_text form_input_text_filters"></td>
                 <td class="fontstyle_searchoptions" align="center"><input
                     type="radio" NAME="srctype" value="1"
                     <?php
@@ -653,7 +682,7 @@ $smarty->display ( 'main.tpl' );
             <tr>
                 <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="dst"
                     value="<?php
-                    echo $dst?>" class="form_input_text"></td>
+                    echo $dst?>" class="form_input_text form_input_text_filters"></td>
                 <td class="fontstyle_searchoptions" align="center"><input
                     type="radio" NAME="dsttype" value="1"
                     <?php
@@ -707,7 +736,7 @@ $smarty->display ( 'main.tpl' );
                 <td style="width: 41.5%;">&nbsp;&nbsp;<INPUT TYPE="text" NAME="dnid"
                     value="<?php
                     echo "$dnid";
-                    ?>" class="form_input_text"></td>
+                    ?>" class="form_input_text form_input_text_filters"></td>
                 <td class="fontstyle_searchoptions" align="center"><input
                     type="radio" NAME="dnidtype" value="1"
                     <?php
@@ -758,7 +787,7 @@ $smarty->display ( 'main.tpl' );
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td class="fontstyle_searchoptions"><select NAME="choose_calltype"
-                    size="1" class="form_input_select">
+                    size="1" class="form_input_select form_input_select_filter">
                     <option value='-1'
                         <?php
                         if (($choose_calltype == - 1) || (! isset ( $choose_calltype ))) {
@@ -805,7 +834,7 @@ $smarty->display ( 'main.tpl' );
                     ?> :
                </td>
                 <td width="55%" class="fontstyle_searchoptions"><select
-                    NAME="terminatecauseid" size="1" class="form_input_select">
+                    NAME="terminatecauseid" size="1" class="form_input_select form_input_select_filter">
                     <option value='ANSWER'
                         <?php
                         if ((! isset ( $terminatecauseid )) || ($terminatecauseid == "ANSWER")) {
@@ -913,7 +942,7 @@ $smarty->display ( 'main.tpl' );
                     ?> :
                 </td>
                 <td class="fontstyle_searchoptions"><select NAME="choose_currency"
-                    size="1" class="form_input_select">
+                    size="1" class="form_input_select form_input_select_filter">
                         <?php
                         $currencies_list = get_currencies ();
                         foreach ($currencies_list as $key => $cur_value) {

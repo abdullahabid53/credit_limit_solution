@@ -1117,6 +1117,9 @@ tr>.tableBodyRight>i {
   margin: 10px 0 10px 0;
   font-family: 'Poppins', sans-serif;
 }
+.form_input_select_filter{
+  height: 35px !important;
+}
 
 
 .form_input_select:hover {
@@ -1175,6 +1178,9 @@ tr>.tableBodyRight>i {
   padding: 0 0 0 10px;
   margin: 10px 0 10px 0;
   font-family: 'Poppins', sans-serif;
+}
+.form_input_text_filters{
+  height: 35px !important;
 }
 
 .form_input_text:hover {
