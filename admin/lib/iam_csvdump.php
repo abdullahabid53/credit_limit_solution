@@ -27,6 +27,11 @@
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *  Lesser General Public License for more details.
  */
+
+
+ include '/interface/constants.php';
+
+
 class iam_csvdump
 {
 
@@ -266,47 +271,91 @@ class iam_csvdump
         die("Error. Cannot connect to Database.");
     }
 
+    
+
     // Execute the query
     $result = @mysqli_query($conn, $query_string);
     if (!$result) {
         die("Could not perform the Query: " . mysqli_error($conn));
     }
 
-    // Status list mapping
-    $cardstatus_list = array(
-        "2" => array(gettext("NEW"), "2"),
-        "1" => array(gettext("ACTIVE"), "1"),
-        "0" => array(gettext("CANCELLED"), "0"),
-        "3" => array(gettext("WAITING-MAILCONFIRMATION"), "3"),
-        "4" => array(gettext("RESERVED"), "4"),
-        "5" => array(gettext("EXPIRED"), "5"),
-        "6" => array(gettext("SUSPENDED FOR UNDERPAYMENT"), "6"),
-        "7" => array(gettext("SUSPENDED FOR LITIGATION"), "7"),
-        "8" => array(gettext("WAITING SUBSCRIPTION PAYMENT"), "8")
-    );
+    // Get Constants for changing flags to value
+
+    $cardstatus_list = Constants::getCardStatus_List();
+
+    $terminatecauseid = array();
+    $terminatecauseid["1"] = array( gettext("ANSWER"), "1");
+    $terminatecauseid["2"] = array( gettext("BUSY"), "2");
+    $terminatecauseid["3"] = array( gettext("NOANSWER"), "3");
+    $terminatecauseid["4"] = array( gettext("CANCEL"), "4");
+    $terminatecauseid["5"] = array( gettext("CONGESTION"), "5");
+    $terminatecauseid["6"] = array( gettext("CHANUNAVAIL"), "6");
+    $terminatecauseid["7"] = array( gettext("DONTCALL"), "7");
+    $terminatecauseid["8"] = array( gettext("TORTURE")	, "8");
+    $terminatecauseid["9"] = array( gettext("INVALIDARGS"), "9");
+
+    $list_calltype = array ();
+    $list_calltype ["0"] = array (gettext("STANDARD"), "0" );
+    $list_calltype ["1"] = array (gettext("SIP/IAX"), "1" );
+    $list_calltype ["2"] = array (gettext("DIDCALL"), "2" );
+    $list_calltype ["3"] = array (gettext("DID_VOIP"), "3" );
+    $list_calltype ["4"] = array (gettext("CALLBACK"), "4" );
+    $list_calltype ["5"] = array (gettext("PREDICT"), "5" );
+    $list_calltype ["6"] = array (gettext("AUTO DIALER"), "6" );
+    $list_calltype ["7"] = array (gettext("DID-ALEG"), "7" );
 
     $file = "";
     $crlf = $this->_define_newline();
 
     // Get column names to find the index of 'status'
     $fields = mysqli_fetch_fields($result);
-    $status_index = -1;
+    $headers = [];
 
-    // Determine the index of the 'status' column
+    // added headers to the column
+    foreach ($fields as $field) {
+        $headers[] = $field->name;
+    }
+
+    // Add headers to the file content
+    $file .= $this->arrayToCsvString($headers, ",") . $crlf;
+
+    $status_index = -1;
+    $terminatecauseid_index = -1;
+    $list_calltype_index = -1;
+    
+    // searched for index of flags to change the value from flag to real value
     foreach ($fields as $index => $field) {
+      
         if (strcasecmp($field->name, "status") == 0) {
             $status_index = $index;
-            break;
+        }
+        if (strcasecmp($field->name, "terminatecauseid") == 0) {
+            $terminatecauseid_index = $index;
+        }
+        if (strcasecmp($field->name, "sipiax") == 0) {
+            $list_calltype_index = $index;
         }
     }
 
-    // Fetch each row of the result set
+    // $file .= $this->arrayToCsvString($headers, ",") . $crlf;
+
     while ($row = @mysqli_fetch_array($result, MYSQLI_NUM)) {
-        // Replace 'status' column value if the index is found
+        // Replace 'status' column value
         if ($status_index != -1 && isset($cardstatus_list[$row[$status_index]])) {
             $row[$status_index] = $cardstatus_list[$row[$status_index]][0]; // Use the status text
         }
-
+    
+        // Replace 'terminatecauseid' column value
+        if ($terminatecauseid_index != -1 && isset($terminatecauseid[$row[$terminatecauseid_index]])) {
+            $row[$terminatecauseid_index] = $terminatecauseid[$row[$terminatecauseid_index]][0]; // Use the terminatecause text
+        }
+     
+    
+        // Replace 'sipiax' column value
+        if ($list_calltype_index != -1 && isset($list_calltype[$row[$list_calltype_index]])) {
+            $row[$list_calltype_index] = $list_calltype[$row[$list_calltype_index]][0]; // Use the calltype text
+        }
+    
         // Convert the row to a CSV string and append it to the file content
         $file .= $this->arrayToCsvString($row, ",") . $crlf;
     }
