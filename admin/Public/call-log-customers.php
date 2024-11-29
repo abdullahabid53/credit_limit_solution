@@ -1392,7 +1392,8 @@ if ($profit > 500 && $rand_num==4 && SHOW_DONATION) {
 
 <br>
 <!-- SECTION EXPORT //--> &nbsp; &nbsp;
-<a href="export_csv.php?var_export=<?php echo $FG_EXPORT_SESSION_VAR?>&var_export_type=type_csv" target="_blank"><img src="<?php echo Images_Path; ?>/excel.gif" border="0" height="30" /><?php echo gettext ( "Export CSV" ); ?></a>
+ <!-- added default start name for cdr file -->
+<a href="export_csv.php?var_export=<?php echo $FG_EXPORT_SESSION_VAR?>&var_export_type=type_csv&csvfilename=cdr-" target="_blank"><img src="<?php echo Images_Path; ?>/excel.gif" border="0" height="30" /><?php echo gettext ( "Export CSV" ); ?></a>
 - &nbsp; &nbsp;
 <a href="export_csv.php?var_export=<?php echo $FG_EXPORT_SESSION_VAR?>&var_export_type=type_xml" target="_blank"><img src="<?php echo Images_Path; ?>/icons_xml.gif" border="0" height="32" /><?php echo gettext ( "Export XML" ); ?></a>
 
