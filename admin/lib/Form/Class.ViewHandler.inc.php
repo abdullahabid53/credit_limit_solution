@@ -18,25 +18,26 @@ $processed = $this->getProcessed();
 
 if (!($popup_select >= 1) && ($this->FG_LIST_ADDING_BUTTON1 || $this->FG_LIST_ADDING_BUTTON2)) {
 ?>
-    <table align="right" style="display: flex;align-items: center;justify-content: right;width: 100%;padding: 0 30px 0 30px;">
-        <tr align="right">
-            <td align="right" style="display: flex;align-items: center;justify-content: right;background: #016774;height: 50px;
-                                        border-radius: 40px;padding:0 20px 0 20px">
+
+<!-- updated the css and of table tf td tags and also a tags to fix the buttons and display them sepreatly by As -->
+    <table align="right" style="width: 100%;padding: 0 30px;">
+        <tr >
+            <td align="right" style="padding:10px">
                 <?php
                 // print($this->FG_LIST_ADDING_BUTTON_MSG1);
                 if ($this->FG_LIST_ADDING_BUTTON_MSG1 == "Generate Voucher") {
                     $this->FG_LIST_ADDING_BUTTON_LINK1 = "A2B_entity_card_multi.php?stitle=Card§ion=1";
                 ?>
-                    <a style="color: white !important;font-size: 17px;font-weight: 400;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK1    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG1 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG1 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>"></a>
+                    <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK1    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG1 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG1 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>"></a>
                 <?php  } //END IF 
                 ?>
                 <?php if ($this->FG_LIST_ADDING_BUTTON1 && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Generate Voucher" && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Generate Customers") { ?>
-                    <a style="color: white !important;font-size: 17px;font-weight: 400;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK1    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG1 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG1 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>"></a>
+                    <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK1    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG1 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG1 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>"></a>
                 <?php  } //END IF 
                 ?>
                 &nbsp;
                 <?php if ($this->FG_LIST_ADDING_BUTTON2) { ?>
-                    <a style="color: white !important;font-size: 17px;font-weight: 400;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK2    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG2 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG2 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>"></a>
+                    <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK2    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG2 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG2 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>"></a>
                 <?php  } //END IF 
                 ?>
             </td>

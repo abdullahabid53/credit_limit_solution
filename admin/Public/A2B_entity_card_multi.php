@@ -256,14 +256,14 @@ $list_country = $instance_table_country->Get_list($HD_Form->DBHandle, $FG_TABLE_
 
 // FORM FOR THE GENERATION
 ?>
-<div align="center">
+<div  align="center">
 <?php if (!empty($msg_error) && $nb_error>0 ) { ?>
     <div class="msg_error" style="width:70%;text-align:left;">
         <?php echo $msg_error ?>
     </div>
 <?php } ?>
-<table align="center"  class="bgcolor_001" border="0" width="65%">
-<form name="theForm" action="<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL) ?>" method="POST">
+<table   align="center"  class="bgcolor_001" border="0" width="65%">
+<form   name="theForm" action="<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL) ?>" method="POST">
 <?php
     if ($HD_Form->FG_CSRF_STATUS == true) {
 ?>
@@ -272,8 +272,10 @@ $list_country = $instance_table_country->Get_list($HD_Form->DBHandle, $FG_TABLE_
 <?php
     }
 ?>
-<tr>
-    <td align="left" width="100%">
+<tr >
+    <!-- added padding to put space from the left to numbers  by As-->
+    <td style="padding-left: 20px;"align="left" width="100%">
+
     <strong>1)</strong> <?php echo gettext("Length of card number :");?>
     <select name="cardnumberlenght_list" size="1" class="form_input_select">
     <?php
@@ -295,7 +297,7 @@ $list_country = $instance_table_country->Get_list($HD_Form->DBHandle, $FG_TABLE_
 
     <strong>3)</strong>
     <?php echo gettext("Call plan");?> :
-    <select NAME="choose_tariff" size="1" class="form_input_select" >
+    <select  NAME="choose_tariff" size="1" class="form_input_select" >
         <option value=''><?php echo gettext("Choose a Call Plan");?></option>
     <?php foreach ($list_tariff as $recordset) { ?>
         <option class=input value='<?php echo $recordset[0]?>' <?php if($recordset[0]==$choose_tariff) echo "selected"; ?> ><?php echo $recordset[1]?></option>

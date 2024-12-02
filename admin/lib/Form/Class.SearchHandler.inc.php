@@ -205,13 +205,15 @@ if ($this->FG_FILTER_SEARCH_FORM) {
                 <td class="<?php echo $classleft?>" align="left">
                     <font>&nbsp;&nbsp;<?php echo $one_compare[0]?></font>
                 </td>
-                <td style="padding: 0 10px 0 28px" class="<?php echo $classright?>" align="left" >
+<!-- removed the paddind from td and modified justify-content property to flex-start increase gap and also added margin to radio buttons  -->
+
+                <td style="" class="<?php echo $classright?>" align="left" >
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr style="display: flex;align-items: center;justify-content: space-around;"><td class="fontstyle_searchoptions">&nbsp;&nbsp;<INPUT TYPE="text" NAME="<?php echo $one_compare[1]?>" value="<?php echo $processed[$one_compare[1]]?>" class="form_input_text"></td>
-                <td style="display: flex;align-items: center;gap: 5px;" class="fontstyle_searchoptions" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="1" <?php if ((!isset($processed[$one_compare[2]]))||($processed[$one_compare[2]]==1)) {?>checked<?php }?>><?php echo gettext("Exact");?> </td>
-                <td style="display: flex;align-items: center;gap: 5px;" class="fontstyle_searchoptions" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="2" <?php if ($processed[$one_compare[2]]==2) {?>checked<?php }?>> <?php echo gettext("Begins with");?></td>
-                <td style="display: flex;align-items: center;gap: 5px;" class="fontstyle_searchoptions" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="3" <?php if ($processed[$one_compare[2]]==3) {?>checked<?php }?>> <?php echo gettext("Contains");?></td>
-                <td style="display: flex;align-items: center;gap: 5px;" class="fontstyle_searchoptions" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="4" <?php if ($processed[$one_compare[2]]==4) {?>checked<?php }?>> <?php echo gettext("Ends with");?></td>
+                <tr style="display: flex;align-items: center;justify-content: flex-start;"><td class="fontstyle_searchoptions">&nbsp;&nbsp;<INPUT TYPE="text" NAME="<?php echo $one_compare[1]?>" value="<?php echo $processed[$one_compare[1]]?>" class="form_input_text"></td>
+                <td style="display: flex;align-items: center;gap: 10px;" class="fontstyle_searchoptions" align="center" ><input style="margin-left: 5px;" class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="1" <?php if ((!isset($processed[$one_compare[2]]))||($processed[$one_compare[2]]==1)) {?>checked<?php }?>><?php echo gettext("Exact");?> </td>
+                <td style="display: flex;align-items: center;gap: 10px;" class="fontstyle_searchoptions" align="center" ><input style="margin-left: 5px;" class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="2" <?php if ($processed[$one_compare[2]]==2) {?>checked<?php }?>> <?php echo gettext("Begins with");?></td>
+                <td style="display: flex;align-items: center;gap: 10px;" class="fontstyle_searchoptions" align="center" ><input style="margin-left: 5px;" class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="3" <?php if ($processed[$one_compare[2]]==3) {?>checked<?php }?>> <?php echo gettext("Contains");?></td>
+                <td style="display: flex;align-items: center;gap: 10px;" class="fontstyle_searchoptions" align="center" ><input style="margin-left: 5px;" class="form_input_radio" type="radio" NAME="<?php echo $one_compare[2]?>" value="4" <?php if ($processed[$one_compare[2]]==4) {?>checked<?php }?>> <?php echo gettext("Ends with");?></td>
                 </tr></table></td>
             </tr>
 
@@ -235,21 +237,24 @@ if ($this->FG_FILTER_SEARCH_FORM) {
                 <td class="<?php echo $classleft?>" align="left">
                     <font>&nbsp;&nbsp;<?php echo $two_compare[0]?></font>
                 </td>
-                <td style="padding: 0 55px 0 75px" class="<?php echo $classright?>" align="left">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0"><tr style="display: flex;align-items: center;justify-content: space-around;">
-                <td class="fontstyle_searchoptions">&nbsp;&nbsp;<INPUT TYPE="text" NAME="<?php echo $two_compare[1]?>" size="10" value="<?php echo $processed[$two_compare[1]]?>" class="form_input_text"></td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="4" <?php if ($processed[$two_compare[2]]==4) {?>checked<?php }?>>&gt;</td>
-                <td class="fontstyle_searchoptions d-flex align-items-center" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="5" <?php if ($processed[$two_compare[2]]==5) {?>checked<?php }?>>&gt; =</td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center"><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="1" <?php if ((!isset($processed[$two_compare[2]]))||($processed[$two_compare[2]]==1)) {?>checked<?php }?>> = </td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="2" <?php if ($processed[$two_compare[2]]==2) {?>checked<?php }?>>&lt; =</td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="3" <?php if ($processed[$two_compare[2]]==3) {?>checked<?php }?>>&lt;</td>
-                <td width="5%" class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center" ></td>
+                <!-- removed the paddind from td and modified justify-content property to flex-start remove fontstyle_searchoptions class  -->
+
+                <td style="" class="<?php echo $classright?>" align="left">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr style="display: flex;align-items: center;justify-content: flex-start;">
+                <td class="">&nbsp;&nbsp;<INPUT  TYPE="text" NAME="<?php echo $two_compare[1]?>" size="10" value="<?php echo $processed[$two_compare[1]]?>" class="form_input_text"></td>
+                <td class=" d-flex align-items-center gap-1" align="center" ><input style="margin-left: 10px;" class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="4" <?php if ($processed[$two_compare[2]]==4) {?>checked<?php }?>>&gt;</td>
+                <td class=" d-flex align-items-center" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="5" <?php if ($processed[$two_compare[2]]==5) {?>checked<?php }?>>&gt; =</td>
+                <td class=" d-flex align-items-center gap-1" align="center"><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="1" <?php if ((!isset($processed[$two_compare[2]]))||($processed[$two_compare[2]]==1)) {?>checked<?php }?>> = </td>
+                <td class=" d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="2" <?php if ($processed[$two_compare[2]]==2) {?>checked<?php }?>>&lt; =</td>
+                <td class=" d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[2]?>" value="3" <?php if ($processed[$two_compare[2]]==3) {?>checked<?php }?>>&lt;</td>
+                <!-- <td width="5%" class=" d-flex align-items-center gap-1" align="center" ></td> -->
 
                 <td>&nbsp;&nbsp;<INPUT TYPE="text" NAME="<?php echo $two_compare[3]?>" size="10" value="<?php echo $processed[$two_compare[3]]?>" class="form_input_text"></td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center"><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="4" <?php if ($processed[$two_compare[4]]==4) {?>checked<?php }?>>&gt;</td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="5" <?php if ($processed[$two_compare[4]]==5) {?>checked<?php }?>>&gt; =</td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="2" <?php if ($processed[$two_compare[4]]==1) {?>checked<?php }?>>&lt; =</td>
-                <td class="fontstyle_searchoptions d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="3" <?php if ($processed[$two_compare[4]]==3) {?>checked<?php }?>>&lt;</td>
+                <td class=" d-flex align-items-center gap-1" align="center"><input style="margin-left: 10px;" class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="4" <?php if ($processed[$two_compare[4]]==4) {?>checked<?php }?>>&gt;</td>
+                <td class=" d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="5" <?php if ($processed[$two_compare[4]]==5) {?>checked<?php }?>>&gt; =</td>
+                <td class=" d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="2" <?php if ($processed[$two_compare[4]]==1) {?>checked<?php }?>>&lt; =</td>
+                <td class=" d-flex align-items-center gap-1" align="center" ><input class="form_input_radio" type="radio" NAME="<?php echo $two_compare[4]?>" value="3" <?php if ($processed[$two_compare[4]]==3) {?>checked<?php }?>>&lt;</td>
                 </tr></table>
                 </td>
             </tr>
