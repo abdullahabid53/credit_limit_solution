@@ -24,6 +24,8 @@ if ($this->FG_FK_DELETE_CONFIRM && $form_action == "ask-del-confirm" && $this-> 
 { ?>
 
 <FORM action=<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL)?> id="myForm" method="post" name="myForm">
+
+
 	<INPUT type="hidden" name="id" value="<?php echo $id?>">
 	<INPUT type="hidden" name="atmenu" value="<?php echo $atmenu?>">
 	<INPUT type="hidden" name="form_action" value="delete">
@@ -118,10 +120,10 @@ else
 	<table cellspacing="2" class="tablestyle_001">
 		<?php for($i=0;$i<$this->FG_NB_TABLE_EDITION;$i++){ ?>
 		<TR>
-			<TD width="25%" valign="middle" class="form_head">
+			<TD width="25%" valign="middle" class="form_head" >
 				<?php echo $this->FG_TABLE_EDITION[$i][0]?>
 			</TD>
-			<TD valign="top" class="tablestyle_001">
+			<TD valign="top" class="tablestyle_001" style="background-color: white;">
 				<?php
 					if ($this->FG_DEBUG == 1) print($this->FG_TABLE_EDITION[$i][3]);
 					$arr_input = array("INPUT", "POPUPVALUE", "POPUPVALUETIME", "POPUPDATETIME");
@@ -203,12 +205,9 @@ else
 
 
 	<TABLE cellspacing="0" class="delform_table5">
-		<tr height="2">
-			<td colspan="2" style="border-bottom: medium dotted rgb(255, 119, 102);">&nbsp; </td>
-		</tr>
-		<tr>
-		  <td width="50%" class="text_azul"><span class="tableBodyRight"><?php echo $this->FG_BUTTON_DELETION_BOTTOM_TEXT?></span></td>
-		  <td width="50%" align="right" class="text">
+		
+		  <!-- <td width="50%" class="text_azul"><span class="tableBodyRight"><?php echo $this->FG_BUTTON_DELETION_BOTTOM_TEXT?></span></td> -->
+		  <td width="50%" align="center" class="text">
 
 				<a href="#" onClick="sendto('delete');"  class="cssbutton_big"><IMG src="<?php echo Images_Path_Main;?>/icon_arrow_orange.gif">
 				<?php echo $this->FG_DELETE_PAGE_CONFIRM_BUTTON; ?> </a>

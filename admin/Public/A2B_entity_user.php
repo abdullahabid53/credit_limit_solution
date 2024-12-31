@@ -43,6 +43,8 @@ if (! has_rights (ACX_ADMINISTRATOR)) {
     die();
 }
 
+
+
 $HD_Form -> setDBHandler (DbConnect());
 $HD_Form -> init();
 
@@ -60,6 +62,8 @@ if ($form_action!="list") {
     check_demo_mode();
 }
 
+
+
 $list = $HD_Form -> perform_action($form_action);
 
 // #### HEADER SECTION
@@ -75,7 +79,11 @@ if ($popup_select != "") {
 
 ?>
 
+
+
 <SCRIPT LANGUAGE="javascript">
+
+    
 <!-- Begin
 function sendValue(selvalue)
 {
@@ -88,9 +96,25 @@ function sendValue(selvalue)
 <?php
 }
 
+
 // #### TOP SECTION PAGE
 $HD_Form -> create_toppage ($form_action);
+
+?>
+
+<a id="btn-1" style="display:inline; color: white; font-size: 17px;
+ font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px; margin-bottom:20px; margin-left: 30px;"
+  href="A2B_entity_user.php?form_action=ask-add"> Add user&nbsp;&nbsp;
+          <img src="../Public/templates/default/images/user_add.png" border="0" title="Add Customer" alt="Add Customer"></a>
+      
+          <br>
+
+<?php
 
 $HD_Form -> create_form ($form_action, $list, $id=null) ;
 
 $smarty->display('footer.tpl');
+
+?>
+
+

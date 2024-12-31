@@ -69,7 +69,28 @@ $HD_Form->create_toppage($form_action);
 
 ?>
 
-<FORM METHOD=POST name="myForm" ACTION="<?php echo $PHP_SELF?>?s=1&t=0&order=<?php echo $order?>&sens=<?php echo $sens?>&current_page=<?php echo $current_page?>">
+
+<center style="display:flex;">
+<a onclick="manageButtons1()" style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774;
+        text-decoration: none; margin-left: 10px;">Search Status
+        </a>
+        <br>
+    <script>
+                function manageButtons1() {
+                    //display the class on click 
+                var div1 = document.getElementById("tohide1");
+                    if (div1.style.display === "none") {
+                        div1.style.display = "inline"; // Use "table" for proper table display
+                    } else {
+                        div1.style.display = "none";
+                    }
+                
+        }
+    </script>
+</center>
+
+
+<FORM id="tohide1" style="display: none; margin-top:10px;" METHOD=POST name="myForm" ACTION="<?php echo $PHP_SELF?>?s=1&t=0&order=<?php echo $order?>&sens=<?php echo $sens?>&current_page=<?php echo $current_page?>">
     <INPUT TYPE="hidden" NAME="posted" value="1">
     <INPUT TYPE="hidden" NAME="current_page" value="0">
     <?php
@@ -241,7 +262,8 @@ $HD_Form->create_toppage($form_action);
 
               </td>
         </tr>
-    </tbody></table>
+    </tbody>
+</table>
 </FORM>
 
 <?php

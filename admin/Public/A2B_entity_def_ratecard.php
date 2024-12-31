@@ -261,7 +261,7 @@ function sendValue(selvalue)
 if (!$popup_select) {
     // #### CREATE SEARCH FORM
     if ($form_action == "list") {
-        $HD_Form->create_search_form();
+           //$HD_Form->create_search_form();
     }
 }
 
@@ -287,25 +287,98 @@ if ($form_action == "list" && !$popup_select) {
     if (empty($_SESSION['def_ratecard_tariffgroup'])) {
 
 ?>
+<div style="display:flex; margin-top: 20px;">
+    <center id="btn-1" style="color: white;" ><a onclick="manageButtons1()" style=" font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774;  margin-left: 10px; color:white;" href="#" target="_self" class="toggle_menu">
+    <img class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16"> <font style="color: white;"  class="fontstyle_002"><?php echo gettext("BATCH UPDATE");?> </font></a></center>
+    </center>
+   
+    <center id="btn-2"><a onclick="toggleDiv()" style=" font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774;  margin-left: 10px; color:white;" href="#" target="_self" class="toggle_menu">
+    <img class="" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16"> <font style="color: white;" class="fontstyle_002"><?php echo gettext("SEARCH RATES");?> </font></a></center>
+    </center>
+    
+    <center id="btn-3">
+    <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="A2B_entity_def_ratecard.php?form_action=ask-add&amp;atmenu=ratecard&amp;section=6"> 
+        Add Rate&nbsp;&nbsp;<img src="../Public/templates/default/images/world_add.png" border="0" title="Add Rate" alt="Add Rate"></a>
+    </center>
+
+
+</div>
 
 <!-- ** ** ** ** ** Part for the Update ** ** ** ** ** -->
-<div class="toggle_hide2show">
-<center><a href="#" target="_self" class="toggle_menu"><img class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16"> <font class="fontstyle_002"><?php echo gettext("BATCH UPDATE");?> </font></a></center>
-    <div class="tohide" style="display:none;">
-<center>
+<div style="display: flex; align-items:baseline;">
 
-<b>&nbsp;<?php echo $HD_Form -> FG_NB_RECORD ?> <?php echo gettext("rates selected!"); ?>&nbsp;<?php echo gettext("Use the options below to batch update the selected rates.");?></b>
-<table align="center" border="0" width="65%"  cellspacing="1" cellpadding="2">
-    <FORM name="updateForm" action="<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL)?>" method="post">
-        <INPUT type="hidden" name="batchupdate" value="1">
-        <INPUT type="hidden" name="atmenu" value="<?php echo $atmenu?>">
-        <INPUT type="hidden" name="popup_select" value="<?php echo $popup_select?>">
-        <INPUT type="hidden" name="popup_formname" value="<?php echo $popup_formname?>">
-        <INPUT type="hidden" name="popup_fieldname" value="<?php echo $popup_fieldname?>">
-        <INPUT type="hidden" name="form_action" value="<?php echo $form_action?>">
-        <INPUT type="hidden" name="filterprefix" value="<?php echo $filterprefix?>">
-        <INPUT type="hidden" name="filterfield" value="<?php echo $filterfield?>">
+    <script>
+            function manageButtons1() {
+                //display the class on click 
+               var div1 = document.getElementById("tohide1");
+                if (div1.style.display === "none") {
+                    div1.style.display = "inline"; // Use "table" for proper table display
+                } else {
+                    div1.style.display = "none";
+                }
+                var btn2 = document.getElementById("btn-2");
+                if (btn2.style.display === "") {
+                    btn2.style.display = "none"; 
+                } else {
+                    btn2.style.display = "";
+                }
+
+                var btn2 = document.getElementById("btn-3");
+                if (btn2.style.display === "") {
+                    btn2.style.display = "none"; 
+                } else {
+                    btn2.style.display = "";
+                }
+            }
+        // JavaScript function to toggle the div
+        function toggleDiv() {
+            var div = document.getElementById('resultDiv');
+            if (div.style.display === 'none') {
+                div.style.display = 'inline'; // Show the div
+            } else {
+                div.style.display = 'none'; // Hide the div
+            }
+
+            var btn2 = document.getElementById("btn-1");
+                if (btn2.style.display === "") {
+                    btn2.style.display = "none"; 
+                } else {
+                    btn2.style.display = "";
+                }
+                var btn2 = document.getElementById("btn-3");
+                if (btn2.style.display === "") {
+                    btn2.style.display = "none"; 
+                } else {
+                    btn2.style.display = "";
+                }
+        }
+    </script>
+
+
+   
+    <div id="resultDiv" style=" display: none; width:95%;">
         <?php
+        // PHP code to display content
+          $HD_Form->create_search_form();  ?>       
+    </div>
+
+
+ <!-- adding and removing class for batch update -->
+<div id="tohide1" class="" style="display:none; width: 95%; margin-top:20px;">
+
+
+        <b>&nbsp;<?php echo $HD_Form -> FG_NB_RECORD ?> <?php echo gettext("rates selected!"); ?>&nbsp;<?php echo gettext("Use the options below to batch update the selected rates.");?></b>
+        <table align="center" border="0" width="95%"  cellspacing="1" cellpadding="2">
+            <FORM name="updateForm" action="<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL)?>" method="post">
+                <INPUT type="hidden" name="batchupdate" value="1">
+                <INPUT type="hidden" name="atmenu" value="<?php echo $atmenu?>">
+                <INPUT type="hidden" name="popup_select" value="<?php echo $popup_select?>">
+                <INPUT type="hidden" name="popup_formname" value="<?php echo $popup_formname?>">
+                <INPUT type="hidden" name="popup_fieldname" value="<?php echo $popup_fieldname?>">
+                <INPUT type="hidden" name="form_action" value="<?php echo $form_action?>">
+                <INPUT type="hidden" name="filterprefix" value="<?php echo $filterprefix?>">
+                <INPUT type="hidden" name="filterfield" value="<?php echo $filterfield?>">
+                <?php
             if ($HD_Form->FG_CSRF_STATUS == true) {
         ?>
             <INPUT type="hidden" name="<?php echo $HD_Form->FG_FORM_UNIQID_FIELD ?>" value="<?php echo $HD_Form->FG_FORM_UNIQID; ?>" />
@@ -318,8 +391,11 @@ if ($form_action == "list" && !$popup_select) {
                   <input name="check[upd_id_trunk]" type="checkbox" <?php if ($check["upd_id_trunk"]=="on") echo "checked"?>>
           </td>
           <td align="left"  class="bgcolor_001">
-                <font class="fontstyle_009">1) <?php echo gettext("TRUNK");?> :</font>
-                <select NAME="upd_id_trunk" size="1" class="form_enter" >
+          <font class="fontstyle_009">1) <?php echo gettext("TRUNK");?> :</font>
+          </td>
+          <td align="left"  class="bgcolor_001">
+              
+                <select NAME="upd_id_trunk" size="1" class="form_enter" style="color: #828486;" >
                     <OPTION  value="-1" selected><?php echo gettext("NOT DEFINED");?></OPTION>
                     <?php
                      foreach ($list_trunk as $recordset) {
@@ -334,8 +410,11 @@ if ($form_action == "list" && !$popup_select) {
               <input name="check[upd_idtariffplan]" type="checkbox" <?php if ($check["upd_idtariffplan"]=="on") echo "checked"?> >
           </td>
           <td align="left"  class="bgcolor_001">
-              <font class="fontstyle_009">	2) <?php echo gettext("RATECARD");?> :</font>
-                <select NAME="upd_idtariffplan" size="1" class="form_enter" >
+            <font class="fontstyle_009">	2) <?php echo gettext("RATECARD");?> :</font>
+            </td>
+          <td align="left"  class="bgcolor_001">
+            
+                <select NAME="upd_idtariffplan" size="1" class="form_enter" style="color: #828486;" >
                     <?php
                        foreach ($list_tariffname as $recordset) {
                     ?>
@@ -346,13 +425,16 @@ if ($form_action == "list" && !$popup_select) {
                 <br/>
             </td>
         </tr>
-        <tr>
+         <tr>
           <td align="left"  class="bgcolor_001">
               <input name="check[upd_id_outbound_cidgroup]" type="checkbox" <?php if ($check["upd_id_outbound_cidgroup"]=="on") echo "checked"?> >
           </td>
           <td align="left"  class="bgcolor_001">
-              <font class="fontstyle_009">	3) <?php echo gettext("CIDGroup");?> :</font>
-                <select NAME="upd_id_outbound_cidgroup" size="1" class="form_enter" >
+          <font class="fontstyle_009">	3) <?php echo gettext("CIDGroup");?> :</font>
+          </td>
+          <td align="left"  class="bgcolor_001">
+           
+                <select NAME="upd_id_outbound_cidgroup" size="1" class="form_enter"style="color: #828486;">
                     <OPTION  value="-1" selected><?php echo gettext("NOT DEFINED");?></OPTION>
                     <?php
                        foreach ($list_cid_group as $recordset) {
@@ -376,8 +458,11 @@ if ($form_action == "list" && !$popup_select) {
                 <input name="check[<?php echo $value;?>]" type="checkbox" <?php if ($check[$value]=="on") echo "checked"?>>
                 <input name="mode[<?php echo $value;?>]" type="hidden" value="2">
               </td>
+              <td align="left" class="bgcolor_001">
+              <font class="fontstyle_009"><?php echo ($index + 4).") ".gettext($update_fields_info[$index]);?> :</font>
+              </td>
               <td align="left"  class="bgcolor_001">
-                  <font class="fontstyle_009"><?php echo ($index + 4).") ".gettext($update_fields_info[$index]);?> :</font>
+                 
                             <input class="form_input_text" name="<?php echo $value;?>" size="10" maxlength="10"  value="<?php if (isset(${$value})) echo ${$value}; else echo '0';?>" >
                   <font class="version">
                     <input type="radio" NAME="type[<?php echo $value;?>]" value="1" <?php if ((!isset($type[$value]))|| ($type[$value]==1) ) {?>checked<?php }?>> <?php echo gettext("Equal");?>
@@ -393,14 +478,17 @@ if ($form_action == "list" && !$popup_select) {
                   <input name="check[upd_tag]" type="checkbox" <?php if ($check["upd_tag"]=="on") echo "checked"?>>
                 <input name="mode[upd_tag]" type="hidden" value="2">
           </td>
+          <td align="left" class="bgcolor_001">
+          <font class="fontstyle_009">15) <?php echo gettext("TAG");?> :</font> 
+          </td>
           <td align="left"  class="bgcolor_001">
 
-                <font class="fontstyle_009">15) <?php echo gettext("TAG");?> :</font>
+             
                      <input class="form_input_text" name="upd_tag" size="20"  value="<?php if (isset($upd_tag)) echo $upd_tag; else echo '';?>" >
             </td>
-        </tr>
+        </tr> 
 
-        <tr>
+         <tr>
             <?php
             $index=0;
             foreach ($charges_abc as $value) {
@@ -409,8 +497,12 @@ if ($form_action == "list" && !$popup_select) {
               <input name="check[<?php echo $value;?>]" type="checkbox" <?php if ($check[$value]=="on") echo "checked"?>>
               <input name="mode[<?php echo $value;?>]" type="hidden" value="2">
           </td>
+          <td align="left" class="bgcolor_001">
+          <font class="fontstyle_009"><?php echo ($index+16).") ".gettext($charges_abc_info[$index]);?> :</font>
+          </td>
+
               <td align="left"  class="bgcolor_001">
-                <font class="fontstyle_009"><?php echo ($index+16).") ".gettext($charges_abc_info[$index]);?> :</font>
+              
                     <input class="form_input_text" name="<?php echo $value;?>" size="10" maxlength="10"  value="<?php if (isset(${$value})) echo ${$value}; else echo '0';?>" >
                 <font class="version">
                 <input type="radio" NAME="type[<?php echo $value;?>]" value="1" <?php if ((!isset($type[$value]))|| ($type[$value]==1) ) {?>checked<?php }?>> <?php echo gettext("Equal");?>
@@ -420,17 +512,23 @@ if ($form_action == "list" && !$popup_select) {
               </td>
               </tr>
               <?php $index=$index+1;
-            }?>
-        <tr>
-            <td align="right" class="bgcolor_001">
+            }?> 
+         <tr>
+            <td align="left" class="bgcolor_001">
+            </td>
+        
+            <td align="center"   class="bgcolor_001">
+            <input style="align-items: center;" class="form_input_button"  value=" <?php echo gettext("BATCH UPDATE RATECARD");?> " type="submit">
             </td>
              <td align="right"  class="bgcolor_001">
-                <input class="form_input_button"  value=" <?php echo gettext("BATCH UPDATE RATECARD");?> " type="submit">
+              
             </td>
-        </tr>
+            
+        </tr> 
+       
     </form>
 </table>
-</center>
+
 <!-- ** ** ** ** ** Part for the Update ** ** ** ** ** -->
     </div>
 </div>
@@ -470,11 +568,11 @@ if ($popup_select) {
 <div class="toggle_hide2show">
 <center>
     <a href="#" target="_self" class="toggle_menu">
-    <img class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16">
+    <img style="font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774;  margin-left: 10px; color:white;"  class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16">
     <font class="fontstyle_002"><?php echo gettext("BATCH ASSIGNED");?> </font></a></center>
-    <div class="tohide" style="display:none;">
-<center>
 
+<center>
+<div class="tohide" style="display:none;">
 <b>&nbsp;<?php echo $HD_Form -> FG_NB_RECORD ?> <?php echo gettext("rates selected!"); ?>&nbsp;<?php echo gettext("Use the options below to batch update the selected rates.");?></b>
 <table align="center" border="0" width="65%"  cellspacing="1" cellpadding="2">
     <FORM name="assignForm" action="javascript:;" method="post">
@@ -611,7 +709,7 @@ function sendOpener() {
 <?php
 
 // Weird hack to create a select form
-if ($form_action == "list" && !$popup_select) $HD_Form -> create_select_form();
+// if ($form_action == "list" && !$popup_select)$HD_Form -> create_select_form();
 
 // #### TOP SECTION PAGE
 $HD_Form -> create_toppage ($form_action);

@@ -19,10 +19,14 @@ $processed = $this->getProcessed();
 if (!($popup_select >= 1) && ($this->FG_LIST_ADDING_BUTTON1 || $this->FG_LIST_ADDING_BUTTON2)) {
 ?>
 
-<!-- updated the css and of table tf td tags and also a tags to fix the buttons and display them sepreatly by As -->
+
     <table align="right" style="width: 100%;padding: 0 30px;">
         <tr >
-            <td align="right" style="padding:10px">
+            <?php 
+           // print($this->FG_LIST_ADDING_BUTTON_MSG2);
+            if($this->FG_LIST_ADDING_BUTTON_MSG2 !== "Add Customer" && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Generate Voucher"  ){ ?>
+            
+        <td align="right" style="">
                 <?php
                 // print($this->FG_LIST_ADDING_BUTTON_MSG1);
                 if ($this->FG_LIST_ADDING_BUTTON_MSG1 == "Generate Voucher") {
@@ -31,23 +35,39 @@ if (!($popup_select >= 1) && ($this->FG_LIST_ADDING_BUTTON1 || $this->FG_LIST_AD
                     <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK1    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG1 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG1 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>"></a>
                 <?php  } //END IF 
                 ?>
-                <?php if ($this->FG_LIST_ADDING_BUTTON1 && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Generate Voucher" && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Generate Customers") { ?>
+                <?php 
+                // print($this->FG_LIST_ADDING_BUTTON_MSG1);
+                 if ($this->FG_LIST_ADDING_BUTTON1 && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Generate Voucher" && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Generate Customers" 
+                 && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Add Rate"&& $this->FG_LIST_ADDING_BUTTON_MSG1 !== null && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Add SIP Config"
+                 && $this->FG_LIST_ADDING_BUTTON_MSG1 !== "Add ADMIN ACL") { ?>
+                    
+                    
                     <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK1    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG1 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG1 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT1 ?>"></a>
                 <?php  } //END IF 
                 ?>
-                &nbsp;
-                <?php if ($this->FG_LIST_ADDING_BUTTON2) { ?>
-                    <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK2    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG2 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG2 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>"></a>
+ <!-- &nbsp;                -->
+                <?php  // print($this->FG_LIST_ADDING_BUTTON_MSG);
+                 if ($this->FG_LIST_ADDING_BUTTON2   && $this->this->FG_LIST_ADDING_BUTTON_MSG2 !== "Add Voucher"   ) { ?>     
+               
+                    <a style="color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" 
+                    href="<?php echo $this->FG_LIST_ADDING_BUTTON_LINK2    ?>"> <?php echo $this->FG_LIST_ADDING_BUTTON_MSG2 ?>&nbsp;&nbsp;<img src="<?php echo $this->FG_LIST_ADDING_BUTTON_IMG2 ?>" border="0" title="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>" alt="<?php echo $this->FG_LIST_ADDING_BUTTON_ALT2 ?>"></a>
                 <?php  } //END IF 
                 ?>
+
+            
+                   
             </td>
-            </>
+
+            
+            <?php  } 
+                ?>
+                </tr>
     </table>
 <?php
 }
 //END IF 
 ?>
-<br>
+
 <?php
 
 if ((count($list) > 0) && is_array($list)) {
@@ -126,7 +146,7 @@ if ((count($list) > 0) && is_array($list)) {
             // Add filter  FG_FILTER_APPLY , FG_FILTERFIELD and FG_FILTER_FORM_ACTION
             if ($this->FG_FILTER_APPLY || $this->FG_FILTER_APPLY2) {
             ?>
-                <tr>
+                <tr style="display: flex; align-items:center">
                     <FORM NAME="theFormFilter" action="<?php echo filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_URL); ?>">
                         <input type="hidden" name="atmenu" value="<?php echo $processed['atmenu'] ?>">
                         <input type="hidden" name="popup_select" value="<?php echo $processed['popup_select'] ?>">
@@ -142,7 +162,7 @@ if ((count($list) > 0) && is_array($list)) {
                         }
                         ?>
                         <INPUT type="hidden" name="form_action" value="<?php echo $this->FG_FILTER_FORM_ACTION ?>">
-                        <td class="viewhandler_filter_td1">
+                        <td>
                             <span>
                                 <?php if ($this->FG_FILTER_APPLY) { ?>
 
@@ -179,8 +199,10 @@ if ((count($list) > 0) && is_array($list)) {
                             </span>
                         </td>
                     </FORM>
-                </tr>
             <?php } ?>
+
+
+            </tr>
 
             <TR>
                 <TD>

@@ -129,7 +129,25 @@ $smarty->display( 'main.tpl');
 ?>
 
 <!-- ** ** ** ** ** Part for the research ** ** ** ** ** -->
-    <center>
+
+<a id="btn-2" onclick="manageButtons1()" href="#" target="_self" class="custom_a_href"><img class="toggle_hide2show"
+         src="../Public/templates/default/images/kicons/search_icon.png" onmouseover="this.style.cursor='hand';" height="16">
+                    <font style="color: white;font-size: 15px;font-weight: 400;" class="fontstyle_002">Search Call History</font>
+                </a>
+        <br>
+<script>
+            function manageButtons1() {
+                //display the class on click 
+               var div1 = document.getElementById("tohide1");
+                if (div1.style.display === "none") {
+                    div1.style.display = "inline"; // Use "table" for proper table display
+                } else {
+                    div1.style.display = "none";
+                }
+               
+    }
+</script>
+    <center id="tohide1" style="display: none;">
     <FORM METHOD=POST name="myForm" ACTION="<?php echo $PHP_SELF?>?s=1&t=0&order=<?php echo $order?>&sens=<?php echo $sens?>&current_page=<?php echo $current_page?>&terminatecauseid=<?php echo $terminatecauseid?>">
         <INPUT TYPE="hidden" NAME="posted" value=1>
         <INPUT TYPE="hidden" NAME="current_page" value=0>

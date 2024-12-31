@@ -231,9 +231,73 @@ $smarty->display('main.tpl');
             <br/>
         <?php
         } else { ?>
-            <center style="width: 10%;"><a href="<?php  echo "CC_generate_friend_file.php?action=reload";?>"><img src="<?php echo Images_Path;?>/icon_refresh.gif"/>
+            <center id="btn-1" style="display: none; color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: rgb(1, 103, 116);
+             text-decoration: none; margin-left: 10px;"><a style="color: white;" href="<?php  echo "CC_generate_friend_file.php?action=reload";?>"><img src="<?php echo Images_Path;?>/icon_refresh.gif"/>
+                <?php echo gettext("Reload Asteric"); ?></a>
+            </center>
+            <center id="btn-2" style="display: inline; color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: rgb(1, 103, 116);
+             text-decoration: none; margin-left: 10px;"><a onclick="manageButtons1()"><img src="<?php echo Images_Path;?>/icon_refresh.gif"/>
                 <?php echo gettext("Reload"); ?></a>
             </center>
+            <center id="btn-3" style="display: inline; color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: rgb(1, 103, 116);
+             text-decoration: none; margin-left: 10px;"><a onclick="manageButtons2()" ><img class="" 
+            src="<?php echo KICON_PATH; ?>/toggle_hide2show.png"  HEIGHT="16">
+            <font style="color: white;" class="fontstyle_002"><?php echo gettext("BATCH UPDATE");?> </font></a>
+        </center>
+        <a id="btn-4" style="display: inline; color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;" href="A2B_entity_friend.php?form_action=ask-add&amp;atmenu=sip&amp;section=1"> Add SIP Config&nbsp;&nbsp;
+            <img src="../Public/templates/default/images/telephone_add.png" border="0" title="Add SIP Config" alt="Add SIP Config"></a>
+            <script>
+            function manageButtons1() {
+                //display the class on click 
+               var div1 = document.getElementById("tohide2");
+                if (div1.style.display === "none") {
+                    div1.style.display = "flex"; // Use "table" for proper table display
+                } else {
+                    div1.style.display = "none";
+                }
+        
+               
+                var btn2 = document.getElementById("btn-2");
+                if (btn2.style.display === "inline") {
+                    btn2.style.display = "none"; 
+                } else {
+                    btn2.style.display = "";
+                }
+                
+                var btn1 = document.getElementById("btn-1");
+                if (btn1.style.display === "none") {
+                    btn1.style.display = "inline"; 
+                } else {
+                    btn1.style.display = "none";
+                }
+                var btn3 = document.getElementById("btn-3");
+                if (btn3.style.display === "inline") {
+                    btn3.style.display = "none"; 
+                } else {
+                    btn3.style.display = "inline";
+                }
+            
+    }
+    function manageButtons2() {
+                //display the class on click 
+               var div1 = document.getElementById("tohide1");
+                if (div1.style.display === "none") {
+                    div1.style.display = "inline"; // Use "table" for proper table display
+                } else {
+                    div1.style.display = "none";
+                }
+                var btn2 = document.getElementById("btn-2");
+                if (btn2.style.display === "inline") {
+                    btn2.style.display = "none"; 
+                } else {
+                    btn2.style.display = "inline";
+                }
+                
+
+    }
+
+    
+        </script>
         <?php
         }
     } else {
@@ -257,7 +321,7 @@ $smarty->display('main.tpl');
                 <?php
                     }
                 ?>
-                <tr style="display: flex;padding:5px">
+                <tr id="tohide2" style="display: none;padding:5px">
                     <td bgcolor="#FFFFFF" class="fontstyle_006 form_head" style="    align-items: center;
         display: flex;" width="100%">&nbsp;<?php echo gettext("CONFIGURATION TYPE")?> </td>
                     <td bgcolor="#FFFFFF" class="fontstyle_006" align="center">
@@ -274,11 +338,12 @@ $smarty->display('main.tpl');
     </table>
     </div>
 
-<br/>
+
 <!-- ** ** ** ** ** Part for the Update ** ** ** ** ** -->
-<div class="toggle_hide2show">
-<center style="width: 13%;"><a href="#" target="_self" class="toggle_menu"><img class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/toggle_hide2show.png" onmouseover="this.style.cursor='hand';" HEIGHT="16"> <font class="fontstyle_002"><?php echo gettext("BATCH UPDATE");?> </font></a></center>
-    <div class="tohide" style="display:none;">
+<div class="">
+
+   
+<div id="tohide1" class="tohide" style="display:none;">
 
 <center>
    <b>&nbsp;<?php echo $HD_Form -> FG_NB_RECORD ?> <?php echo gettext("cards selected!"); ?>&nbsp;<?php echo gettext("Use the options below to batch update the selected cards.");?></b>

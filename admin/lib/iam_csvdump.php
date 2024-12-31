@@ -304,6 +304,14 @@ class iam_csvdump
     $list_calltype ["6"] = array (gettext("AUTO DIALER"), "6" );
     $list_calltype ["7"] = array (gettext("DID-ALEG"), "7" );
 
+    $list_chargetype = array ();
+    $list_chargetype ["100"] = array (gettext("CUG"), "100" );
+    $list_chargetype ["101"] = array (gettext("NO PACKAGE OFFER"), "101" );
+    $list_chargetype ["102"] = array (gettext("ACCESS CODE"), "102" );
+    $list_chargetype ["103"] = array (gettext("ONNET PACKAGE"), "103" );
+    $list_chargetype ["104"] = array (gettext("OFFNET PACKAGE"), "104" );
+    $list_chargetype ["105"] = array (gettext("INTL PACKAGE"), "105" );
+
     $file = "";
     $crlf = $this->_define_newline();
 
@@ -322,6 +330,7 @@ class iam_csvdump
     $status_index = -1;
     $terminatecauseid_index = -1;
     $list_calltype_index = -1;
+    $list_chargetype_index = -1;
     
     // searched for index of flags to change the value from flag to real value
     foreach ($fields as $index => $field) {
@@ -334,6 +343,9 @@ class iam_csvdump
         }
         if (strcasecmp($field->name, "sipiax") == 0) {
             $list_calltype_index = $index;
+        }
+        if (strcasecmp($field->name, "charge_type") == 0) {
+            $list_chargetype_index = $index;
         }
     }
 
@@ -351,9 +363,13 @@ class iam_csvdump
         }
      
     
-        // Replace 'sipiax' column value
+        // Replace 'sipiax' column value```
         if ($list_calltype_index != -1 && isset($list_calltype[$row[$list_calltype_index]])) {
             $row[$list_calltype_index] = $list_calltype[$row[$list_calltype_index]][0]; // Use the calltype text
+        }
+
+        if ($list_chargetype_index != -1 && isset($list_chargetype[$row[$list_chargetype_index]])) {
+            $row[$list_chargetype_index] = $list_chargetype[$row[$list_chargetype_index]][0]; // Use the calltype text
         }
     
         // Convert the row to a CSV string and append it to the file content

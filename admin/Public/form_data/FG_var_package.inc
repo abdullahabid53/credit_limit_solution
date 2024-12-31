@@ -33,7 +33,7 @@
 
 
 
-getpost_ifset(array('id', 'label', 'packagetype', 'billingtype','startday', 'freetimetocall, offnet_minutes, international_minutes'));
+getpost_ifset(array('id', 'label', 'packagetype', 'billingtype','startday', 'freetimetocall', 'offnet_minutes', 'international_minutes'));
 
 $HD_Form = new FormHandler("cc_package_offer","OFFER PACKAGE");
 
@@ -65,8 +65,7 @@ $HD_Form -> AddViewElement(gettext("CREATION DATE"), "creationdate", "15%", "cen
 $HD_Form -> AddViewElement(gettext("PACKAGE TYPE"), "packagetype", "10%", "center", "sort","","list",$packagetype_list);
 $HD_Form -> AddViewElement(gettext("BILLING TYPE"), "billingtype", "10%", "center", "sort","","list",$billingtype_list);
 $HD_Form -> AddViewElement(gettext("STARTING DAY"), "startday", "12%", "center", "sort");
-
-$HD_Form -> FieldViewElement ('label, creationdate, packagetype, billingtype, startday, '.$filter_unit);
+$HD_Form -> FieldViewElement ('label, creationdate, packagetype, billingtype, startday');
 
 $HD_Form -> FG_ACTION_SIZE_COLUMN='15%';
 $HD_Form -> CV_NO_FIELDS  = gettext("THERE IS NO")." ".strtoupper($HD_Form->FG_INSTANCE_NAME)." ".gettext("CREATED!");
