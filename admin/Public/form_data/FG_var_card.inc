@@ -446,7 +446,7 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "cc_card_group",
                    "name, id",
                    "", "", "%1", "", "", "", 
-                   '<OPTION value="" selected>'.gettext("Choose Group").'</OPTION>', ""); 
+                   '<OPTION value="-1" selected>'.gettext("Choose Group").'</OPTION>', ""); 
 
     $HD_Form -> AddEditElement (gettext("SERIAL"),
                    "id_seria",
@@ -587,30 +587,21 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "",
                    gettext("Insert the company website of this customer"),
                    "" , "", "", "", "", "" , "NO", "");
-$typepaid = filter_input(INPUT_GET, 'tariff', FILTER_VALIDATE_INT);
-$selected_value = isset($typepaid) && $typepaid == 2 ? 0 : 1; // Default to 1 if not 2
 
 
 
     $update_field_typepaid = 'typepaid ,';
-
-    if ($form_action != "ask-edit") {
     $typepaid_list_display = array(
         "1" => array("POSTPAID CARD", "1"),
     );
-    $tariff_value = $_GET['tariff'];
-    if($tariff_value !=2){
-        $typepaid_list_display = array(
-            "1" => array("POSTPAID CARD", "1"),
-        );
 
 
         $HD_Form->AddEditElement(
             gettext("PAYMENT TYPE"),
             "typepaid",
-            "",
+            "1",
             "SELECT",
-            "$payment_status",
+            "",
             "",
             "",
             "list",
@@ -626,54 +617,6 @@ $selected_value = isset($typepaid) && $typepaid == 2 ? 0 : 1; // Default to 1 if
             gettext("Customer Status"),
             1
         );
-
-    }
-    else{
-        $typepaid_list_display = array(
-            "2" => array("PREPAID CARD", "2"),
-        );
-
-
-        $HD_Form->AddEditElement(
-            gettext("PAYMENT TYPE"),
-            "typepaid",
-            "",
-            "SELECT",
-            "$payment_status",
-            "",
-            "",
-            "list",
-            "",
-            "",
-            "",
-            $typepaid_list_display,
-            "%1",
-            "",
-            '',
-            null,
-            null,
-            gettext("Customer Status"),
-            2
-        );
-    }
-}
-else {
-    $tariff_value = $_GET['tariff'];
-    if($tariff_value !=2){
-    $typepaid_value = "value = 1";
-    }
-    else{
-    $typepaid_value = "value = 2";
-    }
-    $HD_Form -> AddEditElement (gettext(""),
-                   "typepaid",
-                   '$value',
-                   "INPUT",
-                   "size=20 maxlength=10 $typepaid_value type=hidden",
-                   "4",
-                   "",
-                   "" , "", "", "", "", "", "NO", gettext(""));
-}
 
 $HD_Form -> AddEditElement (gettext("Bundle"),
                    "bundle_id",
