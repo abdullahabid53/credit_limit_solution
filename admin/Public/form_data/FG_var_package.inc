@@ -151,7 +151,7 @@ $HD_Form -> AddEditElement (gettext("FREE ON NET MINUTES"),
 
 
 
-$HD_Form -> FieldEditElement ('label, billingtype, startday, packagetype, freetimetocall, offnet_minutes, international_minutes');
+$HD_Form -> FieldEditElement ('label, billingtype, startday, packagetype, floor(freetimetocall/60), floor(offnet_minutes/60), floor(international_minutes/60)');
 
 
 $HD_Form -> FG_INTRO_TEXT_EDITION= gettext("Modify the properties of the")." ".$HD_Form->FG_INSTANCE_NAME.".";

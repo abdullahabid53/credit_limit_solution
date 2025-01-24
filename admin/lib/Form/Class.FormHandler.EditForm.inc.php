@@ -721,7 +721,12 @@ function sendtolittle(direction) {
                                                             </font>
                                                         </TD>
                                                         <TD align="center" vAlign="top2" class="tableBodyRight">
-                                                            <img onClick="sendto('del-content','<?php echo $i ?>','<?php echo $table_col[0] ?>','<?php echo $split_select_list[$j][0] ?>');" alt="Remove this <?php echo $this->FG_TABLE_EDITION[$i][0] ?>" border=0 height=11 hspace=2 id="del" name="del" src="<?php echo Images_Path_Main; ?>/icon-del.gif" width=33 value="add-split">
+                                                        <button 
+                                                        onClick="sendto('del-content', '<?php echo $i ?>', '<?php echo $table_col[0] ?>', '<?php echo $split_select_list[$j][0] ?>');" 
+                                                        class="delete-button"
+                                                        style="background-color: red; border: none; padding: 2px 5px; font-size: 12px; cursor: pointer; border-radius: 3px;">
+                                                        Delete
+                                                    </button>
                                                         </TD>
                                                     </TR>
                                                 <?php

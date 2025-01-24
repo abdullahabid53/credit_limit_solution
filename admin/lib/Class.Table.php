@@ -303,12 +303,25 @@ class Table
         if ($func_table !="") {
             $this->table = $func_table;
         }
+        if($this->table == 'cc_package_offer'){
+        // Split the string into an array
+        $values = explode(", ", $value);
+
+        // Get the last three values and multiply them by 60
+        for ($i = count($values) - 3; $i < count($values); $i++) {
+            // Remove quotes and multiply by 60
+            $values[$i] = "'" . (intval(trim($values[$i], "'")) * 60) . "'";
+        }
+
+        // Join the modified array back into a string
+        $value = implode(", ", $values);
+        }
         if ($subquery) {
             $QUERY = "INSERT INTO " . $this->table . " (" . $this->fields . ") (" . trim($value) . ")";
         } else {
             $QUERY = "INSERT INTO " . $this->table . " (" . $this->fields . ") values (" . trim($value) . ")";
         }
-
+// die($QUERY);
         $res = $this->ExecuteQuery($DBHandle, $QUERY, 0);
         if (!$res) return false;
 

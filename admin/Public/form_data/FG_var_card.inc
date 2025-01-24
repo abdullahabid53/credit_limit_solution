@@ -448,6 +448,34 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "", "", "%1", "", "", "", 
                    '<OPTION value="-1" selected>'.gettext("Choose Group").'</OPTION>', ""); 
 
+                   $customer_type= array(
+                    "1" => array("Normal Customer", "1"),
+                    "2" => array("VIP Customer", "2"),
+                );
+            
+            
+                    $HD_Form->AddEditElement(
+                        gettext("CUSTOMER TYPE"),
+                        "customer_type",
+                        "1",
+                        "SELECT",
+                        "",
+                        "",
+                        "",
+                        "list",
+                        "",
+                        "",
+                        "",
+                        $customer_type,
+                        "%1",
+                        "",
+                        '',
+                        null,
+                        null,
+                        '',
+                        1
+                    );
+
     $HD_Form -> AddEditElement (gettext("SERIAL"),
                    "id_seria",
                    '$value',
@@ -1082,7 +1110,7 @@ $HD_Form -> AddEditElement (gettext("Bundle"),
     if (ACT_VOICEMAIL)
         $add_fields_voicemail = 'voicemail_permitted, voicemail_activated, ';
 
-    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, id_group, id_seria, lastname, firstname, email, '.
+    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, id_group, customer_type, id_seria, lastname, firstname, email, '.
             ' address, city, state, country, zipcode, phone, fax, serial_no, company_name, company_website, '.
             $update_field_typepaid.'bundle_id, bundle_validity, tariff, id_didgroup, id_timezone, language, currency, status, block, lock_pin, simultaccess,  runservice, creditlimit, ' .
             ' credit_notification, notify_email, email_notification, ' .$add_fields_voicemail.

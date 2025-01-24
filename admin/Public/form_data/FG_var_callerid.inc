@@ -32,7 +32,7 @@
 **/
 
 
-getpost_ifset(array('IDCust', 'id', 'cid', 'activated'));
+getpost_ifset(array('IDCust', 'id', 'cid', 'c_limit', 'activated'));
 
 $HD_Form = new FormHandler("cc_callerid","CallerID");
 
@@ -54,11 +54,12 @@ $actived_list = $cnts->getActivationTrueFalseList();
 $yesno = $cnts->getYesNoList();
 
 $HD_Form -> AddViewElement(gettext("CALLERID"), "cid", "20%", "center", "sort");
+$HD_Form -> AddViewElement(gettext("LIMIT"), "c_limit", "", "center", "sort");
+$HD_Form -> AddViewElement(gettext("CONSUMED LIMIT"), "consumed_c_limit", "15%", "center", "sort");
 $HD_Form -> AddViewElement(gettext("ACCOUNT NUMBER"), "id_cc_card", "25%", "center", "sort", "", "lie_link", "cc_card", "username, id", "id='%id'", "%1", "", "A2B_entity_card.php");
 $HD_Form -> AddViewElement(gettext("CUSTOMER NAME"), "id_cc_card", "25%", "center", "sort", "", "lie_link", "cc_card", "lastname, id, firstname", "id='%id'", "%1 %3", "", "A2B_entity_card.php");
-$HD_Form -> AddViewElement(gettext("ACTIVATED"), "activated", "15%", "center", "sort", "", "list", $actived_list);
 
-$HD_Form -> FieldViewElement ('cid, id_cc_card, id_cc_card, cc_callerid.activated, cc_callerid.id');
+$HD_Form -> FieldViewElement ('cid, c_limit, consumed_c_limit, id_cc_card, id_cc_card, cc_callerid.id');
 
 
 $HD_Form -> CV_NO_FIELDS  = gettext("THERE IS NO ").strtoupper($HD_Form->FG_INSTANCE_NAME).gettext(" CREATED!");
@@ -79,6 +80,15 @@ $HD_Form -> AddEditElement (gettext("CALLERID"),
 			   "size=20 maxlength=30",
 			   "18",
 			   gettext("Insert the CallerID"),
+			   "" , "", "",	"", "" , "", "", "");
+
+$HD_Form -> AddEditElement (gettext("CREDIT LIMIT"),
+			   "c_limit",
+			   '$value',
+			   "INPUT",
+			   "size=20 maxlength=30 type=number min=1",
+			   "",
+			   gettext("Insert the Credit Limit"),
 			   "" , "", "",	"", "" , "", "", "");
 
 $HD_Form -> AddEditElement (gettext("ACTIVATED"),
@@ -103,7 +113,7 @@ $HD_Form -> AddEditElement (gettext("ID CARD"),
 				gettext("Define the card number ID to use."));
 
 
-$HD_Form -> FieldEditElement ('cid, activated, id_cc_card');
+$HD_Form -> FieldEditElement ('cid, c_limit, activated, id_cc_card');
 
 
 // Set the filter variables
