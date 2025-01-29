@@ -411,7 +411,7 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
 
     $HD_Form -> AddEditElement (gettext("WEBUI PASSWORD"),
                    "uipass",
-                   '',
+                   '', 
                    "INPUT",
                    "size=20 $maxi3 maxlength=20",
                    "",
@@ -476,6 +476,7 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                         1
                     );
 
+
     $HD_Form -> AddEditElement (gettext("SERIAL"),
                    "id_seria",
                    '$value',
@@ -485,6 +486,34 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "cc_card_seria",
                    "name, id",
                    "", "", "%1", "", "", "", '<OPTION  value="-1" selected>'.gettext("NOT DEFINED").'</OPTION>' );
+
+
+                   $notification_type= array(
+                   "1" => array("Email", "1"),
+                   "2" => array("SMS", "2"),
+                   "3" => array("BOTH", "3")
+                   );
+
+
+    $HD_Form -> AddEditElement(gettext("NOTIFICATION TYPE"),
+                   "notification_type",
+                   "",
+                   "SELECT",
+                   "",
+                   "",
+                   "",
+                   "list",
+                   "",
+                   "",
+                   "label, id",
+                   $notification_type,
+                   "%1",
+                   "",
+                   gettext(""),
+                   "",
+                   '<OPTION  value="-1" selected>' . gettext("Choose Notification Type") . '</OPTION>'
+               );
+
 
 
     $HD_Form -> AddEditElement (gettext("LAST NAME"),
@@ -1110,7 +1139,7 @@ $HD_Form -> AddEditElement (gettext("Bundle"),
     if (ACT_VOICEMAIL)
         $add_fields_voicemail = 'voicemail_permitted, voicemail_activated, ';
 
-    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, id_group, customer_type, id_seria, lastname, firstname, email, '.
+    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, id_group, customer_type, id_seria, notification_type, lastname, firstname, email, '.
             ' address, city, state, country, zipcode, phone, fax, serial_no, company_name, company_website, '.
             $update_field_typepaid.'bundle_id, bundle_validity, tariff, id_didgroup, id_timezone, language, currency, status, block, lock_pin, simultaccess,  runservice, creditlimit, ' .
             ' credit_notification, notify_email, email_notification, ' .$add_fields_voicemail.
