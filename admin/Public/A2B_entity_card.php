@@ -231,12 +231,18 @@ if ($form_action == 'list' && !($popup_select >= 1)) {
         <!-- ** ** ** ** ** Part for the Update ** ** ** ** ** -->
          <div style="display: flex;justify-content: flex-start;align-items: center;margin-left: 20px;">
 
+         <?php
+         if (has_rights (ADD_CUSTOMERS) && !($popup_select>=1)) {
+         ?>
          <div>
          <a id="btn-1"  style="display:inline; color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;"
           href="A2B_entity_card.php?form_action=ask-add&amp;atmenu=card&amp;stitle=Card&amp;section=1"> 
           Add Customer&nbsp;&nbsp;<img src="../Public/templates/default/images/user_add.png" border="0"
            title="Add Customer" alt="Add Customer"></a>
          </div>
+         <?php
+        }
+        ?>
          
             
         <div id="m.div.1" class="toggle_hide2show" style="margin-left:10px; width: ;">

@@ -62,47 +62,81 @@
 													href="A2B_entity_card.php?section=1&atmenu=addsearch">{php} echo
 													gettext("Add :: Search");{/php}</a>
 											</li>
+											{php}
+											if (has_rights (VOIP_SETTINGS) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'sip'}active-sb-menu{/if}"
 													href="A2B_entity_friend.php?atmenu=sip&section=1">{php} echo gettext("VoIP
 											Settings");{/php}</a>
 											</li>
+											{php}
+											}
+											if (has_rights (CALLER_ID) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'callerid'}active-sb-menu{/if}"
 													href="A2B_entity_callerid.php?atmenu=callerid&section=1">{php} echo
 													gettext("Caller-ID");{/php}</a>
 											</li>
+											{php}
+											}
+											if (has_rights (CREDIT_NOTIFICATION) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'creditnotification'}active-sb-menu{/if}"
 													href="A2B_notifications.php?section=1&atmenu=creditnotification">{php} echo
 													gettext("Credit Notification");{/php}</a>
 											</li>
+											{php}
+											}
+											if (has_rights (GROUPS) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'groups'}active-sb-menu{/if}"
 													href="A2B_entity_card_group.php?section=1&atmenu=groups">{php} echo
 													gettext("Groups");{/php}</a>
 											</li>
+											{php}
+											}
+											if (has_rights (CARD_SERIES) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'cardseries'}active-sb-menu{/if}"
 													href="A2B_entity_card_seria.php?section=1&atmenu=cardseries">{php} echo
 													gettext("Card series");{/php}</a>
 											</li>
+											{php}
+											}
+											if (has_rights (SPEED_DIAL) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'speeddial'}active-sb-menu{/if}"
 													href="A2B_entity_speeddial.php?atmenu=speeddial&section=1">{php} echo
 													gettext("Speed Dial");{/php}</a>
 											</li>
+											{php}
+											}
+											if (has_rights (HISTORY) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'cardhistory'}active-sb-menu{/if}"
 													href="card-history.php?atmenu=cardhistory&section=1">{php} echo
 													gettext("History");{/php}</a>
 											</li>
+											{php}
+											}
+											if (has_rights (STATUS) && !($popup_select>=1)) {
+											{/php}
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'statuslog'}active-sb-menu{/if}"
 													href="A2B_entity_statuslog.php?atmenu=statuslog&section=1">{php} echo
 													gettext("Status");{/php}</a>
 											</li>
-										</ul>
+											{php}
+											}
+											{/php}
+											</ul>
 									</li>
 								</ul>
 							</div>

@@ -169,7 +169,7 @@ if ($numrow>0){
 		"tariffplan",
 		'$value',
 		"SELECT",
-		'size="10" multiple="multiple"',
+		'size="10" multiple="multiple" style=height:160px;',
 		"",
 		"",
 		"sql",

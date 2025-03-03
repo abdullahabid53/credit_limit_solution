@@ -59,6 +59,15 @@ define ("ACX_ACXSETTING",				131072);	// 1 << 17
 define ("ACX_MODIFY_REFILLS",			262144);	// 1 << 18
 define ("ACX_MODIFY_PAYMENTS",			524288);	// 1 << 19
 define ("ACX_MODIFY_CUSTOMERS",			1048576);	// 1 << 20
+define ("ADD_CUSTOMERS",			104857666);	// 1 << 20
+define ("VOIP_SETTINGS",			67108864);	// 1 << 20
+define ("CALLER_ID",			134217728);	// 1 << 20
+define ("CREDIT_NOTIFICATION",			268435456);	// 1 << 20
+define ("GROUPS",			536870912);	// 1 << 20
+define ("CARD_SERIES",			1073741824);	// 1 << 20
+define ("SPEED_DIAL",			2147483648);	// 1 << 20
+define ("HISTORY",			4294967296);	// 1 << 20
+define ("STATUS",			8589934592);	// 1 << 20
 define ("ACX_DELETE_NOTIFICATIONS",		2097152);	// 1 << 21
 define ("ACX_DELETE_CDR",				4194304);	// 1 << 22
 define ("ACX_MODIFY_ADMINS",			8388608);	// 1 << 23
@@ -105,7 +114,7 @@ if ((!isset($_SESSION['pr_login']) || !isset($_SESSION['pr_password']) || !isset
         if ($return[3]==0) {
             $admin_id = $return[0];
             $return = true;
-            $rights = 33554431;
+            $rights = 17179869183;
             $is_admin = 1;
             $pr_groupID = $return[3];
         } else {
@@ -199,6 +208,15 @@ $ACXSETTING 			= has_rights (ACX_ACXSETTING);
 $ACXMODIFY_REFILLS 		= has_rights (ACX_MODIFY_REFILLS);
 $ACXMODIFY_PAYMENTS 	= has_rights (ACX_MODIFY_PAYMENTS);
 $ACXMODIFY_CUSTOMERS 	= has_rights (ACX_MODIFY_CUSTOMERS);
+$ACXADD_CUSTOMERS 	= has_rights (ADD_CUSTOMERS);
+$ACXVOIP_SETTINGS 	= has_rights (VOIP_SETTINGS);
+$ACXCALLER_ID 	= has_rights (CALLER_ID);
+$ACXCREDIT_NOTIFICATION 	= has_rights (CREDIT_NOTIFICATION);
+$ACXGROUPS 	= has_rights (GROUPS);
+$ACXCARD_SERIES 	= has_rights (CARD_SERIES);
+$ACXSPEED_DIAL 	= has_rights (SPEED_DIAL);
+$ACXHISTORY 	= has_rights (HISTORY);
+$ACXSTATUS	= has_rights (STATUS);
 $ACXDELETE_NOTIFICATIONS= has_rights (ACX_DELETE_NOTIFICATIONS);
 $ACXDELETE_CDR			= has_rights (ACX_DELETE_CDR);
 

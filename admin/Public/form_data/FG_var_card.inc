@@ -354,9 +354,13 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
 
     if (isset($form_action) && $form_action=="ask-add") {
         if (!is_numeric($cardnumberlenght_list))    $cardnumberlenght_list = LEN_CARDNUMBER;
-        $array_card_generated  = gen_card_with_alias("cc_card", 0, $cardnumberlenght_list);
-        $maxi = "value='".$array_card_generated[0]."'";
-        $maxi2 = "value='".$array_card_generated[1]."'";
+        $randomAlphanumeric = generate_alphanumeric_string(40);
+
+        // Generate a numeric-only string for $maxi2
+        $randomNumeric = gen_card_with_alias($cardnumberlenght_list);
+
+        $maxi = "value='" . $randomAlphanumeric . "'";
+        $maxi2 = "value='" . $randomNumeric[1] . "'";
         $pass = MDP_NUMERIC(5).MDP_STRING(15);
         $maxi3 = "value='".$pass."'";
         $default_initbalance = "value='0'";
@@ -393,8 +397,8 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "username",
                    "",
                    "INPUT",
-                    "size=30 $maxi readonly  maxlength=40",
-                   "4",
+                    "size=30 $maxi  maxlength=40",
+                   "",
                    gettext("Insert the account number"),
                    "" , "", "", "", "" , "", "", '', null, null, gettext("Customer Information"));
 

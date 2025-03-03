@@ -97,6 +97,15 @@ $right_list["22"] = array( gettext("DELETE NOTIFICATIONS"), "2097152");
 $right_list["23"] = array( gettext("DELETE CDR"), "4194304");
 $right_list["24"] = array( gettext("EDIT/DELETE ADMIN"), "8388608");
 $right_list["25"] = array( gettext("EDIT/DELETE AGENT"), "16777216");
+$right_list["26"] = array( gettext("ADD CUSTOMERS"), "33554432");
+$right_list["27"] = array( gettext("CUSTOMER SB-MENU VoIP Settings"), "67108864");
+$right_list["28"] = array( gettext("CUSTOMER SB-MENU Caller-ID"), "134217728");
+$right_list["29"] = array( gettext("CUSTOMER SB-MENU Credit Notification"), "268435456");
+$right_list["30"] = array( gettext("CUSTOMER SB-MENU Groups"), "536870912");
+$right_list["31"] = array( gettext("CUSTOMER SB-MENU Card series"), "1073741824");
+$right_list["32"] = array( gettext("CUSTOMER SB-MENU Speed Dial"), "2147483648");
+$right_list["33"] = array( gettext("CUSTOMER SB-MENU History"), "4294967296");
+$right_list["34"] = array( gettext("CUSTOMER SB-MENU Status"), "8589934592");
 
 $len_right_list = count($right_list);
 
@@ -138,7 +147,7 @@ if (has_rights (ACX_MODIFY_ADMINS) && !($popup_select)) {
 		"login",
 		'$value',
 		"INPUT",
-		"size=30 maxlength=12",
+		"size=30 maxlength=30",
 		"3",
 		gettext("Insert the username"),
 		"" , "", "", "", "" , "", "", "");

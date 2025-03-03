@@ -812,6 +812,55 @@ function gen_card_with_alias($table = "cc_card", $api = 0, $length_cardnumber = 
     }
 }
 
+function gen_card_with_alias_string($table = "cc_card", $api = 0, $length_cardnumber = LEN_CARDNUMBER, $DBHandle = null)
+{
+    if (!isset($DBHandle)) {
+        $DBHandle = DbConnect();
+    }
+
+    for ($k = 0; $k <= 200; $k++) {
+        // Generate alphanumeric card number and alias
+        $card_gen = generate_alphanumeric_string($length_cardnumber);
+        $alias_gen = generate_alphanumeric_string(LEN_ALIASNUMBER);
+
+        if ($k == 200) {
+            if ($api) {
+                global $mail_content, $email_alarm, $logfile;
+                mail($email_alarm, "ALARM : API (gen_card_with_alias - CODE_ERROR 8)", $mail_content);
+                error_log("[" . date("Y/m/d G:i:s") . "] [gen_card_with_alias] - CODE_ERROR 8\n", 3, $logfile);
+                echo ("500 Internal server error");
+                exit();
+            } else {
+                echo "ERROR: Unable to generate a unique Cardnumber & Aliasnumber! Check LEN_CARDNUMBER (value:" . LEN_CARDNUMBER . ") & LEN_ALIASNUMBER (value:" . LEN_ALIASNUMBER . ")";
+                exit();
+            }
+        }
+
+        $query = "SELECT username FROM " . $table . " WHERE username='$card_gen' OR useralias='$alias_gen'";
+        $numrow = 0;
+        $resmax = $DBHandle->Execute($query);
+        if ($resmax) {
+            $numrow = $resmax->RecordCount();
+        }
+
+        if ($numrow != 0) {
+            continue;
+        }
+
+        return [$card_gen, $alias_gen];
+    }
+}
+
+function generate_alphanumeric_string($length) {
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+
+
 /**
 * Do multi-page navigation.  Displays the prev, next and page options.
 * @param $page the page currently viewed
