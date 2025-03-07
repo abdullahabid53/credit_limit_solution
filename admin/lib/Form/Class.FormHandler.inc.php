@@ -717,11 +717,11 @@ class FormHandler
 		foreach ($this->_vars as $key => $value) {
 			if (!$this->_processed[$key] or empty($this->_processed[$key])) {
 				$this->_processed[$key] = sanitize_data($value);
-				if($key=='username') {
-					//rebuild the search parameter to filter character to format card number
-					$filtered_char = array(" ", "-", "_","(",")","+");
-					$this->_processed[$key]= str_replace($filtered_char, "", $this->_processed[$key]);
-				}
+				// if($key=='username') {
+				// 	//rebuild the search parameter to filter character to format card number
+				// 	$filtered_char = array(" ", "-", "_","(",")","+");
+				// 	$this->_processed[$key]= str_replace($filtered_char, "", $this->_processed[$key]);
+				// }
 				if($key=='pwd_encoded')$this->_processed[$key] = hash( 'whirlpool',$this->_processed[$key]);
 			}
 		}
