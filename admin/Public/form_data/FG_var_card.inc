@@ -307,8 +307,7 @@ if (($popup_select>=1)) {
     $HD_Form -> FG_OTHER_BUTTON1_ALT=gettext("Auto Create SIP Config");
     $HD_Form -> FG_OTHER_BUTTON2_ALT=gettext("Auto Create IAX Config");
     $HD_Form -> FG_OTHER_BUTTON3_ALT = gettext('Add Payment to this Card');
-    $HD_Form -> FG_OTHER_BUTTON5_ALT = gettext('Add New Subscription to this Card');
-    $HD_Form -> FG_OTHER_BUTTON6_ALT = gettext('Reset Free Resources');
+    $HD_Form -> FG_OTHER_BUTTON5_ALT = gettext('Reset Free Resources');
 }
 
 $HD_Form -> FG_FILTER_APPLY = true;
