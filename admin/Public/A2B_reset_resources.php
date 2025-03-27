@@ -19,14 +19,10 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 $A2B -> DBHandle -> Execute('SET AUTOCOMMIT=1');
 
 $qry = "UPDATE cc_card SET 
-                credit = 0,
-                used_onnet_mins = 0,
-                used_offnet_mins = 0,
-                used_intl_mins = 0,
-                notification_level = 0,
-                notification_level_pkg_onnet = 0,
-                notification_level_pkg_offnet = 0,
-                notification_level_pkg_intl = 0 
+                bundle_crossnet_mins = 0,
+                bundle_intl_mins = 0,
+                notification_level_bundle_offnet = 0,
+                notification_level_bundle_intl = 0,
               WHERE id = $id;";
 
 $A2B -> DBHandle -> Execute('BEGIN;');

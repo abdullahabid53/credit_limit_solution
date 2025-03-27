@@ -141,19 +141,19 @@ $show_list['bonus_credit'] = 'bonus_credit';
 $show_fields['bonus_credit_validity'] = array("<acronym title=\"".gettext("BONUS BALANCE VALIDITY")."\">".gettext("BBV")."</acronym>", "bonus_credit_validity", "5%", "center", "sort", "", "", "", "", "", "", "");
 $show_list['bonus_credit_validity'] = 'bonus_credit_validity';
 $show_fields['bonus_mins'] = array("<acronym title=\"".gettext("BONUS MINS")."\">".gettext("BM")."</acronym>", "bonus_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
-$show_list['bonus_mins'] = 'bonus_mins';
+$show_list['bonus_mins'] = 'floor(bonus_mins/60)';
 $show_fields['bonus_mins_validity'] = array("<acronym title=\"".gettext("BONUS MINS VALIDITY")."\">".gettext("BMV")."</acronym>", "bonus_mins_validity", "5%", "center", "sort", "", "", "", "", "", "", "");
 $show_list['bonus_mins_validity'] = 'bonus_mins_validity';
-$show_fields['used_onnet_mins'] = array("<acronym title=\"".gettext("USED ONNET MINS IN SECS")."\">".gettext("ONNET")."</acronym>", "used_onnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
-$show_list['used_onnet_mins'] = 'used_onnet_mins';
-$show_fields['used_offnet_mins'] = array("<acronym title=\"".gettext("USED OFFNET MINS IN SECS")."\">".gettext("OFFNET")."</acronym>", "used_offnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
-$show_list['used_offnet_mins'] = 'used_offnet_mins';
-$show_fields['used_intl_mins'] = array("<acronym title=\"".gettext("USED INTL MINS IN SECS")."\">".gettext("INTL")."</acronym>", "used_intl_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
-$show_list['used_intl_mins'] = 'used_intl_mins';
-$show_fields['bundle_crossnet_mins'] = array("<acronym title=\"".gettext("USED BUNDLE CROSSNET MINS IN SECS")."\">".gettext("BCM")."</acronym>", "bundle_crossnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
-$show_list['bundle_crossnet_mins'] = 'bundle_crossnet_mins';
-$show_fields['bundle_intl_mins'] = array("<acronym title=\"".gettext("USED BUNDLE INTL MINS IN SECS")."\">".gettext("BIM")."</acronym>", "bundle_intl_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
-$show_list['bundle_intl_mins'] = 'bundle_intl_mins';
+$show_fields['used_onnet_mins'] = array("<acronym title=\"".gettext("USED ONNET MINS")."\">".gettext("ONNET")."</acronym>", "used_onnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['used_onnet_mins'] = 'floor(used_onnet_mins/60)';
+$show_fields['used_offnet_mins'] = array("<acronym title=\"".gettext("USED OFFNET MINS")."\">".gettext("OFFNET")."</acronym>", "used_offnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['used_offnet_mins'] = 'floor(used_offnet_mins/60)';
+$show_fields['used_intl_mins'] = array("<acronym title=\"".gettext("USED INTL MINS")."\">".gettext("INTL")."</acronym>", "used_intl_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['used_intl_mins'] = 'floor(used_intl_mins/60)';
+$show_fields['bundle_crossnet_mins'] = array("<acronym title=\"".gettext("USED BUNDLE CROSSNET MINS")."\">".gettext("BCM")."</acronym>", "bundle_crossnet_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bundle_crossnet_mins'] = 'floor(bundle_crossnet_mins/60)';
+$show_fields['bundle_intl_mins'] = array("<acronym title=\"".gettext("USED BUNDLE INTL MINS")."\">".gettext("BIM")."</acronym>", "bundle_intl_mins", "5%", "center", "sort", "", "", "", "", "", "", "");
+$show_list['bundle_intl_mins'] = 'floor(bundle_intl_mins/60)';
 if (!($popup_select>=1)) {
     $serial_pad_length = $A2B->config["webui"]['card_serial_length'];
     $show_fields['id_seria'] = array(gettext("SERIE"), "id_seria", "*", "center", "sort", "15", "lie", "cc_card_seria", "name","id='%id'", "%1","");
@@ -307,7 +307,7 @@ if (($popup_select>=1)) {
     $HD_Form -> FG_OTHER_BUTTON1_ALT=gettext("Auto Create SIP Config");
     $HD_Form -> FG_OTHER_BUTTON2_ALT=gettext("Auto Create IAX Config");
     $HD_Form -> FG_OTHER_BUTTON3_ALT = gettext('Add Payment to this Card');
-    $HD_Form -> FG_OTHER_BUTTON5_ALT = gettext('Reset Free Resources');
+    $HD_Form -> FG_OTHER_BUTTON5_ALT = gettext('Reset Free Bundle Resources');
 }
 
 $HD_Form -> FG_FILTER_APPLY = true;

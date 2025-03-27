@@ -363,6 +363,26 @@ class Table
         if ($func_table != "")
             $this->table = $func_table;
 
+            
+            if ($this->table == 'cc_package_offer') {
+                // Split the string into an array of key-value pairs
+                $values = explode(", ", $param_update);
+                
+                // Loop through the array to find the last three values and multiply them by 60
+                for ($i = count($values) - 3; $i < count($values); $i++) {
+                    // Extract the key and value
+                    $parts = explode("=", $values[$i]);
+                    $key = trim($parts[0]); // Column name
+                    $value = trim($parts[1], " '"); // Remove quotes and trim
+        
+                    // Multiply the value by 60 and reformat it
+                    $values[$i] = "$key = '" . (intval($value) * 60) . "'";
+                }
+        
+                // Join the modified array back into a string
+                $param_update = implode(", ", $values);
+            }
+
         $QUERY = "UPDATE " . $this->table . " SET " . trim($param_update) . " WHERE " . trim($clause);
         // die($QUERY);
         $res = $this->ExecuteQuery($DBHandle, $QUERY, 0);
