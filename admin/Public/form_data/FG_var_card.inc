@@ -129,13 +129,17 @@ foreach ($show_list_temp as $i => $value) {
 $show_fields = array();
 $show_fields['id'] = array(gettext("ID"), "id", "3%", "center", "sort","", "", "", "", "", "", "");
 
-$show_fields['username'] = array(gettext("Card Number"), "username", "14%", "center", "sort", "", "30", "", "", "", "", "");
+$show_fields['username'] = array(gettext("Account Number"), "username", "14%", "center", "sort", "", "30", "", "", "", "", "");
 if (!($popup_select>=1))
 //  $show_fields['useralias'] = array("<acronym title=\"WEB UI LOGIN\">".gettext("LOGIN")."</acronym>", "useralias", "12%", "center", "sort","", "", "", "", "", "", "");
 
 // $show_fields['lastname'] = array(gettext("LASTNAME"), "lastname", "7%", "center", "sort", "20","", "", "", "", "", "");
-$show_fields['id_group'] = array(gettext("GROUP"), "id_group", "6%", "center", "sort", "20", "lie", "cc_card_group", "name", "id='%id'", "%1","");
-$show_fields['credit'] = array("<acronym title=\"".gettext("BALANCE")."\">".gettext("BA")."</acronym>", "credit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
+// $show_fields['id_group'] = array(gettext("GROUP"), "id_group", "6%", "center", "sort", "20", "lie", "cc_card_group", "name", "id='%id'", "%1","");
+$show_fields['credit'] = array("<acronym title=\"".gettext("USED CREDIT")."\">".gettext("UC")."</acronym>", "credit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
+$show_fields['creditlimit'] = array("<acronym title=\"".gettext("CREDIT LIMIT")."\">".gettext("CL")."</acronym>", "creditlimit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
+$show_list['creditlimit'] = 'creditlimit';
+$show_fields['creditpercent'] = array("<acronym title=\"".gettext("CREDIT PERCENTAGE")."\">".gettext("CP"), "", "5%", "center", "sort");
+$show_list['creditpercent'] = "CONCAT(ROUND((credit / creditlimit) * -100, 2), '%')";
 $show_fields['bonus_credit'] = array("<acronym title=\"".gettext("BONUS BALANCE")."\">".gettext("BB")."</acronym>", "bonus_credit", "5%", "center", "sort", "", "", "", "", "", "", "display_2bill");
 $show_list['bonus_credit'] = 'bonus_credit';
 $show_fields['bonus_credit_validity'] = array("<acronym title=\"".gettext("BONUS BALANCE VALIDITY")."\">".gettext("BBV")."</acronym>", "bonus_credit_validity", "5%", "center", "sort", "", "", "", "", "", "", "");
@@ -159,11 +163,11 @@ if (!($popup_select>=1)) {
     $show_fields['id_seria'] = array(gettext("SERIE"), "id_seria", "*", "center", "sort", "15", "lie", "cc_card_seria", "name","id='%id'", "%1","");
     $show_fields['serial'] = array("<acronym title=\"".gettext("SERIAL NUMBER")."\">SERIAL#</acronym>", "serial", "*","center", "sort","","eval",'str_pad("%C",'.$serial_pad_length.' , "0", STR_PAD_LEFT)');
     $show_fields['tariff'] = array("<acronym title=\"".gettext("CALL PLAN")."\">".gettext('PLAN')."</acronym>",
-           "tariff", "8%", "center", "sort", "20", "lie", "cc_tariffgroup", "tariffgroupname", "id='%id'", "%1");
+    "tariff", "8%", "center", "sort", "20", "lie", "cc_tariffgroup", "tariffgroupname", "id='%id'", "%1");
     $show_fields['status'] = array(gettext("STATUS"), "status", "4%", "center", "sort", "", "list", $cardstatus_list_acronym);
-    $show_fields['language']=array(gettext("LG"), "language", "3%", "center", "sort");
-    $show_fields['inuse'] = array(gettext("USE"), "inuse", "3%", "center", "sort");
-    $show_fields['currency'] = array("<acronym title=\"".gettext("CURRENCY")."\">".gettext("CUR")."</acronym>", "currency", "4%", "center", "sort", "", "list", $currency_list_key);
+    // $show_fields['language']=array(gettext("LG"), "language", "3%", "center", "sort");
+    // $show_fields['inuse'] = array(gettext("USE"), "inuse", "3%", "center", "sort");
+    // $show_fields['currency'] = array("<acronym title=\"".gettext("CURRENCY")."\">".gettext("CUR")."</acronym>", "currency", "4%", "center", "sort", "", "list", $currency_list_key);
     // $show_fields['sip_buddy'] = array(gettext("SIP"), "sip_buddy", "2%", "center", "sort", "", "list", $yesno);
     // $show_fields['iax_buddy'] = array(gettext("IAX"), "iax_buddy", "2%", "center", "sort", "", "list", $yesno);
     // $show_fields['nbused'] = array("<acronym title=\"AMOUNT OF CALL DONE\">".gettext("ACD")."</acronym>", "nbused", "3%", "center", "sort");
@@ -180,6 +184,41 @@ if (!($popup_select>=1)) {
 
     $FG_COL_QUERY = 'DISTINCT ';
 }
+
+
+// Temporarily remove creditlimit
+$creditlimit = $show_list['creditlimit'];
+unset($show_list['creditlimit']);
+
+
+// Convert to array to manipulate order
+$show_list_keys = array_keys($show_list);
+$pos = array_search('username', $show_list_keys);
+
+// Insert creditlimit after credit
+$before = array_slice($show_list, 0, $pos + 1, true);
+$after = array_slice($show_list, $pos + 1, null, true);
+$show_list = $before + array('creditlimit' => $creditlimit) + $after;
+
+
+
+// Temporarily remove creditlimit
+$creditpercent = $show_list['creditpercent'];
+unset($show_list['creditpercent']);
+
+// Convert to array to manipulate order
+$show_list_keys = array_keys($show_list);
+$pos = array_search('credit', $show_list_keys);
+
+// Insert creditlimit after credit
+$before = array_slice($show_list, 0, $pos + 1, true);
+$after = array_slice($show_list, $pos + 1, null, true);
+$show_list = $before + array('creditpercent' => $creditpercent) + $after;
+
+
+
+
+
 $FG_COL_QUERY_FIELD = '';
 $index = 0;
 foreach ($show_list as $i => $value) {

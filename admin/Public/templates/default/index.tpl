@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-	<link rel="shortcut icon" href="images/ico/a2billing-icon-32x32.ico">
 	<title>..:: {$CCMAINTITLE} ::..</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="templates/default/css/custom.css" rel="stylesheet" type="text/css">

@@ -99,6 +99,17 @@ foreach ($resources as $resource) {
 
     $stmt = $pdo->prepare($query);
     $stmt->execute(['card_id' => $card_id]);
+
+
+    $updateCallerIdQuery = "
+    UPDATE cc_callerid
+    SET consumed_c_limit = 0
+    WHERE id_cc_card = :card_id";
+
+    $stmt2 = $pdo->prepare($updateCallerIdQuery);
+    $stmt2->execute(['card_id' => $card_id]);
+
+
 }
 
 ?>
