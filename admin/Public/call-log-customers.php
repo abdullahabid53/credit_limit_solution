@@ -258,6 +258,11 @@ if (! isset ( $FG_TABLE_CLAUSE ) || strlen ( $FG_TABLE_CLAUSE ) == 0) {
     $FG_TABLE_CLAUSE = " t1.starttime >= ('$cc_yearmonth')";
 }
 
+// Exclude INCOMING calls (sipiax = 7)
+if (strlen ( $FG_TABLE_CLAUSE ) > 0)
+    $FG_TABLE_CLAUSE .= " AND ";
+$FG_TABLE_CLAUSE .= " t1.sipiax != 7 ";
+
 if (isset ( $customer ) && ($customer > 0)) {
     if (strlen ( $FG_TABLE_CLAUSE ) > 0)
         $FG_TABLE_CLAUSE .= " AND ";
