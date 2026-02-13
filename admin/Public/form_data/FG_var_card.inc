@@ -32,7 +32,7 @@
 **/
 
 
-getpost_ifset(array('id', 'username', 'useralias', 'uipass', 'credit', 'bonus_credit', 'language', 'tariff',
+getpost_ifset(array('id', 'username', 'useralias', 'uipass', 'credit', 'use_customer_limit', 'bonus_credit', 'language', 'tariff',
     'id_didgroup','id_campaign', 'callback', 'simultaccess', 'currency','typepaid', 'creditlimit',
     'lastname', 'firstname', 'email', 'address','city', 'state', 'country', 'zipcode', 'phone', 'fax', 'inuse',
     'max_concurrent', 'cid', 'runservice', 'firstusedate','expirationdate', 'enableexpire', 'expiredays', 'sip_buddy',
@@ -163,7 +163,7 @@ if (!($popup_select>=1)) {
     $show_fields['id_seria'] = array(gettext("SERIE"), "id_seria", "*", "center", "sort", "15", "lie", "cc_card_seria", "name","id='%id'", "%1","");
     $show_fields['serial'] = array("<acronym title=\"".gettext("SERIAL NUMBER")."\">SERIAL#</acronym>", "serial", "*","center", "sort","","eval",'str_pad("%C",'.$serial_pad_length.' , "0", STR_PAD_LEFT)');
     $show_fields['tariff'] = array("<acronym title=\"".gettext("CALL PLAN")."\">".gettext('PLAN')."</acronym>",
-    "tariff", "8%", "center", "sort", "20", "lie", "cc_tariffgroup", "tariffgroupname", "id='%id'", "%1");
+           "tariff", "8%", "center", "sort", "20", "lie", "cc_tariffgroup", "tariffgroupname", "id='%id'", "%1");
     $show_fields['status'] = array(gettext("STATUS"), "status", "4%", "center", "sort", "", "list", $cardstatus_list_acronym);
     // $show_fields['language']=array(gettext("LG"), "language", "3%", "center", "sort");
     // $show_fields['inuse'] = array(gettext("USE"), "inuse", "3%", "center", "sort");
@@ -477,6 +477,16 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    "12",
                    gettext("Insert the number of credit"),
                    "" , "", "", "", "", "", "", gettext("currency : ").strtoupper(BASE_CURRENCY) );
+
+                       $HD_Form -> AddEditElement (gettext("USE CUSTOMER LIMIT"),
+                   "use_customer_limit",
+                   '0',
+                   "RADIOBUTTON",
+                   "",
+                   "",
+                   gettext("Choose if you want to enable the customer limit on this account"),
+                   "" , "", "", "Yes :1, - No:0", "", "" , "", gettext("Define if you want to use customer limit"),
+                   '', '', gettext(""));
 
 
                    $HD_Form -> AddEditElement (gettext("CUSTOMER GROUP"),
@@ -1181,7 +1191,7 @@ $HD_Form -> AddEditElement (gettext("Bundle"),
     if (ACT_VOICEMAIL)
         $add_fields_voicemail = 'voicemail_permitted, voicemail_activated, ';
 
-    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, id_group, customer_type, id_seria, notification_type, lastname, firstname, email, '.
+    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, use_customer_limit, id_group, customer_type, id_seria, notification_type, lastname, firstname, email, '.
             ' address, city, state, country, zipcode, phone, fax, serial_no, company_name, company_website, '.
             $update_field_typepaid.'bundle_id, bundle_validity, tariff, id_didgroup, id_timezone, language, currency, status, block, lock_pin, simultaccess,  runservice, creditlimit, ' .
             ' credit_notification, notify_email, email_notification, ' .$add_fields_voicemail.
