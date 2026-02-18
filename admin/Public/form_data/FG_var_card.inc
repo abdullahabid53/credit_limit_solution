@@ -438,7 +438,7 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                     "size=30 $maxi  maxlength=40",
                    "",
                    gettext("Insert the account number"),
-                   "" , "", "", "", "" , "", "", '', null, null, gettext("Customer Information"));
+                   "" , "", "", "", "" , "", "", '', null, null, gettext("Contract Information"));
 
 
     $HD_Form -> AddEditElement (gettext("WEBUI LOGIN"),
@@ -487,6 +487,18 @@ if (has_rights (ACX_MODIFY_CUSTOMERS) && !($popup_select>=1)) {
                    gettext("Choose if you want to enable the customer limit on this account"),
                    "" , "", "", "Yes :1, - No:0", "", "" , "", gettext("Define if you want to use customer limit"),
                    '', '', gettext(""));
+
+
+                    $HD_Form -> AddEditElement (gettext("CUSTOMER LIMIT GROUP"),
+                   "customer_id",
+                   "",
+                   "SELECT",
+                   "", "", "",
+                   "sql",
+                   "cc_card_customer",
+                   "account_number, id",
+                   "", "", "%1", "", "", "", 
+                   '<OPTION value="-1" selected>'.gettext("Choose Group").'</OPTION>', ""); 
 
 
                    $HD_Form -> AddEditElement (gettext("CUSTOMER GROUP"),
@@ -1191,7 +1203,7 @@ $HD_Form -> AddEditElement (gettext("Bundle"),
     if (ACT_VOICEMAIL)
         $add_fields_voicemail = 'voicemail_permitted, voicemail_activated, ';
 
-    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, use_customer_limit, id_group, customer_type, id_seria, notification_type, lastname, firstname, email, '.
+    $HD_Form -> FieldEditElement ('username, useralias, uipass, credit, use_customer_limit, customer_id, id_group, customer_type, id_seria, notification_type, lastname, firstname, email, '.
             ' address, city, state, country, zipcode, phone, fax, serial_no, company_name, company_website, '.
             $update_field_typepaid.'bundle_id, bundle_validity, tariff, id_didgroup, id_timezone, language, currency, status, block, lock_pin, simultaccess,  runservice, creditlimit, ' .
             ' credit_notification, notify_email, email_notification, ' .$add_fields_voicemail.

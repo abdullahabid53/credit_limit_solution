@@ -135,6 +135,19 @@ $HD_Form->AddEditElement(
     ""
 );
 
+    $HD_Form -> AddEditElement (gettext("CONTRACTS"),
+                   "contracts",
+                   '$value',
+                   "HAS_MANY_READONLY",
+                   "",
+                   "",
+                   "",
+                   "",
+                   "",
+                   "",
+                   "", "", "", "", "", "cc_card:username:username, username, credit:customer_id = %id::customer_id:::::::0",
+                   '', gettext("CUSTOMER CONTRACTS"));
+
 /* FIELD MAPPING - MUST MATCH EXACTLY */
 $HD_Form->FieldEditElement(
     "name, account_number, email, credit_limit, status"

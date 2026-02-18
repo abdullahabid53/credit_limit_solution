@@ -237,8 +237,8 @@ if ($form_action == 'list' && !($popup_select >= 1)) {
          <div>
          <a id="btn-1"  style="display:inline; color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;"
           href="A2B_entity_card_contracts.php?form_action=ask-add&amp;atmenu=card&amp;stitle=Card&amp;section=1"> 
-          Add Customer&nbsp;&nbsp;<img src="../Public/templates/default/images/user_add.png" border="0"
-           title="Add Customer" alt="Add Customer"></a>
+          Add Contract&nbsp;&nbsp;<img src="../Public/templates/default/images/user_add.png" border="0"
+           title="Add Contract" alt="Add Contract"></a>
          </div>
          <?php
         }
@@ -671,7 +671,7 @@ if ($form_action == 'list' && !($popup_select >= 1)) {
         <div class="toggle_hide2show" style="margin-left:10px">
             <center>
                 <a id="btn-2" onclick="manageButtons2()"  href="#" target="_self" class="custom_a_href"><img class="toggle_hide2show" src="<?php echo KICON_PATH; ?>/search_icon.png" onmouseover="this.style.cursor='hand';" HEIGHT="16">
-                    <font style="color: white;font-size: 15px;font-weight: 400;" class="fontstyle_002"><?php echo gettext("SEARCH CUSTOMERS"); ?> </font>
+                    <font style="color: white;font-size: 15px;font-weight: 400;" class="fontstyle_002"><?php echo gettext("SEARCH CONTRACTS"); ?> </font>
                 </a>
                 <!-- <?php if (!empty($_SESSION['entity_card_selection'])) { ?>&nbsp;(<font style="color:#EE6564;"> <?php echo gettext("search activated"); ?> </font> ) <?php } ?> -->
             </center>

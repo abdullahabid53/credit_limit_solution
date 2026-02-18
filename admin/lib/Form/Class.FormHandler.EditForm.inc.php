@@ -675,6 +675,53 @@ function sendtolittle(direction) {
                                 <br>
                             </TD>
                         </TR>
+                    <?php  } elseif (strtoupper($this->FG_TABLE_EDITION[$i][3]) == "HAS_MANY_READONLY") {
+                        $table_split = preg_split("/:/", $this->FG_TABLE_EDITION[$i][14]);
+                        $table_col = preg_split("/,/", trim($table_split[2]));
+                        $SPLIT_CLAUSE = str_replace("%id", "$id", $table_split[3]);
+                        $instance_sub_table = new Table($table_split[0], $table_split[2]);
+                        $split_select_list = $instance_sub_table->Get_list($this->DBHandle, $SPLIT_CLAUSE, null, null, null, null, null, null);
+                        $num = is_array($split_select_list) ? count($split_select_list) : 0;
+                    ?>
+                        <TR>
+                            <TD valign="top" class="text"><br>
+                            <table cellspacing="0" class="editform_table2">
+                                <TR bgcolor="#ffffff">
+                                    <TD height=16 style="PADDING-LEFT: 5px; PADDING-RIGHT: 3px" class="form_head">
+                                        <TABLE border=0 cellPadding=0 cellSpacing=0 width="100%">
+                                            <TR>
+                                                <TD style="text-align: left; padding-left: 15px;" class="form_head"><?php echo $this->FG_TABLE_EDITION[$i][0] ?>&nbsp;<?php echo gettext("LIST"); ?></TD>
+                                            </TR>
+                                        </TABLE>
+                                    </TD>
+                                </TR>
+                                <TR>
+                                    <TD>
+                                        <TABLE style="margin-left: 20px;" border=0 cellPadding=0 cellSpacing=0 width="100%">
+                                            <?php if ($num > 0) {
+                                                for ($j = 0; $j < $num; $j++) {
+                                                    $row = $split_select_list[$j];
+                                                    $display_text = isset($row[0]) ? $row[0] : '';
+                                            ?>
+                                            <TR bgcolor="<?php echo $this->FG_TABLE_ALTERNATE_ROW_COLOR[$j % 2] ?>" onMouseOver="bgColor='#C4FFD7'" onMouseOut="bgColor='<?php echo $this->FG_TABLE_ALTERNATE_ROW_COLOR[$j % 2] ?>'">
+                                                <TD vAlign="top" align="left" class="tableBody">
+                                                    <font face="Verdana" size="2"><?php echo htmlspecialchars($display_text); ?></font>
+                                                </TD>
+                                            </TR>
+                                            <?php }
+                                            } else { ?>
+                                            <TR>
+                                                <TD align="left" vAlign="top" class="tableBody">
+                                                    <div align="center" class="liens">No <?php echo $this->FG_TABLE_EDITION[$i][0] ?></div>
+                                                </TD>
+                                            </TR>
+                                            <?php } ?>
+                                        </TABLE>
+                                    </TD>
+                                </TR>
+                            </table><br>
+                            </TD>
+                        </TR>
                     <?php  } elseif (strtoupper($this->FG_TABLE_EDITION[$i][3]) == "HAS_MANY") {
                         $table_split = preg_split("/:/", $this->FG_TABLE_EDITION[$i][14]);
                         $table_col = preg_split("/,/", $table_split[2]);
