@@ -12,6 +12,61 @@
 								src="../../common/images/logo/go-dash-logo.png" />
 						</div>
 
+
+						{if ($ACXCUSTOMER > 0) }
+							<div class="toggle_menu">
+								<li>
+
+									<a href="javascript:;" class="toggle_menu" target="_self">
+										<div>
+											{* customer icon *}
+											<div
+												class="{if $section == "0"}menu-active{/if} d-flex justify-content-between mx-2">
+												<div class="d-flex ">
+													<div style="padding: 0px 10px 0px 8px;">
+														<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="{if $section == "0"}#014952{else}none{/if}">
+    													<path d="M3 0.75C2.58579 0.75 2.25 1.08579 2.25 1.5V16.5C2.25 16.9142 2.58579 17.25 3 17.25H15C15.4142 17.25 15.75 16.9142 15.75 16.5V5.25L11.25 0.75H3ZM11.25 1.81L14.69 5.25H11.25V1.81ZM4.5 4.5H9.75V6H4.5V4.5ZM4.5 7.5H13.5V9H4.5V7.5ZM4.5 10.5H13.5V12H4.5V10.5ZM4.5 13.5H10.5V15H4.5V13.5Z"
+														fill="{if $section == "0"}#014952{else}white{/if}"/>
+														</svg>
+													</div>
+													{* text *}
+													<div id="menutitlesection"><strong
+															class="{if $section == "0"}sidebar-item-li-selected{else}sidebar-item-li{/if}">{php}
+															echo gettext("CUSTOMERS");{/php}</strong>
+													</div>
+												</div>
+												{* arrow image *}
+												<div id="menutitlebutton">
+													<img id="img1" {if ($section == "0")}
+														src="templates/{$SKIN_NAME}/images/minus-white.png" {else}
+														src="templates/{$SKIN_NAME}/images/plus.png" {/if}
+														onmouseover="this.style.cursor='hand';">
+												</div>
+											</div>
+											{* end *}
+										</div>
+									</a>
+								</li>
+							</div>
+							<div class="tohide" {if ($section =="0")} style="">
+								{else}
+									style="display:none;">
+								{/if}
+								<ul>
+									<li>
+										<ul>
+											<li class="">
+												<a class="sb-menu-item mx-4 {if $atmenu == 'addsearch'}active-sb-menu{/if}"
+													href="A2B_entity_card_customers.php?section=0&atmenu=addsearch">{php} echo
+													gettext("Add :: Search");{/php}</a>
+											</li>
+											</ul>
+									</li>
+								</ul>
+							</div>
+							{/if}
+
+
 						{if ($ACXCUSTOMER > 0) }
 							<div class="toggle_menu">
 								<li>
@@ -34,7 +89,7 @@
 													{* text *}
 													<div id="menutitlesection"><strong
 															class="{if $section == "1"}sidebar-item-li-selected{else}sidebar-item-li{/if}">{php}
-															echo gettext("CUSTOMERS");{/php}</strong>
+															echo gettext("CONTRACTS");{/php}</strong>
 													</div>
 												</div>
 												{* arrow image *}
@@ -59,7 +114,7 @@
 										<ul>
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'addsearch'}active-sb-menu{/if}"
-													href="A2B_entity_card.php?section=1&atmenu=addsearch">{php} echo
+													href="A2B_entity_card_contracts.php?section=1&atmenu=addsearch">{php} echo
 													gettext("Add :: Search");{/php}</a>
 											</li>
 											{php}
