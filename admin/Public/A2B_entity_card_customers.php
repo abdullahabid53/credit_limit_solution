@@ -78,9 +78,6 @@ if ($form_action == 'list' && !($popup_select >= 1)) {
             </center>
 
             <script>
-                  setTimeout(function() {
-                    location.reload();
-                }, 30000); // 30,000 milliseconds = 30 seconds
             function manageButtons1() {
                 //display the class on click 
                var div1 = document.getElementById("tohide1");
