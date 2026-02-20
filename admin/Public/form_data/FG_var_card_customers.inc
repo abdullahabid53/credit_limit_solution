@@ -93,7 +93,7 @@ $HD_Form->AddEditElement(
     '$value',                     // CRITICAL: Use '$value'
     "INPUT",
     "size=40 maxlength=255",
-    "",                           // No validation - optional
+    "1",                           // No validation - optional
     gettext("Enter email address"),
     "", "", "", "", "", "", "NO", ""
 );

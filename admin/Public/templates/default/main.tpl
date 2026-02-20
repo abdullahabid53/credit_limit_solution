@@ -114,7 +114,7 @@
 										<ul>
 											<li class="">
 												<a class="sb-menu-item mx-4 {if $atmenu == 'addsearch'}active-sb-menu{/if}"
-													href="A2B_entity_card_contracts.php?section=1&atmenu=addsearch">{php} echo
+													href="A2B_entity_card.php?section=1&atmenu=addsearch">{php} echo
 													gettext("Add :: Search");{/php}</a>
 											</li>
 											{php}

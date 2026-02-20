@@ -236,7 +236,7 @@ if ($form_action == 'list' && !($popup_select >= 1)) {
          ?>
          <div>
          <a id="btn-1"  style="display:inline; color: white; font-size: 17px; font-weight: 400; padding: 10px 20px; border-radius: 20px; background: #016774; text-decoration: none; margin-left: 10px;"
-          href="A2B_entity_card_contracts.php?form_action=ask-add&amp;atmenu=card&amp;stitle=Card&amp;section=1"> 
+          href="A2B_entity_card.php?form_action=ask-add&amp;atmenu=card&amp;stitle=Card&amp;section=1"> 
           Add Contract&nbsp;&nbsp;<img src="../Public/templates/default/images/user_add.png" border="0"
            title="Add Contract" alt="Add Contract"></a>
          </div>
@@ -780,7 +780,7 @@ if (!$popup_select && $form_action == "ask-add") {
                     document.cardform.submit();
                 }
             </script>
-            <form action="A2B_entity_card_contracts.php?form_action=ask-add&section=1" method="post" name="cardform">
+            <form action="A2B_entity_card.php?form_action=ask-add&section=1" method="post" name="cardform">
                 <tr>
                     <td class="viewhandler_filter_td1">
                         <span>
