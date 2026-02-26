@@ -31,11 +31,12 @@ $HD_Form->CV_TEXT_TITLE_ABOVE_TABLE = '';
 $HD_Form->AddViewElement(gettext("ID"), "id", "5%", "center", "sort");
 $HD_Form->AddViewElement(gettext("FULL NAME"), "name", "15%", "center", "sort");
 $HD_Form->AddViewElement(gettext("ACCOUNT NUMBER"), "account_number", "20%", "center", "sort");
-$HD_Form->AddViewElement(gettext("EMAIL"), "email", "25%", "left", "sort");
-$HD_Form->AddViewElement(gettext("CREDIT LIMIT"), "credit_limit", "15%", "center", "sort");
+$HD_Form->AddViewElement(gettext("EMAIL"), "email", "15%", "center", "sort");
+$HD_Form->AddViewElement(gettext("CREDIT LIMIT"), "credit_limit", "10%", "center", "sort");
+$HD_Form->AddViewElement(gettext("CONSUMED CREDIT LIMIT"), "consumed_customer_limit", "10%", "center", "sort");
 $HD_Form->AddViewElement(gettext("STATUS"), "status", "10%", "center", "sort");
 
-$HD_Form->FieldViewElement("id, name, account_number, email, credit_limit, status");
+$HD_Form->FieldViewElement("id, name, account_number, email, credit_limit, consumed_customer_limit, status");
 
 /* SEARCH */
 $HD_Form->FG_FILTER_SEARCH_FORM = true;
@@ -93,7 +94,7 @@ $HD_Form->AddEditElement(
     '$value',                     // CRITICAL: Use '$value'
     "INPUT",
     "size=40 maxlength=255",
-    "1",                           // No validation - optional
+    "",                           // No validation - optional
     gettext("Enter email address"),
     "", "", "", "", "", "", "NO", ""
 );
@@ -155,7 +156,10 @@ $HD_Form->FieldEditElement(
 
 // Success messages
 $HD_Form->FG_INTRO_TEXT_ADITION = '';
-$HD_Form->FG_TEXT_ADITION_CONFIRMATION = gettext("Your new") . " " . $HD_Form->FG_INSTANCE_NAME . " " . gettext("has been inserted.") . "<br>";
+$HD_Form->FG_TEXT_ADITION_CONFIRMATION = '';
+
+// Redirect back to list after adding
+$HD_Form->FG_GO_LINK_AFTER_ACTION_ADD = 'A2B_entity_card_customers.php?form_action=list&id=';
 
 // Button text
 $HD_Form->FG_BUTTON_ADITION_BOTTOM_TEXT = gettext("Click Confirm to Save");

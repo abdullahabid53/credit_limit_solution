@@ -1102,7 +1102,7 @@ class FormBO
         $instance_sub_table = new Table("cc_card", "block");
         $FG_TABLE_CLAUSE_CARD = "id = ".$processed['id'];
         $card_info = $instance_sub_table -> Get_list ($FormHandler -> DBHandle, $FG_TABLE_CLAUSE_CARD, null, null, null, null, null, null);
-        if (is_array($result) && !empty($result[0][0])) {
+        if (is_array($card_info) && !empty($card_info[0][0])) {
             $card_lock_info = $card_info[0][0];
 
             if ($card_lock_info != $processed['block'] && $processed['block'] == 1) {
@@ -1111,6 +1111,79 @@ class FormBO
                 $instance_sub_table -> Update_table ($FormHandler->DBHandle, $param_update_card, $clause_update_card, $func_table = null);
             }
         }
+    }
+
+    /**
+     * Validate that the sum of all contract credit limits for a customer does not exceed the customer's credit limit.
+     * Used before add and before edit of cc_card (contract). On edit, also calls change_card_lock().
+     */
+    public static function validate_contract_creditlimit_customer()
+    {
+        $FormHandler = FormHandler::GetInstance();
+        $processed = $FormHandler->getProcessed();
+        $instance_table = new Table();
+
+        $customer_id = isset($processed['customer_id']) ? trim($processed['customer_id']) : null;
+        $new_creditlimit = isset($processed['creditlimit']) ? trim($processed['creditlimit']) : '';
+        $card_id = isset($processed['id']) ? trim($processed['id']) : null;
+
+        if (empty($customer_id) || $customer_id === '' || $customer_id === '-1') {
+            return true;
+        }
+        if (!is_numeric($new_creditlimit)) {
+            return true;
+        }
+        $new_creditlimit = (float) $new_creditlimit;
+
+        $customer_id_esc = addslashes($customer_id);
+        $QUERY_CUST = "SELECT credit_limit FROM cc_card_customer WHERE id = '".$customer_id_esc."'";
+        $result_cust = $instance_table->SQLExec($FormHandler->DBHandle, $QUERY_CUST);
+        if (!is_array($result_cust) || !isset($result_cust[0])) {
+            return true;
+        }
+        $row = $result_cust[0];
+        if (!array_key_exists('credit_limit', $row)) {
+            return true;
+        }
+        $customer_limit = (float) $row['credit_limit'];
+
+        if ($card_id !== null && $card_id !== '') {
+            $card_id_esc = addslashes($card_id);
+            $QUERY_SUM = "SELECT COALESCE(SUM(creditlimit), 0) AS total FROM cc_card WHERE customer_id = '".$customer_id_esc."' AND id != '".$card_id_esc."'";
+        } else {
+            $QUERY_SUM = "SELECT COALESCE(SUM(creditlimit), 0) AS total FROM cc_card WHERE customer_id = '".$customer_id_esc."'";
+        }
+        $result_sum = $instance_table->SQLExec($FormHandler->DBHandle, $QUERY_SUM);
+        $other_sum = 0;
+        if (is_array($result_sum) && isset($result_sum[0])) {
+            $r = $result_sum[0];
+            $other_sum = isset($r['total']) ? (float) $r['total'] : (isset($r[0]) ? (float) $r[0] : 0);
+        }
+
+        $total_would_be = $other_sum + $new_creditlimit;
+        if ($total_would_be > $customer_limit) {
+            // Block save
+            $FormHandler->VALID_SQL_REG_EXP = false;
+
+            // Build user-facing error
+            $available = $customer_limit - $other_sum;
+            $msg = gettext("Total limit of all associated contracts must not be greater than the customer limit.");
+            $msg .= ' ' . gettext("Customer limit") . ': ' . $customer_limit . ', ';
+            $msg .= gettext("Available for this contract") . ': ' . max(0, $available) . '.';
+            $html_msg = '<font color="Red">' . $msg . '</font><br>';
+
+            // For add: shown by create_actionfinish() via FG_TEXT_ADITION_ERROR
+            $FormHandler->FG_TEXT_ADITION_ERROR = $html_msg;
+            // For edit: shown in toppage via FG_EDITION_VALIDATION_ERROR (and form_action set to ask-edit in FormHandler)
+            $FormHandler->FG_EDITION_VALIDATION_ERROR = $html_msg;
+
+            return false;
+        }
+
+        if ($card_id !== null && $card_id !== '') {
+            self::change_card_lock();
+        }
+        return true;
     }
 
     /**

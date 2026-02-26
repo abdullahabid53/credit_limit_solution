@@ -439,6 +439,7 @@ class FormHandler
 
 	var $FG_TEXT_ERROR_DUPLICATION = "You cannot choose more than one !";
 
+	var $FG_EDITION_VALIDATION_ERROR = '';
 
 	// ------------------- ## BUTTON/IMAGE SECTION  ## -------------------
 	var $FG_BUTTON_ADITION_SRC  = "Images_Path/en/continue_boton.gif";
@@ -1746,6 +1747,10 @@ class FormHandler
 		if (strlen($this->FG_ADDITIONAL_FUNCTION_BEFORE_EDITION)>0 && ($this->VALID_SQL_REG_EXP))
 				$res_funct = call_user_func(array('FormBO', $this->FG_ADDITIONAL_FUNCTION_BEFORE_EDITION));
 
+		if (!$this->VALID_SQL_REG_EXP) {
+			$form_action = "ask-edit";
+		}
+
 		if ($this->FG_DEBUG == 1) {
 			echo "<br><hr> PARAM_UPDATE: $param_update<br>".$this->FG_EDITION_CLAUSE;
         }
@@ -1932,7 +1937,9 @@ class FormHandler
 						<font class="toppage_maintable_text">
 						  <?php
 						  	if ($this->FG_ADITION_GO_EDITION == "yes-done") echo '<font class="toppage_maintable_editmsg">'.$this->FG_ADITION_GO_EDITION_MESSAGE.'</font><br><br>';
-							if ($alarm_db_error_duplication){
+							if (!empty($this->FG_EDITION_VALIDATION_ERROR)) {
+								echo '<div class="toppage_maintable_editmsg">'.$this->FG_EDITION_VALIDATION_ERROR.'</div>';
+							} elseif ($alarm_db_error_duplication){
 								echo '<font class="toppage_maintable_editmsg">'.gettext("ERROR_DUPLICATION").' ::'.$this->FG_TEXT_ERROR_DUPLICATION.'</font>';
 							}else{
 								echo $this->FG_INTRO_TEXT_EDITION;

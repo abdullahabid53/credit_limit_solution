@@ -1235,8 +1235,9 @@ $HD_Form -> AddEditElement (gettext("Bundle"),
     $HD_Form -> FG_BUTTON_EDITION_SRC = $HD_Form -> FG_BUTTON_ADITION_SRC  = Images_Path . "/cormfirmboton.gif";
     $HD_Form -> FG_BUTTON_EDITION_BOTTOM_TEXT = $HD_Form -> FG_BUTTON_ADITION_BOTTOM_TEXT = gettext("Once you have completed the form above, click on Confirm Data");
 
-    $HD_Form -> FG_ADDITIONAL_FUNCTION_BEFORE_EDITION = 'change_card_lock';
+    $HD_Form -> FG_ADDITIONAL_FUNCTION_BEFORE_EDITION = 'validate_contract_creditlimit_customer';
 
+    $HD_Form -> FG_ADDITIONAL_FUNCTION_BEFORE_ADD = 'validate_contract_creditlimit_customer';
     $HD_Form -> FG_ADDITIONAL_FUNCTION_AFTER_ADD = 'processing_card_add';
     $HD_Form -> FG_ADDITIONAL_FUNCTION_AFTER_EDITION = 'create_status_log';
 
