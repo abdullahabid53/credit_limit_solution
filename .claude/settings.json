@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -iE \"jquery\\(-[0-9]|\\\\.js$|-migrate|-legacy\\)\")",
+      "Read(//tmp/**)",
+      "Bash(sed 's/\\\\$$//')"
+    ]
+  }
+}

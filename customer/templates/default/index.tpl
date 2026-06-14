@@ -10,7 +10,9 @@
 			   <link href="templates/default/css/menu.css" rel="stylesheet" type="text/css">
 			   <link href="templates/default/css/style-def.css" rel="stylesheet" type="text/css">
 		{/if}
-         <script type="text/javascript" src="./javascript/jquery/jquery-1.2.6.min.js"></script>
+         <script type="text/javascript" src="./javascript/jquery/jquery-3.7.1.min.js"></script>
+         <script type="text/javascript" src="./javascript/jquery/jquery-migrate-3.5.2.min.js"></script>
+         <script type="text/javascript" src="./javascript/jquery/jquery-legacy-compat.js"></script>
 </HEAD>
 
 <BODY leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
