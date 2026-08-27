@@ -146,6 +146,11 @@ $FG_TABLE_COL [] = array (gettext ( "Buy" ), "buycost", "7%", "center", "SORT", 
 $FG_TABLE_COL [] = array (gettext ( "Sell" ), "sessionbill", "7%", "center", "SORT", "30", "", "", "", "", "", "display_2bill" );
 $FG_TABLE_COL [] = array (gettext ( "Margin" ), "margin", "7%", "center", "SORT", "30", "", "", "", "", "", "display_2dec_percentage" );
 $FG_TABLE_COL [] = array (gettext ( "Markup" ), "markup", "7%", "center", "SORT", "30", "", "", "", "", "", "display_2dec_percentage" );
+$FG_TABLE_COL [] = array (gettext ( "SIP Package" ),    "sip_package_name",  "8%", "center", "SORT", "50" );
+$FG_TABLE_COL [] = array (gettext ( "SIP Category" ),   "sip_number_cat",    "6%", "center", "SORT", "20" );
+$FG_TABLE_COL [] = array (gettext ( "In-Bundle (s)" ),  "sip_inbundle_secs", "5%", "center", "SORT", "10" );
+$FG_TABLE_COL [] = array (gettext ( "PAYG (s)" ),       "sip_payg_secs",     "5%", "center", "SORT", "10" );
+$FG_TABLE_COL [] = array (gettext ( "SIP Rate Type" ),  "sip_rate_type",     "6%", "center", "SORT", "15" );
 
 if (LINK_AUDIO_FILE) {
     $FG_TABLE_COL [] = array ("", "uniqueid", "1%", "center", "", "30", "", "", "", "", "", "linkonmonitorfile" );
@@ -191,10 +196,15 @@ $FG_COL_QUERY = 't1.starttime,
                      WHEN t1.sessionbill != 0 THEN ((t1.sessionbill - t1.buycost) / t1.sessionbill) * 100 
                      ELSE NULL 
                  END AS margin, 
-                 CASE 
-                     WHEN t1.buycost != 0 THEN ((t1.sessionbill - t1.buycost) / t1.buycost) * 100 
-                     ELSE NULL 
-                 END AS markup';
+                 CASE
+                     WHEN t1.buycost != 0 THEN ((t1.sessionbill - t1.buycost) / t1.buycost) * 100
+                     ELSE NULL
+                 END AS markup,
+                 t1.sip_package_name,
+                 t1.sip_number_cat,
+                 t1.sip_inbundle_secs,
+                 t1.sip_payg_secs,
+                 t1.sip_rate_type';
 if (LINK_AUDIO_FILE) {
     $FG_COL_QUERY .= ', t1.uniqueid';
 }

@@ -191,6 +191,10 @@
 											{php}
 											}
 											{/php}
+											<li class="">
+												<a class="sb-menu-item mx-4 {if $atmenu == 'sipassignments'}active-sb-menu{/if}"
+													href="A2B_entity_sip_package_assignment.php?atmenu=sipassignments&section=1">{php} echo gettext("SIP Assignments");{/php}</a>
+											</li>
 											</ul>
 									</li>
 								</ul>
@@ -422,6 +426,10 @@
 												<a class="sb-menu-item mx-4 {if $atmenu == 'monthlytraffic'}active-sb-menu{/if}"
 													href="call-last-month.php?section=5&atmenu=monthlytraffic">{php} echo
 													gettext("Monthly Traffic");{/php}</a>
+											</li>
+											<li>
+												<a class="sb-menu-item mx-4 {if $atmenu == 'sipusage'}active-sb-menu{/if}"
+													href="A2B_entity_sip_package_usage.php?atmenu=sipusage&section=5">{php} echo gettext("SIP Usage");{/php}</a>
 											</li>
 										</ul>
 									</li>
@@ -912,6 +920,12 @@
 											<li><a class="sb-menu-item mx-4 {if $atmenu == 'details'}active-sb-menu{/if}"
 													href="A2B_detail_package.php?atmenu=details&section=12">{php} echo
 													gettext("Details");{/php}</a></li>
+											<li><a class="sb-menu-item mx-4 {if $atmenu == 'sippackage'}active-sb-menu{/if}"
+													href="A2B_entity_sip_package.php?atmenu=sippackage&section=12">{php} echo
+													gettext("SIP Packages");{/php}</a></li>
+											<li><a class="sb-menu-item mx-4 {if $atmenu == 'sipfreenumbers'}active-sb-menu{/if}"
+													href="A2B_entity_sip_free_numbers.php?atmenu=sipfreenumbers&section=12">{php} echo
+													gettext("SIP Free Numbers");{/php}</a></li>
 										</ul>
 									</li>
 								</ul>

@@ -624,6 +624,113 @@ echo Display_Login_Button ($DBHandle, $id);
 
 <br/>
 
+<?php
+/* ---- SIP Package Assignments ---- */
+$res_sip_asgn = $DBHandle->Execute(
+    "SELECT a.id, a.effective_date, a.end_date, a.status,
+            a.next_package_id, a.next_effective,
+            p.name AS pkg_name, p.package_type, p.cap_minutes, p.reset_day
+     FROM cc_sip_package_assignment a
+     JOIN cc_sip_package p ON p.id = a.package_id
+     WHERE a.assignment_level = 'contract' AND a.contract_id = " . (int)$id . "
+     ORDER BY a.status DESC, a.effective_date DESC"
+);
+if ($res_sip_asgn && !$res_sip_asgn->EOF) {
+?>
+<table style="margin: 0 1% 0 1%;" class="toppage_maintable">
+    <tr>
+        <td height="20" align="center">
+            <font class="toppage_maintable_text">
+                <?php echo gettext("SIP Package Assignments"); ?><br/>
+            </font>
+        </td>
+    </tr>
+</table>
+<table style="margin: 0 1% 0 1%;" width="95%" cellspacing="2" cellpadding="2" border="0">
+    <tr class="form_head">
+        <td class="tableBody" width="5%"  align="center"><?php echo gettext("ID"); ?></td>
+        <td class="tableBody" width="22%" align="center"><?php echo gettext("PACKAGE"); ?></td>
+        <td class="tableBody" width="9%"  align="center"><?php echo gettext("TYPE"); ?></td>
+        <td class="tableBody" width="9%"  align="center"><?php echo gettext("CAP (MINS)"); ?></td>
+        <td class="tableBody" width="12%" align="center"><?php echo gettext("EFFECTIVE DATE"); ?></td>
+        <td class="tableBody" width="10%" align="center"><?php echo gettext("END DATE"); ?></td>
+        <td class="tableBody" width="13%" align="center"><?php echo gettext("USED THIS MONTH"); ?></td>
+        <td class="tableBody" width="8%"  align="center"><?php echo gettext("STATUS"); ?></td>
+        <td class="tableBody" width="10%" align="center"><?php echo gettext("ACTIONS"); ?></td>
+    </tr>
+    <?php
+    $sip_i = 0;
+    while (!$res_sip_asgn->EOF) {
+        $asgn      = $res_sip_asgn->fields;
+        $bg        = ($sip_i % 2 === 0) ? '#fcfbfb' : '#f2f2ee';
+
+        /* Compute current billing month (same logic as get_billing_month()) */
+        $rd         = max(1, min(28, (int)$asgn['reset_day']));
+        $today_day  = (int)date('j');
+        if ($today_day >= $rd) {
+            $billing_month = date('Y-m-') . str_pad($rd, 2, '0', STR_PAD_LEFT);
+        } else {
+            $prev_ts       = mktime(0, 0, 0, (int)date('n') - 1, $rd, (int)date('Y'));
+            $billing_month = date('Y-m-', $prev_ts) . str_pad($rd, 2, '0', STR_PAD_LEFT);
+        }
+
+        /* Sum all categories for this assignment + billing month */
+        $res_u = $DBHandle->Execute(
+            "SELECT COALESCE(SUM(used_seconds), 0) AS tot
+             FROM cc_sip_package_usage
+             WHERE assignment_id = " . (int)$asgn['id'] . "
+               AND billing_month = '" . $billing_month . "'"
+        );
+        $used_secs   = ($res_u && !$res_u->EOF) ? (int)$res_u->fields['tot'] : 0;
+        $used_display = ($asgn['package_type'] === 'capped')
+            ? floor($used_secs / 60) . 'm ' . ($used_secs % 60) . 's'
+            : '—';
+
+        $type_label   = ($asgn['package_type'] === 'capped') ? 'Capped' : 'Uncapped';
+        $cap_display  = ((int)$asgn['cap_minutes'] > 0) ? $asgn['cap_minutes'] : '—';
+        $status_html  = $asgn['status']
+            ? '<span style="color:green;font-weight:bold">Active</span>'
+            : '<span style="color:#aaa">Inactive</span>';
+    ?>
+    <tr bgcolor="<?php echo $bg; ?>">
+        <td class="tableBody" align="center"><?php echo $asgn['id']; ?></td>
+        <td class="tableBody" align="center"><?php echo htmlspecialchars($asgn['pkg_name']); ?></td>
+        <td class="tableBody" align="center"><?php echo $type_label; ?></td>
+        <td class="tableBody" align="center"><?php echo $cap_display; ?></td>
+        <td class="tableBody" align="center"><?php echo $asgn['effective_date']; ?></td>
+        <td class="tableBody" align="center"><?php echo $asgn['end_date'] ?: '—'; ?></td>
+        <td class="tableBody" align="center"><?php echo $used_display; ?></td>
+        <td class="tableBody" align="center"><?php echo $status_html; ?></td>
+        <td class="tableBody" align="center">
+            <a href="A2B_entity_sip_package_assignment.php?form_action=ask-edit&id=<?php echo $asgn['id']; ?>">
+                <img src="<?php echo Images_Path; ?>/edit.png" border="0"
+                     title="<?php echo gettext('Edit assignment'); ?>"
+                     alt="<?php echo gettext('Edit'); ?>">
+            </a>
+            &nbsp;
+            <a href="A2B_entity_sip_package_assignment.php?form_action=ask-delete&id=<?php echo $asgn['id']; ?>">
+                <img src="<?php echo Images_Path; ?>/delete.png" border="0"
+                     title="<?php echo gettext('Remove assignment'); ?>"
+                     alt="<?php echo gettext('Delete'); ?>">
+            </a>
+        </td>
+    </tr>
+    <?php
+        $sip_i++;
+        $res_sip_asgn->MoveNext();
+    }
+    ?>
+</table>
+<?php
+}
+?>
+<div style="margin: 4px 1% 8px 1%;">
+    <a class="cssbutton"
+       href="A2B_entity_sip_package_assignment.php?form_action=ask-add&assignment_level=contract&contract_id=<?php echo (int)$id; ?>&effective_date=<?php echo date('Y-m-d'); ?>">
+        + <?php echo gettext("Add SIP Package Assignment"); ?>
+    </a>
+</div>
+
 <div style="width : 90%; text-align : right; margin-left:auto;margin-right:auto;" >
      <a class="cssbutton_big"  href="A2B_entity_card.php?section=1">
         <img src="<?php echo Images_Path_Main;?>/icon_arrow_orange.gif"/>
