@@ -89,11 +89,11 @@ $HD_Form->AddEditElement(
 );
 $HD_Form->AddEditElement(
     gettext("CONTRACT ID"), "contract_id", '$value', "INPUT", "size=12 maxlength=12",
-    "4", gettext("cc_card.id — required when assignment level is Contract"), "", "", "", "", "", "", "NO", ""
+    "4", gettext("cc_card.id — required when assignment level is Contract"), "", "", "", "", "", "", "NO_NULL", ""
 );
 $HD_Form->AddEditElement(
     gettext("ACCOUNT ID"), "account_id", '$value', "INPUT", "size=12 maxlength=12",
-    "4", gettext("cc_card_customer.id — required when assignment level is Account"), "", "", "", "", "", "", "NO", ""
+    "4", gettext("cc_card_customer.id — required when assignment level is Account"), "", "", "", "", "", "", "NO_NULL", ""
 );
 $HD_Form->AddEditElement(
     gettext("EFFECTIVE DATE"), "effective_date", date('Y-m-d'), "INPUT", "type=date style=\"width:160px\"",
@@ -101,15 +101,15 @@ $HD_Form->AddEditElement(
 );
 $HD_Form->AddEditElement(
     gettext("END DATE"), "end_date", '$value', "INPUT", "type=date style=\"width:160px\"",
-    "", gettext("Expiry date — leave blank for no expiry"), "", "", "", "", "", "", "NO", ""
+    "", gettext("Expiry date — leave blank for no expiry"), "", "", "", "", "", "", "NO_NULL", ""
 );
 $HD_Form->AddEditElement(
     gettext("NEXT PACKAGE ID"), "next_package_id", '$value', "INPUT", "size=12 maxlength=12",
-    "4", gettext("ID of the package to switch to on next billing reset"), "", "", "", "", "", "", "NO", ""
+    "4", gettext("ID of the package to switch to on next billing reset"), "", "", "", "", "", "", "NO_NULL", ""
 );
 $HD_Form->AddEditElement(
     gettext("NEXT EFFECTIVE DATE"), "next_effective", '$value', "INPUT", "type=date style=\"width:160px\"",
-    "", gettext("Date the next package becomes active"), "", "", "", "", "", "", "NO", ""
+    "", gettext("Date the next package becomes active"), "", "", "", "", "", "", "NO_NULL", ""
 );
 $HD_Form->AddEditElement(
     gettext("STATUS"), "status", "1", "SELECT", "",

@@ -328,6 +328,7 @@ if (($popup_select>=1)) {
     $HD_Form -> FG_OTHER_BUTTON3 = true;
     $HD_Form -> FG_OTHER_BUTTON4 = true;
     $HD_Form -> FG_OTHER_BUTTON5 = true;
+    $HD_Form -> FG_OTHER_BUTTON6 = true;
     $FN_COLUMN_ID="col".($FG_COL_QUERY_COUNT);//get numbers of rows for needed fields
     $FN_COLUMN_USERNAME="col".($FG_COL_QUERY_COUNT+1);
     $FN_COLUMN_ALIAS="col".($FG_COL_QUERY_COUNT+2);
@@ -336,6 +337,7 @@ if (($popup_select>=1)) {
     $HD_Form -> FG_OTHER_BUTTON3_LINK="A2B_entity_payment.php?form_action=ask-add&card_id=|$FN_COLUMN_ID|";
     $HD_Form -> FG_OTHER_BUTTON4_LINK="A2B_entity_subscriber.php?form_action=ask-add&id=|$FN_COLUMN_ID|";
     $HD_Form -> FG_OTHER_BUTTON5_LINK="A2B_reset_resources.php?&id=|$FN_COLUMN_ID|";
+    $HD_Form -> FG_OTHER_BUTTON6_LINK="A2B_view_sip_package_usage.php?contract_id=";
     $HD_Form -> FG_INFO_LINK = "A2B_card_info.php?id=";
     //FOR INFO , DEL, EDIT  the image is already in Image_Path
     $HD_Form -> FG_OTHER_BUTTON1_IMG = Images_Path . "/icon-sip.gif";
@@ -347,6 +349,8 @@ if (($popup_select>=1)) {
     $HD_Form -> FG_OTHER_BUTTON2_ALT=gettext("SIP Package Assignments");
     $HD_Form -> FG_OTHER_BUTTON3_ALT = gettext('Add Payment to this Card');
     $HD_Form -> FG_OTHER_BUTTON5_ALT = gettext('Reset Free Bundle Resources');
+    $HD_Form -> FG_OTHER_BUTTON6_IMG = Images_Path . "/chart_bar.png";
+    $HD_Form -> FG_OTHER_BUTTON6_ALT = gettext('SIP Package Usage');
 }
 
 $HD_Form -> FG_FILTER_APPLY = true;
