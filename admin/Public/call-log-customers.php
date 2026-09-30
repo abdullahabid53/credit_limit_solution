@@ -138,7 +138,9 @@ $FG_TABLE_COL [] = array (gettext ( "Init Credit" ), "", "10%", "center", "SORT"
 $FG_TABLE_COL [] = array (gettext ( "Rem Credit" ), "", "10%", "center", "SORT", "30", "", "", "", "", "", "" );
 $FG_TABLE_COL [] = array (gettext ( "Init Free Min" ), "", "10%", "center", "SORT", "30", "", "", "", "", "", "display_minute" );
 $FG_TABLE_COL [] = array (gettext ( "Rem Free Min" ), "", "10%", "center", "SORT", "30", "", "", "", "", "", "display_minute" );
-$FG_TABLE_COL [] = array (gettext ( "CallType" ), "sipiax", "6%", "center", "SORT", "", "list", $list_chargetype );
+// Was bound to sipiax (0-7) through a 100-105 lookup table that could never match — always blank.
+// Repurposed to show the SIP package category for SIP-billed calls (blank for normal calls, same as before).
+$FG_TABLE_COL [] = array (gettext ( "CallType" ), "sip_number_cat", "6%", "center", "SORT", "20" );
 $FG_TABLE_COL [] = array (gettext ( "Init Bonus Credit" ), "", "10%", "center", "SORT", "30", "", "", "", "", "", "" );
 $FG_TABLE_COL [] = array (gettext ( "Rem Bonus Credit" ), "", "10%", "center", "SORT", "30", "", "", "", "", "", "" );
 
@@ -170,10 +172,11 @@ $FG_COL_QUERY = 't1.starttime,
                      WHEN t1.id_did IS NOT NULL THEN t6.aleg_carrier_cost_min_offp 
                      ELSE t4.buyrate 
                  END AS buyrate, 
-                 CASE 
-                     WHEN t1.id_did IS NOT NULL THEN t6.aleg_retail_cost_min_offp 
-                     ELSE t4.rateinitial 
-                 END AS rateinitial, 
+                 CASE
+                     WHEN t1.sip_rate_type IS NOT NULL AND t1.sip_rate_type != \'none\' THEN t1.sip_rate_used
+                     WHEN t1.id_did IS NOT NULL THEN t6.aleg_retail_cost_min_offp
+                     ELSE t4.rateinitial
+                 END AS rateinitial,
                  t1.sessiontime, 
                  t1.free_sessiontime, 
                  t1.card_id, 
@@ -187,7 +190,7 @@ $FG_COL_QUERY = 't1.starttime,
                  t1.remaining_credit,
                  t1.initial_free_min,
                  t1.remaining_free_min,
-                 t1.charge_type,
+                 t1.sip_number_cat,
                  t1.initial_bonus_credit,
                  t1.remaining_bonus_credit,
                  t1.buycost, 
