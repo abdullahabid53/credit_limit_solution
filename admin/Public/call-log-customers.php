@@ -95,7 +95,6 @@ $yesno ["0"] = array ("No", "0" );
 // 0 = NORMAL CALL ; 1 = VOIP CALL (SIP/IAX) ; 2= DIDCALL + TRUNK ; 3 = VOIP CALL DID ; 4 = CALLBACK call
 $list_calltype = array ();
 $list_calltype ["0"] = array (gettext("OUTGOING"), "0" );
-$list_calltype ["1"] = array (gettext("SIP/IAX"), "1" );
 $list_calltype ["2"] = array (gettext("DIDCALL"), "2" );
 $list_calltype ["3"] = array (gettext("DID_VOIP"), "3" );
 $list_calltype ["4"] = array (gettext("CALLBACK"), "4" );
@@ -270,11 +269,6 @@ if (! isset ( $FG_TABLE_CLAUSE ) || strlen ( $FG_TABLE_CLAUSE ) == 0) {
     $cc_yearmonth = sprintf ( "%04d-%02d-%02d", date ( "Y" ), date ( "n" ), date ( "d" ) );
     $FG_TABLE_CLAUSE = " t1.starttime >= ('$cc_yearmonth')";
 }
-
-// Exclude INCOMING calls (sipiax = 7)
-if (strlen ( $FG_TABLE_CLAUSE ) > 0)
-    $FG_TABLE_CLAUSE .= " AND ";
-$FG_TABLE_CLAUSE .= " t1.sipiax != 7 ";
 
 if (isset ( $customer ) && ($customer > 0)) {
     if (strlen ( $FG_TABLE_CLAUSE ) > 0)
