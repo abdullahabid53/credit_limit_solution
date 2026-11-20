@@ -151,7 +151,7 @@ $FG_TABLE_COL [] = array (gettext ( "SIP Package" ),    "sip_package_name",  "8%
 $FG_TABLE_COL [] = array (gettext ( "SIP Category" ),   "sip_number_cat",    "6%", "center", "SORT", "20" );
 $FG_TABLE_COL [] = array (gettext ( "In-Bundle (s)" ),  "sip_inbundle_secs", "5%", "center", "SORT", "10" );
 $FG_TABLE_COL [] = array (gettext ( "PAYG (s)" ),       "sip_payg_secs",     "5%", "center", "SORT", "10" );
-$FG_TABLE_COL [] = array (gettext ( "SIP Rate Type" ),  "sip_rate_type",     "6%", "center", "SORT", "15" );
+$FG_TABLE_COL [] = array (gettext ( "SIP Rate Type" ),  "sip_rate_type",     "10%", "center", "SORT", "20" );
 
 if (LINK_AUDIO_FILE) {
     $FG_TABLE_COL [] = array ("", "uniqueid", "1%", "center", "", "30", "", "", "", "", "", "linkonmonitorfile" );
@@ -206,7 +206,16 @@ $FG_COL_QUERY = 't1.starttime,
                  t1.sip_number_cat,
                  t1.sip_inbundle_secs,
                  t1.sip_payg_secs,
-                 t1.sip_rate_type';
+                 CASE
+                     WHEN t1.sip_rate_type NOT IN (\'free\', \'none\') THEN t1.sip_rate_type
+                     WHEN t1.charge_type = 100 THEN \'CUG\'
+                     WHEN t1.charge_type = 101 THEN \'NO PACKAGE OFFER\'
+                     WHEN t1.charge_type = 102 THEN \'ACCESS CODE\'
+                     WHEN t1.charge_type = 103 THEN \'ONNET PACKAGE\'
+                     WHEN t1.charge_type = 104 THEN \'OFFNET PACKAGE\'
+                     WHEN t1.charge_type = 105 THEN \'INTL PACKAGE\'
+                     ELSE t1.sip_rate_type
+                 END AS sip_rate_type';
 if (LINK_AUDIO_FILE) {
     $FG_COL_QUERY .= ', t1.uniqueid';
 }
